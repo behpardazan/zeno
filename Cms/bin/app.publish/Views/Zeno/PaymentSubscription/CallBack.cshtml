@@ -1,0 +1,112 @@
+﻿@using DataLayer.Entities;
+@using DataLayer.Enumarables;
+@model ShippingSubscriptionPayment
+@{
+    ViewBag.Title = Resource.Lang.Payment;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+}
+
+<section class="basket pagepadding">
+    <div class="container">
+        <div class="basket_box">
+            <div class="row w-100 m-0">
+                <div class="basket-tab w-100">
+                    <div class="nav nav_tabs d-flex justify-content-center w-100 p-0 basket-tabs">
+                        <div class="row w-100 d-flex align-items-center">
+                            <div class="col-3 p-0 ">
+                                <div class=" bas_Tab">
+                                    <div class="tab_span  ">
+                                        <div class="sendinfo_icon basketIcon"></div>
+                                        <strong>@Resource.Lang.Basket</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 p-0">
+                                <div class=" bas_Tab">
+                                    <div class="tab_span">
+                                        <div class="payment_icon basketIcon "></div>
+                                        <strong>@Resource.Lang.Receiver</strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-3 p-0">
+                                <div class=" bas_Tab bas_tab3">
+                                    <div class="tab_span ">
+                                        <div class="confirm_icon basketIcon "></div>
+                                        <strong>@Resource.Lang.Invoice</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 p-0">
+                                <div class="bas_Tab">
+                                    <div class="tab_span activeT">
+                                        <div class="bill_icon basketIcon"></div>
+                                        <strong>@Resource.Lang.Receipt</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab_content w-100 ">
+                        <div class="tab_pane">
+                            @if (Model.Code.Label == Enum_Code.ORDER_STATUS_SUCCESS.ToString())
+                            {
+                                <div class="basket_bill">
+                                    <div class="success_icon"></div>
+                                    <h4 class="text-success">خرید موفقیت آمیز</h4>
+                                    @if (!string.IsNullOrEmpty(Model.RefNumber))
+                                    {
+                                <strong>خرید اشتراک شما با موفقیت انجام شد شما میتوانید به مدت یک ماه هر هفته یکبار به آدرس  ثبت شده در هنگام خرید اشتراک ارسال رایگان داشته باشید</strong>
+                                        <strong class="text-success">@Resource.Lang.TrackingNumber: <span class="font-calibri">@Model.RefNumber</span></strong>
+                                    }
+                                    else
+                                    {
+                                        <strong class="text-success">@Resource.Lang.SuccessfulyOrder</strong>
+                                    }
+
+
+
+
+                                </div>
+                                <div class="basketbtns mt-3">
+                                    <a href="/" class="btn secondary_btn prev_tab">
+                                        <i class="bi bi-arrow-right"></i>
+                                        <span>@Resource.Lang.BackToHomePage</span>
+                                    </a>
+                                    @*<a href="/Profile" class="btn primary_btn next_tab">
+                                        <span> پی گیری سفارش</span>
+                                        <i class="bi bi-arrow-left"></i>
+
+                                    </a>*@
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="basket_bill">
+                                    <div class="unsuccess_icon"></div>
+                                    <h4 class="text-danger">@Resource.Lang.UnSuccessfulPayment</h4>
+
+                                    <strong class="text-danger">@Resource.Lang.YourPaymentEncounteredError</strong>
+
+
+
+                                </div>
+                                <div class="basketbtns mt-3">
+                                    <a href="@Url.Action("index", "paymentsubscription")" class="btn secondary_btn prev_tab">
+                                        <i class="bi bi-arrow-right"></i>
+                                        <span>بازگشت به خرید اشتراک</span>
+                                    </a>
+                                   
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

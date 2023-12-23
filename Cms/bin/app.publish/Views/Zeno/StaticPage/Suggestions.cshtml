@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = Resource.Lang.CriticismsAndSuggestions;
+    Layout = Resources.KhoshKala.WEBSITE_LAYOUT;
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+	ViewBag.Follow="index, follow";
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home">@Resource.Lang.Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Resource.Lang.CriticismsAndSuggestions</li>
+        </ol>
+    </div>
+</nav>
+<section class="innerPageForm Suggestions">
+    <div class="container">
+        <div class="innerPage_box">
+            <div class="page_explain">
+                <p>@Resource.Lang.QuestionContactUs</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 p-2 text-right">
+                    @*<form action="" class="innerPage_form">*@
+                        <div class="form-group">
+                            <div class="formLbl">
+                                <label for="innerName">@Resource.Lang.FullName:</label>
+                            </div>
+                            <input type="text" data-bind="value:viewModel.ContactForm.FullName" class="form-control" name="innerName">
+                        </div>
+                        <div class="form-group">
+                            <div class="formLbl">
+                                <span>*</span>
+                                <label for="innerEmail">@Resource.Lang.Email:</label>
+                            </div>
+                            <input type="text" data-bind="value:viewModel.ContactForm.Email" class="form-control" name="innerEmail">
+                        </div>
+                        <div class="form-group">
+                            <div class="formLbl">
+                                <span>*</span>
+                                <label for="innerSuggest">@Resource.Lang.CriticismsORSuggestions:</label>
+                            </div>
+
+                            <textarea name="innerSuggest" data-bind="value:viewModel.ContactForm.Body" id="" class="form-control"></textarea>
+                        </div>
+                        <div class="innerForm_btn">
+                            <button type="button"  codeprocess-action="contactform" class="btn green_btn ">@Resource.Lang.Send</button>
+                        </div>
+                    @*</form>*@
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>

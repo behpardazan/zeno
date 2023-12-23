@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DataLayer.Entities.Store>
+@{
+    string prStoreId = BaseRouteView.GetStringValue(Request, "prstoreId");
+    List<string> listprStoreId = new List<string>();
+    if (string.IsNullOrEmpty(prStoreId) == false)
+    {
+        if (prStoreId.Contains("-"))
+        {
+            listprStoreId = prStoreId.Split('-').ToList();
+        }
+        else
+        {
+            listprStoreId.Add(prStoreId);
+        }
+    }
+}
+@if (Model.Any())
+{
+    <div class="filtering_item">
+        <strong>@Resource.Lang.Store</strong>
+        @foreach (var item in Model)
+        {
+            <div class="brand_filter store_filter">
+                <label class=" lable" for="@item.ID">
+                    <input id="@item.ID" class="update-store" type="checkbox" @(listprStoreId.Any(a => a.Equals(item.ID.ToString())) ? "checked" : "") value=@item.ID>
+                    <span class="selectMark"></span>@item.Name
+                </label>
+            </div>
+
+        }
+    </div>
+}
+
+

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<DataLayer.Entities.ProductBrand>
+@using DataLayer.Base
+@using DataLayer.Enumarables
+
+
+@{
+    Layout = Resources.Zeno.WEBSITE_LAYOUT;
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    string pbname = BaseRouteView.GetStringValue(Request, "pbname");
+    ViewBag.Title = @Resource.Lang.Brands;
+
+    ViewBag.url = HttpContext.Current.Request.Url.AbsoluteUri;
+
+    ViewBag.OgUrl = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.Follow = "index, follow";
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">@Resource.Lang.Home</a></li>
+            <li class="breadcrumb-item " aria-current="page">
+                <span> @Resource.Lang.Brands</span>
+            </li>
+        </ol>
+
+    </div>
+</nav>
+<section class="total-products text-gray pt-0 pr-0 pl-0 products-brand">
+    <div class="container">
+        <div class="row w-100 m-0">
+
+            <div class="col-lg-12  p-1">
+
+                <div class="products-boxes d-flex flex-column h-100">
+                    <div class="row m-0">
+                        @if (!Model.Where(s => s.Product.Any(x => x.Code.Label == Enum_Code.PRODUCT_STATUS_AVAILABLE.ToString())).Any())
+                        {
+                            <div class="noResult">
+                                <img src="~/Assets/KhoshKala/Image/noresualt.png" />
+                                <p class="alert ">@Resource.Notify.UnfortunatelyNoProductWasFound</p>
+
+                            </div>
+                        }
+                        else
+                        {
+                           foreach (var item in Model.Where(s => s.Active==true).OrderBy(s => s.ShowNumber))
+                            {
+                                <div class="col-lg-2 col-md-4 col-6 p-2">
+                                    <div class="item">
+                                        <div>
+                                            <div class="ProductItem">
+
+                                                <div class="ProductPic">
+                                                    @if (item.Picture != null)
+                                                    {<a href="@item.GetLinkNew()">
+                                                            <img src="@item.Picture.GetUrl()" alt="@item.GetName()">
+                                                        </a>
+                                                    }
+
+                                                </div>
+                                                <div class="ProductCaption">
+                                                    <div class="ProductItemText">
+                                                       <a href="@item.GetLinkNew()">
+                                                           <strong>@item.GetName()</strong>
+                                                           </a> 
+
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+

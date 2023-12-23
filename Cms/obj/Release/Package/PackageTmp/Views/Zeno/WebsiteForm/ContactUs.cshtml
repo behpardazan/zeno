@@ -1,0 +1,44 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Enumarables;
+
+@model DataLayer.Entities.WebsiteForm
+
+<form id="@Model.Label" class="contact_form">
+    @foreach (var item in Model.WebsiteFormField.Where(x => x.ShowNumber > 0 && x.ShowNumber < 20))
+    {
+<div class="form-group">
+    <div class="formLbl">
+        @if (item.Requier == true)
+        {
+            <span>*</span>
+        }
+        @*<label for="innerName">@item.Name @Resources.KhoshKala.ResourceManager.GetString(item.ColumnName):</label>*@
+    </div>
+    @if (item.Code.Label == Enum_Code.FIELD_TYPE_TEXT.ToString())
+    {
+        <textarea form-field-id="@item.ID" type="text" name="contactTxt" id="contactTxt" cols="30" rows="10" class="form-control" placeholder="@item.Name"></textarea>
+    }
+    else if (item.Code.Label == Enum_Code.CONTACT_TYPE_EMAIL.ToString())
+    {
+        <input form-field-id="@item.ID" type="text" name="contactEmail" class="form-control" placeholder="@item.Name">
+    }
+    else if (item.Code.Label == Enum_Code.FIELD_TYPE_STRING.ToString())
+    {
+        <input form-field-id="@item.ID" type="text" name="contactName" class="form-control" placeholder="@item.Name">
+    }
+    else if (item.Code.Label == Enum_Code.CONTACT_TYPE_PHONE.ToString())
+    {
+        <input form-field-id="@item.ID" type="text" class="form-control" name="innerName">
+    }
+
+</div>
+    }
+
+    <div class="securityQuestion">
+        <strong>@Resource.Lang.ToPreventSpam_AnswerTheFollowingQuestion </strong>
+        <input type="text" class="form-control mt-0" name="logincapcha">
+    </div>
+</form>
+<div class="basketbtns mt-3">
+    <button type="button" codeprocess-action="websiteform" website-form-id="ContactUs" class="btn green_btn mr-auto"><span>@Resource.Lang.Send</span></button>
+</div>

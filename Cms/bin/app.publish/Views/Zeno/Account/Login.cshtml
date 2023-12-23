@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title =Resource.Lang.SignIn;
+    ViewBag.Follow = "noindex, nofollow";
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+}
+
+    <section class="loginRegister">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="loginBox">
+
+                        <div class="page_title">
+                            <strong>@Resource.Lang.SignIn </strong>
+                        </div>
+                        @if (ViewBag.back == "creditshoping")
+                        {
+                            <p class="alert alert-warning">برای خرید اعتباری ابتدا وارد حساب کاربری خود شوید</p>
+                        }
+
+                        <form class="login_form" id="loginForm">
+                            @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/_Login.cshtml")
+
+                            <div class="rememberMe">
+                                <input type="checkbox" class="m-0 ml-2" id="remember" name="remember" codeprocess-field="remember" data-bind="checked: viewModel.Account.remember">
+                                <span>من را بخاطر بسپار</span>
+                            </div>
+
+                            <a href="/forget" class="recoverPass_btn">فراموشی رمز عبور</a>
+
+                            <div class="loginFooter">
+                                <button class="btn primary_btn" type="button" codeprocess-action="login" codeprocess-callback="gotocurrentUrl"><span>@Resource.Lang.SignIn</span></button>
+                                <hr>
+                                <a class="btn secondary_btn" href="/register"><span>ثبت نام</span></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+

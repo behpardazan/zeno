@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DataLayer.Entities.CompetitiveFeature>
+@{
+    string prCompetitiveId = BaseRouteView.GetStringValue(Request, "prcompetitiveId");
+    List<string> listprCompetitiveId = new List<string>();
+    if (string.IsNullOrEmpty(prCompetitiveId) == false)
+    {
+        if (prCompetitiveId.Contains("-"))
+        {
+            listprCompetitiveId = prCompetitiveId.Split('-').ToList();
+        }
+        else
+        {
+            listprCompetitiveId.Add(prCompetitiveId);
+        }
+    }
+}
+@if (Model.Any())
+{
+    if (Model.Any(s => s.StoreCompetitiveFeature.Count > 0))
+    {
+
+        <div class="filtering_item">
+
+            <h1>@Resource.Lang.CompetitiveFeature</h1>
+            @foreach (var item in Model.Where(s => s.StoreCompetitiveFeature.Count > 0).ToList())
+            {
+                <div class="storecompetitive_filter checkBox">
+                    <input id="@("competitive" +item.ID)" class="update-storecompetitive" type="checkbox" @(listprCompetitiveId.Any(a => a.Equals(item.ID.ToString())) ? "checked" : "") value=@item.ID>
+                    <div class="selector"></div>
+                    <label for="@("competitive" +item.ID)">@item.TexCompetitiveFeature</label>
+                </div>
+            }
+        </div>
+    }
+
+}
+
+

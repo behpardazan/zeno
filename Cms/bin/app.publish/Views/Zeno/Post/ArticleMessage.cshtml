@@ -1,0 +1,15 @@
+﻿@model IEnumerable<DataLayer.Entities.Post>
+@using DataLayer.Base
+@{
+    DataLayer.Entities.Post SearchPost = Model.FirstOrDefault();
+    if (SearchPost != null)
+    {
+        <strong>@Html.Raw(SearchPost.GetName())</strong>
+        <br />
+        <br />
+        <p>
+            @Html.Raw(SearchPost.GetSummery())
+        </p>
+        <a class="seeMore" href="@SearchPost.GetLinkWithUrl()">@Resource.Lang.SeeMore <i class="fas fa-arrow-left"></i></a>
+    }
+}

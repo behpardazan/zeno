@@ -1,0 +1,25 @@
+﻿@model bool
+<div class="user_address_item">
+    <div class="address_info">
+        <div class="address_line">
+            <div class="pick_address p-2">
+                <label class="lable"  data-bind="attr:{'for':'addressId'+Id}">
+                    <input type="radio" name="addressId" data-bind="value:Id,checked:viewModel.Basket.Address.AddressId,attr:{'id':'addressId'+Id}" onchange="UpdateLocation();" >
+                    <span class="selectRadio"></span>
+                </label>
+            </div>
+            <div class="address_name" data-bind="text: NameFamily "><span>مهسا پورنجف</span></div>
+            <div class="address_phone" data-bind="text: Mobile"><span>09124569874</span> </div>
+        </div>
+        <div class="address_line" >
+            <span data-bind="text: AddressValue">تهران سهروردی خیابان خرمشهر کوچه فرهاد پلاک 30</span>
+        </div>
+    </div>
+    <div class="address_btns">
+        <button type="button" class="btn address_delete m-2" data-bind="click: showModalAddressForDelete" data-bs-toggle="modal" data-bs-target="#deletAddress_modal"><i class="bi bi-trash"></i></button>
+        <button type="button" class="btn address_edit m-2" data-bind="click: showModalAddressForEdit" data-bs-toggle="modal" data-bs-target="#editaddress_modal">
+            <i class="bi bi-pen"></i>
+        </button>
+    </div>
+</div>
+

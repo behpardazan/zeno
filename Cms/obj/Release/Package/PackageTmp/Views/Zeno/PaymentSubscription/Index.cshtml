@@ -1,0 +1,111 @@
+﻿@using DataLayer.ViewModels;
+@using DataLayer.Enumarables;
+@model ViewShippingSubscriptionPayment
+@{
+    ViewBag.Title = Resource.Lang.Payment;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+}
+
+<section class="basket pagepadding">
+    <div class="container">
+        <div class="basket_box">
+            <div class="row w-100 m-0">
+                <div class="basket-tab w-100">
+                    <div class="nav nav_tabs d-flex justify-content-center w-100 p-0 basket-tabs">
+                        <div class="row w-100 d-flex align-items-center">
+                            <div class="col-3 p-0 ">
+                                <div class=" bas_Tab">
+                                    <div class="tab_span  ">
+                                        <div class="sendinfo_icon basketIcon"></div>
+                                        <strong>@Resource.Lang.Basket</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 p-0">
+                                <div class=" bas_Tab">
+                                    <div class="tab_span">
+                                        <div class="payment_icon basketIcon "></div>
+                                        <strong>@Resource.Lang.Receiver</strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-3 p-0">
+                                <div class=" bas_Tab bas_tab3">
+                                    <div class="tab_span ">
+                                        <div class="confirm_icon basketIcon "></div>
+                                        <strong>@Resource.Lang.Invoice</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 p-0">
+                                <div class="bas_Tab">
+                                    <div class="tab_span activeT">
+                                        <div class="bill_icon basketIcon"></div>
+                                        <strong>@Resource.Lang.Receipt</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab_content w-100 ">
+                        <input  type="hidden" id="pymentId" value="@Model.Id"/>
+                        <div class="tab_pane">
+                            <div class="reciever_info">
+                                <strong>مشخصات مقصد برای ارسال رایگان:</strong>
+                                <div class="reciever_address">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="address_line">
+                                                <div class="address_name">
+                                                    <span>@Resource.Lang.FullName : @Model.Address.Account.FullName</span>
+                                                </div>
+                                                <div class="address_phone">
+                                                    <span>@Resource.Lang.Mobile : @Model.Address.Mobile</span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="address_line">
+
+                                                <span>@Resource.Lang.Address: @Model.Address.AddressValue</span>
+
+                                                <span>-</span>
+                                                <span>@Resource.Lang.PostalCode : @Model.Address.PostalCode</span>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <p>مبلغ قابل پرداخت</p>
+                            <strong>@Model.Price</strong>
+                            <strong>تومان</strong>
+                            <div>
+                                @Html.Action("GetActiveMerchants", "merchant")
+                            </div>
+                            <div class="basketbtns mt-3">
+                                
+                                <button class="btn primary_btn next_tab next-page" onclick="PaymentSubscription()">
+                                    <span>
+                                        @Resource.Lang.Payment
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

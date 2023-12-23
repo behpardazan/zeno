@@ -1,0 +1,103 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+@using DataLayer.Enumarables;
+@using DataLayer.ViewModels;
+@model DataLayer.Entities.AccountOrder
+
+@{
+    Layout = "~/Views/Zeno/Shared/_UserLayoutBlank.cshtml";
+    ViewShopWebsiteSetting ShopWebsiteSetting = BaseWebsite.WebsiteSetting;
+    string time = @Model.Datetime.ToString("HH:mm");
+    string payment_status = Enum_Code.PAYMENT_STATUS_SUCCESSFUL.ToString();
+    string payment_status_service_failed = Enum_Code.PAYMENT_STATUS_SERVICE_FAILED.ToString();
+
+
+    var parent = Model;
+
+    if (Model.ParentId.HasValue)
+        parent = Model.AccountOrder2;
+
+    PaymentProductOrder paymentOrder = parent.PaymentProductOrder.FirstOrDefault(p =>
+        p.Payment.Code.Label == payment_status ||
+        p.Payment.Code.Label == payment_status_service_failed
+    );
+
+}
+
+
+<div class="col-12">
+    <div class="form-horizontal line-height-invoice">
+        <span><b>@Resource.Lang.FactureNumber: </b> @Model.ID</span><br />
+        <span class="d-block my-3"><b>@Resource.Lang.FactureDate: </b> @Model.Datetime.ToPersianComplete() @Resource.Lang.Watch: @time</span>
+        <div class="no-print-page">
+            <span><b>@Resource.Lang.FactureStatuse: </b> @Model.Code.Name</span><br />
+
+        </div>
+        @if (Model.IsCreditShoping == true)
+        {
+            <div>
+                <span><b>پرداخت به صورت اعتباری</b></span><br />
+
+            </div>
+        }
+        <hr />
+        <span class="ms-3"><b>@Resource.Lang.Buyer: </b>@Model.Account.FullName</span> <span>&nbsp;&nbsp;</span>
+        <span class="ms-3"><b>@Resource.Lang.Phone: </b>@Model.Account.Mobile</span> <span>&nbsp;&nbsp;</span>
+        <span class="ms-3"><b>@Resource.Lang.Address: </b>@Html.Raw(Model.AccountAddress.GetAddressString())</span>
+        @if (Model.AddressId.HasValue && !string.IsNullOrEmpty(Model.AccountAddress.Latitude) && !string.IsNullOrEmpty(Model.AccountAddress.Longitude))
+        {
+            <hr />
+
+            <div class="map-box">
+                <input type="hidden" name="Latitude" value="@Model.AccountAddress.Latitude" />
+                <input type="hidden" name="Longitude" value="@Model.AccountAddress.Longitude" />
+
+                @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/LocationShow.cshtml")
+            </div>
+        }
+        <hr />
+        <div>
+            @if (paymentOrder != null)
+            {
+                Payment payment = paymentOrder.Payment;
+
+                <span><b>@Resource.Lang.PaymentStatus: </b>@payment.Code.Name</span> <span>&nbsp;&nbsp;</span>
+                <span><b>@Resource.Lang.ReferenceBank: </b>@payment.Merchant.Bank.Name</span> <span>&nbsp;&nbsp;</span>
+                <span><b>@Resource.Lang.PaymentTrackingCode: </b>@payment.RefNumber</span>
+                <hr />
+            }
+        </div>
+    </div>
+</div>
+
+@if (Model.ParentId != null)
+{
+    <div class="col-sm-12">
+        @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/account/PartialInner.cshtml", Model)
+    </div>
+}
+else
+{
+    foreach (var item in Model.AccountOrder1)
+    {
+        <div class="col-sm-12">
+            <h5>@Resource.Lang.FactureNumber:  @item.ID</h5>
+            <br />
+            @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/account/PartialInner.cshtml", item)
+            <hr />
+        </div>
+    }
+}
+
+
+
+
+
+@section endScripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.print();
+        });
+    </script>
+}

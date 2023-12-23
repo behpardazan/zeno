@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="fa-IR">
+<head>
+    @if (ViewBag.IsHome != true)
+    {
+
+        ViewBag.Title = ViewBag.Title + BaseContent.WebsiteDetail.TitleOtherPage;
+    }
+    <title>@ViewBag.Title</title>
+    <meta name="title" content=" @ViewBag.Title " />
+    <meta name="description" content="@ViewBag.MetaDescription ">
+    @RenderSection("Header", false)
+    <link rel="canonical" href="@(ViewBag.Canonical!=null?ViewBag.Canonical:ViewBag.url)" />
+    <meta property='og:title' content='@ViewBag.Title' />
+    <meta property='og:url' content='@ViewBag.OgUrl' />
+    <meta property='og:image' content='@ViewBag.OgImage' />
+    <meta property='og:image:url' content='@ViewBag.OgImage' />
+    <meta property='og:image:type' content='image/jpg' />
+    <meta name="twitter:card" content="@ViewBag.OgUrl">
+    <meta name="twitter:image" content="@ViewBag.OgImage">
+    <meta name="twitter:title" content="@ViewBag.Title">
+    <meta name="twitter:description" content="@ViewBag.MetaDescription">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="alternate" type="text/html" href="@ViewBag.url" hreflang="fa-ir" />
+    <meta charset="UTF-8">
+    <meta property="og:locale" content="fa-IR" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/zeno/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/zeno/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/zeno/images/favicon/site.webmanifest">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_BOOTSTRAP_MIN" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_BOOTSTRAP_ICON" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_OWL_CAROUSEL" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_OWL_CAROUSEL_THEME" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_ANIMATE" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_HOVER" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_RANGE" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_MAGIC" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_STYLE" />
+    <link rel="stylesheet" href="@Resources.Default.CSS_PLUGIN_TOASTR" />
+   @if (ViewBag.Follow != null)
+    {
+        <meta name="robots" content='@ViewBag.Follow' />
+
+    }
+    else if (TempData["allNoIndexFollow"] != null && (bool)TempData["allNoIndexFollow"] == true)
+    {
+        <meta name="robots" content='noindex,nofollow' />
+    }
+    else
+    {
+        <meta name="robots" content='@((TempData["noIndex"]!=null && (bool)TempData["noIndex"]==true)?"noindex":"index"),@((TempData["noFollow"]!=null && (bool)TempData["noFollow"]==true)?"nofollow":"follow")' />
+    }
+    <meta name="product_price" content='@ViewBag.MinPrice' />
+    <meta name="product_old_price" content='@ViewBag.Price' />
+    <meta name="availability" content='@ViewBag.Stock' />
+    <meta property='og:url' content='@ViewBag.OgUrl' />
+    <script type="text/javascript">
+        window.RAYCHAT_TOKEN = "1bc20388-d8c8-4779-aff3-6a09234c864c";
+        (function () {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://widget-react.raychat.io/install/widget.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+    @RenderSection("Head", false)
+</head>
+
+<body>
+    @using DataLayer.Base;
+   @* <a href="@Html.Raw(BaseContent.WebsiteDetail.Whatsapp)" class="float_link">
+        <div class="float_img">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M86,6.88c-43.62608,0 -79.12,35.49392 -79.12,79.12c0,13.6224 3.51874,27.01453 10.19234,38.83437l-10.06469,35.91844c-0.33024,1.17992 -0.01328,2.44186 0.83984,3.31906c0.65704,0.67768 1.55402,1.04813 2.4725,1.04813c0.2752,0 0.55465,-0.03542 0.82641,-0.10078l37.48391,-9.28531c11.44488,6.14384 24.33209,9.3861 37.36969,9.3861c43.62608,0 79.12,-35.49392 79.12,-79.12c0,-43.62608 -35.49392,-79.12 -79.12,-79.12zM57.25047,48.16c1.35536,0 2.70335,0.01886 3.89016,0.0739c1.24872,0.06192 2.92771,-0.47472 4.57547,3.44c1.69248,4.01792 5.75291,13.88755 6.25515,14.89547c0.50912,1.00448 0.84893,2.17575 0.17469,3.51391c-0.67424,1.33816 -1.01082,2.17961 -2.02906,3.35265c-1.01824,1.17304 -2.13527,2.61263 -3.05031,3.51391c-1.01824,1.00104 -2.07696,2.08276 -0.8936,4.09172c1.18336,2.00896 5.2603,8.57613 11.30094,13.89437c7.7572,6.83184 14.30368,8.95271 16.33328,9.95719c2.0296,1.00448 3.21742,0.83425 4.40078,-0.50391c1.18336,-1.3416 5.07793,-5.85542 6.42985,-7.86094c1.35192,-2.00552 2.70427,-1.67861 4.56875,-1.00781c1.86448,0.66736 11.85134,5.51942 13.88094,6.5239c2.0296,1.00448 3.38775,1.50893 3.89687,2.34485c0.50912,0.83248 0.50998,4.84535 -1.1825,9.52719c-1.69248,4.68528 -9.81201,8.96615 -13.71297,9.54063c-3.50192,0.51256 -7.93506,0.72783 -12.79922,-0.79953c-2.94808,-0.9288 -6.72944,-2.15866 -11.5764,-4.2261c-20.37512,-8.68944 -33.68411,-28.94996 -34.70235,-30.28812c-1.0148,-1.33816 -8.29094,-10.87142 -8.29094,-20.74078c0,-9.86936 5.24396,-14.72073 7.10844,-16.72969c1.86448,-2.00896 4.06667,-2.51281 5.42203,-2.51281z"></path></g></g></svg>
+        </div>
+        <strong class="float_txt">چطوری میتونم کمکتون کنم؟</strong>
+    </a> *@
+
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/LoginRegister.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Shared/_Header.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/_CategoryTop.cshtml")
+
+    @RenderBody()
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/ShippingCity.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/AddAddress.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/RemoveAddress.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Shared/_Footer.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/SuccessRegister.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/OutOfSendStore.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/FinishBasket.cshtml")
+
+
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_JQUERY"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_BOOTSTRAP_BUNDLE"></script>
+    <script src="@Resources.Default.JS_PLUGIN_KNOCKOUT"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_LANGUAGE"></script>
+    <script src="@Resources.Default.JS_PLUGIN_TOASTR"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_CORE"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_AJAX?ver=14"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_OWL_CAROUSEL"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_RANGE_SLIDER"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_MAGIC"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_ZENO"></script>
+    <script type="text/javascript" src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_WEBSITE"></script>
+    @RenderSection("endScripts", false)
+    <script>
+        initializeCommonScript();
+    </script>
+</body>
+</html>

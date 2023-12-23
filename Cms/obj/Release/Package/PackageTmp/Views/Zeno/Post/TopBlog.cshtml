@@ -1,0 +1,64 @@
+﻿@using DataLayer.Base;
+@model IEnumerable<DataLayer.Entities.Post>
+
+
+@if (Model.Count() > 0)
+{
+
+    foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6 mb-4">
+            <a href="@item.GetLinkWithUrl()">
+                <div class="TopBlogItem">
+                    <div class="BottomBlogItemPic">
+                        @if (item.Picture != null)
+                        {
+                            <img src="@item.Picture.GetUrl()" alt="@item.GetName()">
+
+                        }
+                    </div>
+                    <div class="TopBlogItemCaption">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="TopBlogItemTextBox">
+                                    <strong>@item.GetName()</strong>
+                                    <p>@item.GetSummery()</p>
+                                    <div class="TopBlogItemCaptionDetails">
+                                        <div class="View">@item.VisitCount</div>
+                                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.75098 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M14.9199 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M3.71777 9.08997H18.9529" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M19.4009 8.5V17C19.4009 20 18.0566 22 14.9199 22H7.75046C4.61381 22 3.26953 20 3.26953 17V8.5C3.26953 5.5 4.61381 3.5 7.75046 3.5H14.9199C18.0566 3.5 19.4009 5.5 19.4009 8.5Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M14.6463 13.7H14.6543" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M14.6463 16.7H14.6543" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M11.3309 13.7H11.3389" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M11.3309 16.7H11.3389" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M8.01446 13.7H8.02251" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M8.01465 16.7H8.0227" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        @item.CreateDateTime.ToPersianComplete()
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="TopBlogItemSeeMoreBtnBox">
+                                    <button class="btn BlogSeeMore">
+                                        <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="4" cy="4" r="4" fill="#0D32F4" fill-opacity="0.75" />
+                                            <circle cx="4" cy="4" r="4" fill="#1D1651" />
+                                            <circle cx="15" cy="4" r="4" fill="#0D32F4" fill-opacity="0.75" />
+                                            <circle cx="15" cy="4" r="4" fill="#1D1651" />
+                                            <circle cx="26" cy="4" r="4" fill="#0D32F4" fill-opacity="0.75" />
+                                            <circle cx="26" cy="4" r="4" fill="#1D1651" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+}

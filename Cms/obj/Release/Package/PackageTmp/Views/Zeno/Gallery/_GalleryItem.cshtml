@@ -1,0 +1,21 @@
+﻿@model DataLayer.Entities.Gallery
+@using DataLayer.Base
+
+@if (Model.GalleryPictures != null && Model.GalleryPictures.Count() > 0)
+{
+    var pic = Model.GalleryPictures.ToList();
+    <div class="col-lg-4 col-md-6 mb-4">
+        <a href="@Model.GetLinkWithUrl()">
+            <div class="PictureGalleryItem">
+                <img src="@pic[0].Picture.GetUrl()" alt="@Model.Name">
+                <div class="PictureGalleryCaption">
+                    <h5>@Model.Name</h5>
+                    <div class="BtnBox">
+                        <button class="btn SeeMore">@Resource.Lang.More</button>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+}

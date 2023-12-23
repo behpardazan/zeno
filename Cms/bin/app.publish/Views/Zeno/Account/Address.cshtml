@@ -1,0 +1,48 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+@using DataLayer.Enumarables;
+@model Account
+@{
+    ViewBag.Title = Resource.Lang.Addresses;
+    Layout = Resources.Zeno.USER_LAYOUT;
+}
+<div class="profileTitle">
+    <h6>@Resource.Lang.Addresses</h6> 
+</div>
+<div class="addressBox">
+    <!-- ko foreach: viewModel.Account.Addresses.List -->
+    <div class="addressItem">
+        <div class="d-flex">
+            <p> @Resource.Lang.Address :  </p> <p data-bind="text: AddressValue"></p>
+        </div>
+        <div class="d-flex">
+            <span>@Resource.Lang.PostalCode :</span> <span data-bind="text: PostalCode"></span>
+        </div>
+        <div class="d-flex"><span>  @Resource.Lang.Mobile :  </span> <span data-bind="text: Mobile"></span></div>
+        <div class="d-flex"><span>@Resource.Lang.Phone : </span> <span data-bind="text: Phone"></span></div>
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <div class="dropdown-menu">
+                <button type="button" data-bind="click: showModalAddressForEdit" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editaddress_modal">@Resource.Lang.Edit</button>
+                <button type="button" data-bind="click: showModalAddressForDelete" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletAddress_modal">@Resource.Lang.Remove</button>
+            </div>
+        </div>
+       
+    </div>
+    <!-- /ko -->
+    <button class="btn addAddress" id="btnAddNewAddress" onclick="showAddress()">
+        <i class="bi bi-plus" aria-hidden="true"></i>
+    </button>
+</div>
+
+
+@Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/AddAddress.cshtml", new AccountAddress())
+@Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/RemoveAddress.cshtml")
+@section endScripts {
+
+    <script type="text/javascript">
+       
+    </script>
+}

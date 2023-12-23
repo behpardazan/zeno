@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DataLayer.Entities.Category>
+@using DataLayer.Base
+
+@{
+    HttpCookie cookie = Request.Cookies["Message"];
+
+    //if ((cookie != null) && (cookie.Value != ""))
+    //{
+    //    Response.Write(cookie.Values["dep_name"].ToString() + "---" +
+    //    cookie.Values["cat_name"].ToString() + "---" + cookie.Values["brand"].ToString());
+    //}
+}
+@if (Model.Count() > 0 && ((cookie == null) || (cookie.Value == "")))
+{
+    if (Model.FirstOrDefault().Body != null && Model.FirstOrDefault().Body != string.Empty)
+    {
+        <div class="modal fade modal-first-message bd-example-modal-lg" id="ModalPopUp" tabindex="-1" role="dialog" aria-labelledby="addaddress_modal_Title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body p-4">
+                        <button type="button" class="close closeMsg" data-dismiss="modal" aria-label="Close">
+                            x
+                        </button>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="d-flex flex-column h-100 msgTxt">
+                                    <p>
+                                        @Html.Raw(Model.FirstOrDefault().GetBody())
+                                    </p>
+
+                                    <div class="newsletter_box mt-auto">
+                                        <div action="" class="newsletterForm">
+                                            <div class="form-group news_letter">
+                                                <input type="text" class="form-control" data-bind="value:viewModel.NewsLetter.Email" name="newsletterEmail" placeholder="@Resource.Lang.EnterEmail">
+                                                <button codeprocess-action="newsletter-add" class="btn searchBtn newsletterBtn">@Resource.Lang.Join</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <img class="msgImg" src="@Model.FirstOrDefault().Picture.GetUrl()" />
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        HttpCookie cookie1 = new HttpCookie("Message");
+        cookie1.Values["ShowMessage"] = "1";
+        Response.Cookies.Add(cookie1);
+    }
+}

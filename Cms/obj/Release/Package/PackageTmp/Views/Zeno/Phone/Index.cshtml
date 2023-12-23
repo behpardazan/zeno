@@ -1,0 +1,9 @@
+@using DataLayer.Base;
+@using DataLayer.Entities;
+
+@model string
+    <a class="d-flex align-items-center" href="tel:@Model.Replace("-","")">
+        <div class="phone_icon fourtyCircle"></div>
+        <span>@Model</span>
+
+    </a>

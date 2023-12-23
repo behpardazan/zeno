@@ -1,0 +1,26 @@
+﻿@using DataLayer.Base;
+@{
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    ViewBag.Title = Resource.Lang.AboutUs;
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    ViewBag.Follow = "index, follow";
+}
+
+
+@*@Html.Action("Search", "Post", new { poviewName = "PurchaseGuide", poSize = 1, pocategory = "PurchaseGuide" })*@
+
+<section class="about_us">
+    <div class="container">
+        <div class="title">
+            <strong class="titleText">@Resource.Lang.AboutUs</strong>
+        </div>
+        <div class="about_us_content">
+
+            <div class="about_txt">
+                @Html.Raw(BaseContent.WebsiteDetail.AboutUs)
+            </div>
+        </div>
+    </div>
+</section>
+

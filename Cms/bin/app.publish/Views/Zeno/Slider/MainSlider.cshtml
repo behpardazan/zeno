@@ -1,0 +1,47 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+
+@model IEnumerable<Slider>
+
+@{
+    List<Slider> list = Model.ToList();
+}
+    <section class="MainSlider">
+	 <div class="container position-relative">
+        <div class="owl-carousel owl-theme" id="mainSlider">
+            @foreach (var item in Model)
+            {
+            <div class="item">
+                    <div class="MainSliderItem">
+                        <a href="@item.Link" target="_blank">
+                            <img src="@item.Picture.GetUrl()" alt="@item.Name">
+                        </a>
+                    </div>
+            </div>
+            }
+            
+        </div>
+		<div class="sliderNavigation">
+						<a class="btn prev">
+							<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+								 xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 28.8359L12.4577 17.3782C13.8109 16.0251 13.8109 13.8109 12.4577 12.4577L1 1"
+									  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+									  stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+						<a class="btn next">
+							<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+								 xmlns="http://www.w3.org/2000/svg">
+								<path d="M13.4727 28.8359L2.01493 17.3782C0.661795 16.0251 0.661795 13.8109 2.01493 12.4577L13.4727 1"
+									  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+									  stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+					</div>
+        
+		        </div>
+    </section>
+    
+
+

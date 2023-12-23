@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'frikadell';
+    src: url('../fonts/frikadell.eot?88327684');
+    src: url('../fonts/frikadell.eot?88327684#iefix') format('embedded-opentype'), 
+         url('../fonts/frikadell.woff2?88327684') format('woff2'), 
+         url('../fonts/frikadell.woff?88327684') format('woff'), 
+         url('../fonts/frikadell.ttf?88327684') format('truetype'), 
+         url('../fonts/frikadell.svg?88327684#frikadell') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'frikadell';
+    src: url('../font/frikadell.svg?88327684#frikadell') format('svg');
+  }
+}
+*/
+
+ [class^="fr-"]:before, [class*=" fr-"]:before {
+  font-family: "frikadell";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.fr-analytics:before { content: '\e800'; } /* '' */
+.fr-burger:before { content: '\e801'; } /* '' */
+.fr-check:before { content: '\e802'; } /* '' */
+.fr-clock:before { content: '\e803'; } /* '' */
+.fr-close:before { content: '\e804'; } /* '' */
+.fr-coupon:before { content: '\e805'; } /* '' */
+.fr-delivery:before { content: '\e806'; } /* '' */
+.fr-food-menu:before { content: '\e807'; } /* '' */
+.fr-home:before { content: '\e808'; } /* '' */
+.fr-inventory:before { content: '\e809'; } /* '' */
+.fr-language:before { content: '\e80a'; } /* '' */
+.fr-location:before { content: '\e80b'; } /* '' */
+.fr-logout:before { content: '\e80c'; } /* '' */
+.fr-message:before { content: '\e80d'; } /* '' */
+.fr-notification:before { content: '\e80e'; } /* '' */
+.fr-order-1:before { content: '\e80f'; } /* '' */
+.fr-password:before { content: '\e810'; } /* '' */
+.fr-report:before { content: '\e811'; } /* '' */
+.fr-search:before { content: '\e812'; } /* '' */
+.fr-setting:before { content: '\e813'; } /* '' */
+.fr-user:before { content: '\e814'; } /* '' */
+.fr-users:before { content: '\e815'; } /* '' */
+.fr-meat:before { content: '\e816'; } /* '' */
+.fr-category:before { content: '\e817'; } /* '' */
+.fr-edit:before { content: '\e818'; } /* '' */
+.fr-trash:before { content: '\e819'; } /* '' */
+.fr-plus:before { content: '\e81a'; } /* '' */
+.fr-print:before { content: '\e81b'; } /* '' */
+.fr-receipt:before { content: '\e81c'; } /* '' */
+.fr-undo:before { content: '\e81d'; } /* '' */
+.fr-grid:before { content: '\e81e'; } /* '' */
+.fr-list:before { content: '\e81f'; } /* '' */
+.fr-down:before { content: '\e820'; } /* '' */
+.fr-happy:before { content: '\e821'; } /* '' */
+.fr-sad:before { content: '\e822'; } /* '' */
+.fr-poker:before { content: '\e823'; } /* '' */
+.fr-time:before { content: '\e824'; } /* '' */
+.fr-reset-1:before { content: '\e825'; } /* '' */
+.fr-ready:before { content: '\e826'; } /* '' */
+.fr-waste:before { content: '\e827'; } /* '' */
+.fr-tomato:before { content: '\e828'; } /* '' */
+.fr-menu:before { content: '\e829'; } /* '' */
+.fr-back:before { content: '\e82a'; } /* '' */
+.fr-alert:before { content: '\e82b'; } /* '' */
+.fr-take-away:before { content: '\e82c'; } /* '' */
+.fr-fries:before { content: '\e82d'; } /* '' */
+.fr-drink:before { content: '\e82e'; } /* '' */
+.fr-salad:before { content: '\e82f'; } /* '' */
+.fr-cart:before { content: '\e830'; } /* '' */
+.fr-right:before { content: '\e831'; } /* '' */
+.fr-plus-circle:before { content: '\e832'; } /* '' */
+.fr-minus-circle:before { content: '\e833'; } /* '' */
+.fr-dining:before { content: '\e834'; } /* '' */
+.fr-moto:before { content: '\e835'; } /* '' */
+.fr-check-circle:before { content: '\e836'; } /* '' */
+.fr-headset:before { content: '\e837'; } /* '' */
+.fr-card:before { content: '\e838'; } /* '' */
+.fr-share:before { content: '\e839'; } /* '' */
+.fr-order:before { content: '\e83a'; } /* '' */
+.fr-order-history:before { content: '\e83b'; } /* '' */
+.fr-reset:before { content: '\e83c'; } /* '' */
+.fr-verify:before { content: '\e83d'; } /* '' */
+.fr-minus:before { content: '\e83e'; } /* '' */

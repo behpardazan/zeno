@@ -1,0 +1,120 @@
+﻿
+@using DataLayer.Base;
+@model  DataLayer.ViewModels.ViewPostModel
+
+@{
+    ViewBag.Title = Model.Post.GetName();
+
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    ViewBag.OgImage = Model.Post.Picture.GetUrl();
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home">@Resource.Lang.Home</a></li>
+            <li class="breadcrumb-item"><a href="/st/Blog">@Resource.Lang.Blog</a></li>
+
+            <li class="breadcrumb-item active" aria-current="page">@Model.Post.GetName()</li>
+        </ol>
+    </div>
+</nav>
+    <section class="blog_inner">
+        <div class="container">
+            <div class="title">
+                @{ 
+                    string name = Model.Post.H1 != "" || Model.Post.H1 != null ?Model.Post.H1:Model.Post.GetName();
+                }
+                <h1 class="titleText">  @name</h1>
+            </div>
+            <div class="blog_topBox">
+                <div class="row w-100 m-0">
+                    <div class="col-md-6 p-0">
+                        <div class="blog-summary">
+                            <div class="blogSummary_txt">
+                                <strong>@Resource.Lang.Abstract</strong>
+                                @Html.Raw(Model.Post.GetSummery())
+                            </div>
+                            <div class="itemStats">
+                                <div class="date centeral">
+                                    <i class="bi bi-calendar-week"></i>
+                                    <span>@Model.Post.CreateDateTime.ToPersianComplete()</span>
+                                </div>
+                                <div class="seen centeral">
+                                    <i class="bi bi-eye"></i>
+                                    <span> @Model.Post.VisitCount @Resource.Lang.Visit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-0">
+                        <div class="blog_inner_img_box">
+                            @if (Model.Post.Picture != null)
+                            {
+                                <img src="@Model.Post.Picture.GetUrl()" alt="">
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog_inner_txt">
+                @Html.Raw(Model.Post.GetBody())
+				 @if (Model.Post.Aparat != "" && Model.Post.Aparat != null)
+            {
+                @Html.Raw(Model.Post.Aparat)
+            }
+            </div>
+            @if (Model.Post.Writer != null)
+            {
+                <div class="autor_blog">
+                    <div class="autor-img">
+                        @if (Model.Post.Picture1 != null)
+                        {
+                            <img src="@Html.Raw(Model.Post.Picture1.GetUrl())" alt="">
+
+                        }
+                    </div>
+                    <div class="autor-info">
+                        <div class="autor-name">
+                            <p>@Model.Post.Writer</p>
+                        </div>
+                        <div class="autor-speciality"> @Model.Post.WriterPostion </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.Post.Keywords != null && Model.Post.Keywords != string.Empty)
+            {
+                <div class="content-tags">
+                    <span><i class="bi bi-link-45deg"></i> @Resource.Lang.EffectiveLinks:</span>
+                    @foreach (var item in Model.Post.Keywords.Split(',').ToList())
+                    {
+                        <a href="#">@item</a>
+                    }
+
+                </div>
+            }
+
+            <div class="relatedArticles p-3">
+                <div class="right_title"><strong>@Resource.Lang.RelatedArticle</strong></div>
+                <div class="owl-carousel owl-theme relatedArticles_slider mt-3" id="relatedArticles_slider">
+                    @foreach (var item in Model.RelatedPost)
+                    {
+                        <div class="item">
+                            <a href="@item.GetLinkWithUrl()" class="related_card">
+                                <div class="related_img"><img src="@item.Picture.GetUrl()" alt=""></div>
+                                <strong>@item.GetName()</strong>
+                            </a>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+

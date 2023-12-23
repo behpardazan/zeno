@@ -1,0 +1,81 @@
+﻿
+
+@{
+    ViewBag.Title = Resource.Lang.SignUp;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    ViewBag.Follow = "noindex, nofollow";
+    Boolean? isPersianChar = DataLayer.Base.BaseWebsite.WebsiteSetting.IsPersianChar;
+}
+<input type="hidden" id="IsPersianChar" value="@isPersianChar.ToString()" />
+<section class="loginRegister">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="loginBox registerBox">
+                    <div class="page_title">
+                        <strong>@Resource.Lang.SignUp </strong>
+                    </div>
+                    <div class="RegisterForm">
+                        <!--ko ifnot:viewModel.Account.IsVerifay()==true-->
+						<input codeprocess-field="both-EmailMobile"  value="true" type="hidden"/>
+                        <div class="from-group form-floating">
+                            <input type="text" data-bind="value: viewModel.Account.FullName" class="form-control" placeholder="@Resource.Lang.EnterFullName" id="float_name">
+                        <label for="float_name">@Resource.Lang.EnterFullName</label>
+                        </div>
+                        <div class="from-group form-floating">
+                            <input type="email" data-bind="value: viewModel.Account.Email" class="form-control" placeholder="@Resource.Lang.EnterEmail" id="float_email">
+                        <label for="float_email">@Resource.Lang.EnterEmail</label>
+                        </div>
+                        <div class="from-group form-floating">
+                            <input type="text" data-bind="value:viewModel.Account.Mobile" class="form-control" placeholder="@Resource.Lang.EnterMobileNo" id="float_mobile">
+                        <label for="float_mobile">@Resource.Lang.EnterMobileNo</label>
+                        </div>
+                        <div class="from-group form-floating">
+                            <input type="password" data-bind="value:viewModel.Account.Password" class="form-control" placeholder="@Resource.Lang.EnterPassword" id="float_pass">
+                        <label for="float_pass">@Resource.Lang.EnterPassword</label>
+                        </div>
+                        <div class="from-group form-floating">
+                            <input type="password" id="float_pass2" class="form-control" data-bind="value:viewModel.Account.ConfirmPassword" codeprocess-field="account-confirm" placeholder="@Resource.Lang.RePassword">
+                        <label for="float_pass2">@Resource.Lang.RePassword</label>
+                        </div>
+                        <div class="loginFooter">
+                            <button class="btn primary_btn" codeprocess-action="registerbyverifay" id="btnRegister"><span>@Resource.Lang.SignUp</span></button>
+                               <hr>
+                            <a class="btn secondary_btn" href="/login"><span>ورود</span></a>
+                         
+                        </div>
+
+                        <!--/ko-->
+                        <!--ko if:viewModel.Account.IsVerifay()==true-->
+
+                        <div class="from-group">
+                            <input type="password" data-bind="value:viewModel.Account.VerifayToken" class="form-control" placeholder="کد ارسال شده به موبایل تان را وارد نمایید">
+
+                        </div>
+                        <div class="loginFooter">
+                            <button class="btn primary_btn" codeprocess-action="registerVerify" codeprocess-callback="closeModal,reLoadPage" id="btnVerifyRegister"><span>ثبت نهایی ثبت نام</span></button>
+                        
+                      
+                        </div>
+                        
+                        <!--/ko-->
+                      
+
+                    </div>
+                </div>
+                
+            </div>
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+

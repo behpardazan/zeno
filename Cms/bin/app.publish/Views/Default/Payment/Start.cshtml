@@ -1,0 +1,33 @@
+﻿
+@{ 
+    ViewBag.Title = "در حال انتقال به درگاه بانک";
+    Layout = "~/Views/Default/Payment/PaymentLayout.cshtml";
+}
+
+
+<div class="payment-page">
+    <div class="content-payment-box">
+        <div class="windows8">
+            <div class="wBall" id="wBall_1">
+                <div class="wInnerBall"></div>
+            </div>
+            <div class="wBall" id="wBall_2">
+                <div class="wInnerBall"></div>
+            </div>
+            <div class="wBall" id="wBall_3">
+                <div class="wInnerBall"></div>
+            </div>
+            <div class="wBall" id="wBall_4">
+                <div class="wInnerBall"></div>
+            </div>
+            <div class="wBall" id="wBall_5">
+                <div class="wInnerBall"></div>
+            </div>
+        </div>
+        <br /><br />
+@Resource.Lang.PleaseWait...
+    </div>
+</div>
+
+@Html.Raw(ViewBag.PaymentForm)
+

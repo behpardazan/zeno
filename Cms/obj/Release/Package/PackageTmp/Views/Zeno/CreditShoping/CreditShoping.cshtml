@@ -1,0 +1,34 @@
+﻿@using DataLayer.Base;
+@using DataLayer.ViewModels;
+@model  bool
+
+@if (Model == true)
+{
+    <div class="merchant-container">
+
+
+        <span>خرید به صورت اعتباری</span>
+        <label for="credit-item1">
+
+            <input id="credit-item1" name="IsCreditShoping" type="radio" value="0" checked="checked" onclick="ShowRul()" />
+
+            <span>خیر</span>
+        </label>
+        <label for="credit-item2">
+
+            <input id="credit-item2" name="IsCreditShoping" type="radio" value="1" onclick="ShowRul()" />
+
+            <span>بله</span>
+        </label>
+        
+        @*<input type="checkbox" id="IsCreditShoping" name="IsCreditShoping" />*@
+        
+        <div class="divRul d-none">
+            <input type="checkbox" id="rulCreditShoping" />
+            <span>تمامی قوانین و مقررات را میپذیرم</span>
+            <br />
+            <a href="/po/CreditRules">مطالعه قوانین و مقررات</a>
+        </div>
+
+    </div>
+}

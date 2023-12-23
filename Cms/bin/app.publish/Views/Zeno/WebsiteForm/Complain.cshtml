@@ -1,0 +1,39 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Enumarables;
+
+@model DataLayer.Entities.WebsiteForm
+
+<div class="complaint_form">
+
+    <form id="@Model.Label" class="innerPage_form">
+        <input type="hidden" name="FormLabel" value="@Model.Label" />
+        @foreach (var item in Model.WebsiteFormField.OrderBy(s=>s.ShowNumber))
+        {
+            <div class="form-group">
+                @if (item.Code.Label == Enum_Code.FIELD_TYPE_TEXT.ToString())
+                {
+                    <textarea form-field-id="@item.ID" type="text" name="innerComplain" rows="6" class="form-control mb-3" placeholder="@item.Name"></textarea>
+                }
+                else if (item.Code.Label == Enum_Code.CONTACT_TYPE_EMAIL.ToString())
+                {
+                    <input form-field-id="@item.ID" type="text" class="form-control mb-3" name="innerEmail" placeholder="@item.Name">
+                }
+                else if (item.Code.Label == Enum_Code.FIELD_TYPE_STRING.ToString())
+                {
+                    <input form-field-id="@item.ID" type="text" class="form-control mb-3" name="innerName" placeholder="@item.Name">
+                }
+                else if (item.Code.Label == Enum_Code.CONTACT_TYPE_PHONE.ToString())
+                {
+                    <input form-field-id="@item.ID" type="text" class="form-control mb-3" name="innerName" placeholder="@item.Name">
+                }
+
+            </div>
+        }
+        <button class="btn primary_btn me-auto float-left mb-3" codeprocess-action="websiteform" website-form-id="Complain">
+            <span>@Resource.Lang.Send</span>
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+    </form>
+
+</div>

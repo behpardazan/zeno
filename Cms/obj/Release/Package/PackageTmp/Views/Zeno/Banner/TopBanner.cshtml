@@ -1,0 +1,22 @@
+﻿@model IEnumerable<DataLayer.Entities.Banner>
+@using DataLayer.Base
+@{
+    List<DataLayer.Entities.Banner> list = Model.OrderBy(s => s.ShowNumber).ToList();
+
+}
+
+
+
+@if (list.Count() > 0)
+{
+    var banner = list.FirstOrDefault();
+    if (banner.Picture != null)
+    {
+            <img src="@banner.Picture.GetUrl()" alt="@banner.GetName()">
+    }
+
+}
+else
+{
+    <img src="/assets/zeno/images/InnerBannerPic.png" alt="">
+}

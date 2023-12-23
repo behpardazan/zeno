@@ -1,0 +1,75 @@
+﻿@using DataLayer.Entities;
+@using DataLayer.Base;
+@{
+    ViewBag.Title = Resource.Lang.Basket;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    ViewBag.Follow = "noindex, nofollow";
+}
+
+<section class="basket-page basket pagepadding">
+    <div class="container">
+    <div class="basket_box">
+        <div class="row w-100 m-0">
+            <div class="basket_tab  w-100">
+
+                <div class="nav nav_tabs d-flex justify-content-center w-100 p-0 basket-tabs">
+                    <div class="row w-100 d-flex align-items-center">
+                        <div class="col-3 p-0 ">
+                            <div class=" bas_Tab">
+                                <div class="tab_span activeT ">
+                                    <div class="sendinfo_icon basketIcon"></div>
+                                    <strong>@Resource.Lang.Basket</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class=" bas_Tab">
+                                <div class="tab_span">
+                                    <div class="payment_icon basketIcon"></div>
+                                    <strong>@Resource.Lang.Receiver</strong>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class=" bas_Tab bas_tab3">
+                                <div class="tab_span">
+                                    <div class="confirm_icon basketIcon"></div>
+                                    <strong>@Resource.Lang.Invoice</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class="bas_Tab">
+                                <div class="tab_span">
+                                    <div class="bill_icon basketIcon"></div>
+                                    <strong>@Resource.Lang.Receipt</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab_content w-100 ">
+                    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Basket/Cart.cshtml")
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+ 
+
+
+@section endScripts{
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/_AjaxLoader.cshtml")
+
+    <script>
+
+        $(document).ready(function () {
+            initializeBasketPageScript();
+        });
+       
+    </script>
+}
+

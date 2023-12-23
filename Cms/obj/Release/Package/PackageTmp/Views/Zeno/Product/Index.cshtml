@@ -1,0 +1,1574 @@
+﻿@model DataLayer.Entities.Product
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@{
+
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    Nullable<double> totalRate = 0;
+    if (Model.ProductComment.Any())
+    {
+        totalRate = Model.ProductComment.Where(s => s.Rate.HasValue).Average(s => s.Rate);
+    }
+    ViewBag.Title = Model.Title != null ? Model.Title : Model.GetName();
+
+    ViewBag.OgUrl = Model.GetLinkWithUrl();
+    ViewBag.url = Model.GetLinkWithUrl();
+    ViewBag.Canonical = Model.Canonical;
+    var call = Model.ProductCustomValue.FirstOrDefault(s => s.ProductCustomField.SyncName == "Call" && s.Value == "True");
+
+    ViewBag.OgImage = Model.Picture != null ? Model.Picture.GetUrl() : "/Assets/Zeno/Image/side1.jpg";
+    ViewBag.OgImageType = "jpg";
+    TempData["noIndex"] = Model.NoIndex;
+    TempData["noFollow"] = Model.NoFollow;
+    ViewBag.MetaDescription = Model.GetSummery();
+    try
+    {
+        if (Model.Code.Label == Enum_Code.PRODUCT_STATUS_AVAILABLE.ToString())
+        {
+            ViewBag.MinPrice = Model.MinPrice;
+
+            if (Model.ProductQuantity.Max(s => s.StoreProductQuantity.Max(g => g.Price)) > 0)
+            {
+                ViewBag.Price = Model.Price;
+            }
+            if (Model.ProductQuantity.Average(s => s.StoreProductQuantity.Average(g => g.Count)) > 0)
+            {
+                ViewBag.Stock = Model.ProductQuantity.Average(s => s.StoreProductQuantity.Average(g => g.Count));
+            }
+        }
+        else
+        {
+            ViewBag.MinPrice = Resource.Lang.NoT_AVAILABLE;
+            ViewBag.Price = Resource.Lang.NoT_AVAILABLE;
+            ViewBag.Stock = 0;
+        }
+    }
+    catch
+    {
+
+    }
+
+
+    string url = "";
+    totalRate = totalRate == 0 || totalRate == null ? 4 : totalRate;
+    //url = HttpContext.Current.Request.Url.AbsoluteUri;
+    var setting = BaseWebsite.WebsiteSetting;
+    var ratingCount = Model.GetCountRate() == 0 || Model.GetCountRate() == null ? 5 : Model.GetCountRate();
+    var DiscountPercent = Model.GetDiscountPercent();
+    var DiscountValue = Model.GetDiscountObject();
+    var TotalPrice = Model.MinPrice;
+    var price = "";
+    var oldePrice = "";
+    if (DiscountValue != null)
+    {
+        if (DiscountValue.PriceValue != null)
+        {
+            TotalPrice += DiscountValue.PriceValue.Value;
+        }
+        if (DiscountPercent == 0)
+        {
+            DiscountPercent = Model.GetDiscountPercentNew(DiscountValue.PriceValue.GetValueOrDefault());
+
+        }
+        else
+        {
+            var percent = 100 - DiscountPercent;
+            TotalPrice = (Model.MinPrice * 100) / percent;
+        }
+
+    }
+    if (DiscountValue != null)
+    {
+        oldePrice = @TotalPrice.GetCurrencyFormat();
+        price = @Model.MinPrice.GetCurrencyFormat();
+
+    }
+    else
+    {
+        oldePrice = price = @Model.MinPrice.GetCurrencyFormat();
+    }
+}
+
+@section Header {
+    <meta name="product_id" content='@Model.ID' />
+    <meta name="page_url" content='@Model.GetLink()' />
+    <meta name="price" content='@(Model.Code.Label == DataLayer.Enumarables.Enum_Code.PRODUCT_STATUS_AVAILABLE.ToString() ? price : Resource.Lang.NoAvailable)' />
+    <meta name="old_price" content='@(Model.Code.Label == DataLayer.Enumarables.Enum_Code.PRODUCT_STATUS_AVAILABLE.ToString() ? oldePrice : Resource.Lang.NoAvailable)' />
+    <meta name="availability" content='@(Model.Code.Label == DataLayer.Enumarables.Enum_Code.PRODUCT_STATUS_AVAILABLE.ToString() ? "instock" : Resource.Lang.NoAvailable)' />
+
+    <script type="application/ld+json">
+        {
+        "@@context": "https://schema.org/",
+        "@@type": "Product",
+        "name": "@Model.Name",
+        "image": "@Model.Picture.GetUrl()",
+        "description": "@Model.Summary",
+        "brand": {
+        "@@type": "Brand",
+        "name": "@(Model.ProductBrand != null ? Model.ProductBrand.Name : "")"
+        },
+        "review": {
+        "@@type": "Review",
+        "author": {
+        "@@type": "Person",
+        "name": "@BaseContent.WebsiteDetail.Title"
+        },
+        "reviewRating": {
+        "@@type": "Rating",
+        "ratingValue": "@totalRate",
+        "bestRating": "5"
+        }
+        },
+        "aggregateRating": {
+        "@@type": "AggregateRating",
+        "ratingValue": "@totalRate",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "@Model.GetCountRate()"
+        }
+        }
+
+    </script>
+    @Html.Raw(Model.Schema)
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">@Resource.Lang.Home</a></li>
+            @try
+            {
+                if (Model.ProductTypeId != null)
+                {
+                    <li class="breadcrumb-item">
+
+                        <a href="@Model.ProductType.GetUrlNew()">@Model.ProductType.GetName()</a>
+                    </li>
+                }
+                if (Model.ProductCategoryId != null)
+                {
+                    if (Model.ProductCategory.Deleted != true)
+                    {
+
+                        <li class="breadcrumb-item">
+                            <a href="@Model.ProductCategory.GetUrlNewZeno()">@Model.ProductCategory.GetName()</a>
+                        </li>
+                    }
+                }
+                if (Model.ProductSubCategoryId != null)
+                {
+                    if (Model.ProductSubCategory.Deleted != true)
+                    {
+                        <li class="breadcrumb-item">
+
+                            <a href="@Model.ProductSubCategory.GetUrlNewZeno()">@Model.ProductSubCategory.GetName()</a>
+                        </li>
+                    }
+                }
+            }
+            catch { }
+        </ol>
+    </div>
+</nav>
+<section class="product_details">
+    <div class="container">
+        <div class="productDetail_card">
+            <div class="proDetail_box">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-detail-top-part">
+                            <div class="product-detail-top-part-right">
+                                @if (Model.CodeValue != "" && Model.CodeValue != null)
+                                {
+                                    <div class="pro-code d-flex">
+                                        <strong>کد محصول : @Model.CodeValue</strong>
+                                    </div>
+                                }
+                                <h1>@Model.GetName()</h1>
+                                @*<p>لورم ایپسوم متن ساختگی</p>*@
+                            </div>
+                            <div class="product-detail-top-part-left">
+                                @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/ShowRate.cshtml", totalRate, new ViewDataDictionary())
+
+
+                                <div class="product-detail-rating-num">
+                                    <p>@totalRate.Value.ToString("0.0").Replace("/", ".")</p>
+                                </div>
+                                <div class="product-detail-rating">
+                                    <p>(@totalRate)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        @if (Model.IsSpecialProduct == true)
+                        {
+                            <button class="btn MainSliderPlusBtn">
+                                <img src="/assets/zeno/images/Plus.png" alt="@Model.GetName()">
+                            </button>
+                        }
+                    </div>
+                    <div class="col-lg-5 col-12 variety">
+
+                        <div class="product-details ajax-update">
+                            <input type="hidden" name="productid" value="@Model.ID" />
+                            <div class="p_brand ml-5">
+                                <strong>@Resource.Lang.Brand:</strong>
+                                <a href="@Html.Raw(Model.ProductBrand.GetLinkNew())">
+                                    <span>
+                                        @Model.GetBrand()
+                                    </span>
+                                </a>
+                            </div>
+                            @if (Model.ProductCategory != null)
+                            {
+                                if (Model.ProductCategory.Deleted != true)
+                                {
+                                    <div class="p_cat">
+                                        <strong>@Resource.Lang.Category:</strong><span>
+                                            <a href="@Html.Raw(Model.ProductCategory.GetUrlNewZeno())">@Model.ProductCategory.GetName()</a>
+                                        </span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.ProductSubCategory != null)
+                            {
+                                if (Model.ProductSubCategory.Deleted != true)
+                                {
+                                    <div class="p_cat">
+                                        <strong>@Resource.Lang.ProductSubCategory:</strong><span>
+
+                                            <a href="@Html.Raw(Model.ProductSubCategory.GetUrlNewZeno())">@Model.ProductSubCategory.GetName()</a>
+                                        </span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.MinOrder != null)
+                            {
+                                <div class="p_cat">
+                                    <strong>حداقل سفارش:</strong><span>
+
+                                        <span>@Model.MinOrder</span>
+                                    </span>
+                                </div>
+                            }
+                            @if (call != null)
+                            {
+                                <p>برای اطلاع از قیمت تماس بگیرید</p>
+                            }
+                            else
+                            {
+                                <!--ko if:viewModel.Variety.ProductQuantity().length >0-->
+                                <!--ko ifnot: viewModel.Variety.ProductQuantity()[0].Discount > 0-->
+                                <div class="prodetails-price1">
+                                    <div>
+                                        <p>@Resource.Lang.Price:</p>
+                                    </div>
+                                    <div class="prodetails-price1-p">
+                                        <p class="prodetails-price-total" data-bind="text: toCurrency(viewModel.Variety.ProductQuantity()[0].Price)">9,000,000</p>
+                                        <p>@Resource.Lang.Toman</p>
+                                    </div>
+                                </div>
+
+                                <!--/ko-->
+                                <!--ko if: viewModel.Variety.ProductQuantity()[0].Discount > 0-->
+
+                                <div class="prodetails-price1">
+                                    <div>
+                                        <p>قیمت قبل تخفیف:</p>
+                                    </div>
+                                    <div class="prodetails-price1-p">
+                                        <p class="prodetails-price-bold" data-bind="text: toCurrency(viewModel.Variety.ProductQuantity()[0].BasePrice) ">650,000</p>
+                                        <p>@Resource.Lang.Toman</p>
+                                    </div>
+                                </div>
+                                <div class="prodetails-price1">
+                                    <div>
+                                        <p>قیمت بعد تخفیف:</p>
+                                    </div>
+                                    <div class="prodetails-price1-p">
+                                        <p class="prodetails-price-total" data-bind="text: toCurrency(viewModel.Variety.ProductQuantity()[0].Price) ">9,000,000</p>
+                                        <p>@Resource.Lang.Toman</p>
+                                    </div>
+
+                                    <div class="d-none">
+                                        <span class="" data-bind="text: toCurrency(viewModel.Variety.ProductQuantity()[0].Discount) "></span><span>@Resource.Lang.Toman</span>
+                                    </div>
+                                </div>
+                                <!--/ko-->
+                                <!--/ko-->
+                                <!--ko if: viewModel.Variety.Colors().length > 0-->
+                                <div class="prodetails-colors">
+                                    <div class="prodetails-color-text">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 1.99C0 0.9 0.89 0 2 0H6C7.10457 0 8 0.89543 8 2V18C8 19.1046 7.10457 20 6 20H2C0.89543 20 0 19.1046 0 18V2V1.99ZM9 5.34V16.66L16.73 8.92C17.5054 8.13993 17.5054 6.88007 16.73 6.1L13.9 3.27C13.5266 2.89505 13.0192 2.68428 12.49 2.68428C11.9608 2.68428 11.4534 2.89505 11.08 3.27L9 5.34ZM9 18.3V20H18C19.1046 20 20 19.1046 20 18V14C20 12.89 19.11 12 18.01 12H15.07L9.01 18.06L9 18.3ZM5 16C5 16.5523 4.55228 17 4 17C3.44772 17 3 16.5523 3 16C3 15.4477 3.44772 15 4 15C4.55228 15 5 15.4477 5 16Z"
+                                                  fill="black" />
+                                        </svg>
+                                        <p>رنگها </p>
+                                    </div>
+                                    <div>
+                                        <!--ko foreach: viewModel.Variety.Colors-->
+                                        <a data-bind="attr:{'color-id': Id  , 'color-name' : Name },css:{'selectColor prodetails-color-active' : (viewModel.Variety.ColorId() == Id) },style :{'background-color' : '#'+Hex}" class="btn-color prodetails-color" href="javascript://"></a>
+                                        <!--/ko-->
+                                        <a data-bind="attr:{'color-id': 'null' }" class="btn-color text-white  p-1 m-1 selectColor prodetails-color-active" href="javascript://" style="text-shadow: -1px 2px 3px black;display:none"></a>
+                                    </div>
+                                </div>
+                                <!--/ko-->
+                                <!--ko if: viewModel.Variety.Sizes().length > 0-->
+                                <div class="prodetails-colors">
+                                    <div class="prodetails-color-text">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 1.99C0 0.9 0.89 0 2 0H6C7.10457 0 8 0.89543 8 2V18C8 19.1046 7.10457 20 6 20H2C0.89543 20 0 19.1046 0 18V2V1.99ZM9 5.34V16.66L16.73 8.92C17.5054 8.13993 17.5054 6.88007 16.73 6.1L13.9 3.27C13.5266 2.89505 13.0192 2.68428 12.49 2.68428C11.9608 2.68428 11.4534 2.89505 11.08 3.27L9 5.34ZM9 18.3V20H18C19.1046 20 20 19.1046 20 18V14C20 12.89 19.11 12 18.01 12H15.07L9.01 18.06L9 18.3ZM5 16C5 16.5523 4.55228 17 4 17C3.44772 17 3 16.5523 3 16C3 15.4477 3.44772 15 4 15C4.55228 15 5 15.4477 5 16Z"
+                                                  fill="black" />
+                                        </svg>
+                                        <p>سایز ها </p>
+                                    </div>
+                                    <div>
+                                        <!--ko foreach: viewModel.Variety.Sizes-->
+                                        <a data-bind="attr:{'size-id': Id ,'size-name' : Name},css:{'selectColor' : (viewModel.Variety.SizeId() == Id) },text : Name" class="btn-size text-white  p-1 m-1" href="javascript://" style="background-color:black; text-shadow: -1px 2px 3px black;"></a>
+                                        <!--/ko-->
+
+                                        <a data-bind="attr:{'size-id': 'null'}" class="btn-size text-white  p-1 m-1 selectColor" href="javascript://" style="text-shadow: -1px 2px 3px black;display:none"></a>
+                                    </div>
+                                </div>
+                                <!--/ko-->
+                                <!--ko if: viewModel.Variety.OptionItems().length > 0-->
+                                <div class="prodetails-colors">
+                                    <div class="prodetails-color-text">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 1.99C0 0.9 0.89 0 2 0H6C7.10457 0 8 0.89543 8 2V18C8 19.1046 7.10457 20 6 20H2C0.89543 20 0 19.1046 0 18V2V1.99ZM9 5.34V16.66L16.73 8.92C17.5054 8.13993 17.5054 6.88007 16.73 6.1L13.9 3.27C13.5266 2.89505 13.0192 2.68428 12.49 2.68428C11.9608 2.68428 11.4534 2.89505 11.08 3.27L9 5.34ZM9 18.3V20H18C19.1046 20 20 19.1046 20 18V14C20 12.89 19.11 12 18.01 12H15.07L9.01 18.06L9 18.3ZM5 16C5 16.5523 4.55228 17 4 17C3.44772 17 3 16.5523 3 16C3 15.4477 3.44772 15 4 15C4.55228 15 5 15.4477 5 16Z"
+                                                  fill="black" />
+                                        </svg>
+                                        <p data-bind="text: viewModel.Variety.OptionName()"> </p>
+                                    </div>
+                                    <div>
+                                        <!--ko foreach: viewModel.Variety.OptionItems-->
+                                        <a data-bind="attr:{'optionitem-id': Id,'optionitem-name' : Value},css:{'selectColor' : (viewModel.Variety.OptionItemId() == Id) },text : Value" class="btn-optionitem border rounded m-1 pr-1 pl-1" href="javascript://"></a>
+                                        <!--/ko-->
+
+                                        <a data-bind="attr:{'optionitem-id': 'null'}" class="btn-optionitem text-white  p-1 m-1 selectColor" href="javascript://" style="text-shadow: -1px 2px 3px black;display:none"></a>
+                                    </div>
+                                </div>
+                                <!--/ko-->
+                                if (Model.Code.Label == Enum_Code.PRODUCT_STATUS_AVAILABLE.ToString())
+                                {
+                                    <!--ko if:viewModel.Variety.ProductQuantity().length >0-->
+
+                                    <div class="addto-basket">
+                                        <div class="addto-basket-button">
+                                            <button data-bind="attr:{'product-id': viewModel.Variety.ProductId(),'product-color-id': viewModel.Variety.ColorId(),'product-size-id': viewModel.Variety.SizeId(),'product-option-item-id': viewModel.Variety.OptionItemId() ,'store-id' : viewModel.Variety.ProductQuantity()[0].StoreProduct.StoreId  }" codeprocess-action="basket-add" product-id="" product-color-id="" product-size-id="">@Resource.Lang.AddToBasket</button>
+                                        </div>
+                                        <div class="addto-basket-count">
+
+
+                                            <div class="product-numbers">
+                                                <a onclick="plusCount();">
+                                                    <svg width="6" height="5" viewBox="0 0 6 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M0.644 2.9V2.13H2.856V0.00199968H3.612V2.13H5.754V2.9H3.612V5H2.856V2.9H0.644Z" fill="#25AC9E"></path>
+                                                    </svg>
+                                                </a>
+                                                @if (Model.MinOrder != null)
+                                                {
+                                                    <input type="hidden" class="addcount form-control" placeholder="@Model.MinOrder" value="@Model.MinOrder">
+                                                    <span class="countP">@Model.MinOrder</span>
+                                                }
+                                                else
+                                                {
+                                                    <input type="hidden" class="addcount form-control" placeholder="1" value="1">
+                                                    <span class="countP">1</span>
+                                                }
+                                                <a onclick="minusCount();">
+                                                    <svg width="6" height="1" viewBox="0 0 6 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M0.644 0.9V0.102H5.754V0.9H0.644Z" fill="#F45C5C"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--/ko-->
+                                }
+                            }
+                            <div class="like-and-compare">
+                                @if (Model.PdfDemoFileId != null)
+                                {
+                                    <div class="download-catalouge">
+                                        <a href="@Html.Raw("/cdn/file/dl2/"+Model.PdfDemoFileId)">
+                                            <button>
+                                                دانلود کاتالوگ
+                                            </button>
+                                        </a>
+                                    </div>
+                                }
+
+                                <div class="compare-button">
+                                    <a href="/product/compare?productId=@Model.ID">
+                                        <button>
+                                            @Resource.Lang.Compare
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="like-button">
+                                    <a href="javascript://" codeprocess-action="productlike-add" product-id="@Model.ID">
+                                        <button>
+                                            @Resource.Lang.AddToFavorites
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-7 col-12">
+                        <div class="product-details">
+                            <div class="row">
+                                <div class="col-md-5 md-reverse">
+                                    @{
+                                        var pictures = Model.ProductPicture.ToList();
+                                        int j = 0;
+                                    }
+                                    <div class="selectors magic_options">
+                                        @*@if (Model.ProductPicture.Count > 0)
+                                            {
+                                                j = 1;
+                                                <a data-zoom-id="Zoom-1" href="@pictures[0].GetUrl()"
+                                                   data-image="@pictures[0].GetUrl()"
+                                                   data-zoom-image-2x="@pictures[0].GetUrl()"
+                                                   data-image-2x="@pictures[0].GetUrl()">
+                                                    <img srcset="@pictures[0].GetUrl()"
+                                                         src="@pictures[0].GetUrl()" alt="@Model.GetName()" />
+                                                </a>
+
+                                            }
+                                            else
+                                            {*@
+                                        <a data-zoom-id="Zoom-1" href="@Model.Picture.GetUrl()"
+                                           data-image="@Model.Picture.GetUrl()"
+                                           data-zoom-image-2x="@Model.Picture.GetUrl()"
+                                           data-image-2x="@Model.Picture.GetUrl()">
+                                            <img srcset="@Model.Picture.GetUrl()"
+                                                 src="@Model.Picture.GetUrl()" alt="@Model.GetName()" />
+                                        </a>
+
+                                        @*}*@
+
+                                        @for (int i = j; i < pictures.Count; i++)
+                                        {
+                                            <a data-zoom-id="Zoom-1" href="@pictures[i].GetUrl()"
+                                               data-image="@pictures[i].GetUrl()"
+                                               data-zoom-image-2x="@pictures[i].GetUrl()"
+                                               data-image-2x="@pictures[i].GetUrl()">
+                                                <img srcset="@pictures[i].GetUrl()"
+                                                     src="@pictures[i].GetUrl()" alt="@Model.GetName()" />
+                                            </a>
+                                        }
+
+
+                                    </div>
+
+                                    @if (Model.IsSpecialProduct == true)
+                                    {<!--ko if:viewModel.Variety.ProductQuantity().length >0-->
+                                        <!--ko if:(viewModel.Variety.ProductQuantity()[0].PriceRanges).length >0-->
+                                        <div class="prodetails-table">
+
+                                            <h6>تناسب تخفیفات</h6>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">تعداد</th>
+                                                        <th scope="col">قیمت</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!--ko foreach: viewModel.Variety.ProductQuantity()[0].PriceRanges-->
+
+                                                    <tr>
+                                                        <td>
+                                                            <span data-bind="text:StartCount">-</span>
+                                                            <span>تا</span>
+                                                            <span data-bind="text:EndCount">1</span>
+                                                        </td>
+
+                                                        <td data-bind="text:toCurrency(Price) + ' @Resource.Lang.Toman'">1</td>
+
+                                                    </tr>
+                                                    <!--/ko-->
+                                                </tbody>
+                                            </table>
+
+
+
+
+
+
+                                        </div>
+                                        <!--/ko-->
+                                        <!--/ko-->
+                                    }
+
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="prodetails-left">
+                                        <div class="magic_big_img">
+                                            @if (Model.ProductPicture.Count > 0)
+                                            {
+                                                <a id="Zoom-1" class="MagicZoom" title=""
+                                                   href="@pictures[0].GetUrl()"
+                                                   data-zoom-image-2x="@pictures[0].GetUrl()"
+                                                   data-image-2x="@pictures[0].GetUrl()">
+                                                    <img src="@pictures[0].GetUrl()" class="magic_figureImg"
+                                                         srcset="@pictures[0].GetUrl()" alt="@Model.GetName()" />
+                                                </a>
+
+
+                                            }
+                                            else
+                                            {
+                                                <a id="Zoom-1" class="MagicZoom" title=""
+                                                   href="@Model.Picture.GetUrl()"
+                                                   data-zoom-image-2x="@Model.Picture.GetUrl()"
+                                                   data-image-2x="@Model.Picture.GetUrl()">
+                                                    <img src="@Model.Picture.GetUrl()" class="magic_figureImg"
+                                                         srcset="@Model.Picture.GetUrl()" alt="@Model.GetName()" />
+                                                </a>
+                                            }
+
+
+                                        </div>
+                                        <div class="prodetails-bottom">
+                                            <div class="prodetails-social">
+                                                @if (Request.Browser.IsMobileDevice)
+                                                {
+                                                    <a href="https://api.whatsapp.com/send?text=@url  @Model.GetSummery()" target="_blank">
+                                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 455.731 455.731" style="enable-background:new 0 0 455.731 455.731;" xml:space="preserve">
+<g>
+                                                        <rect x="0" y="0" style="fill:#1BD741;" width="455.731" height="455.731" />
+                                                        <g>
+                                                        <path style="fill:#FFFFFF;" d="M68.494,387.41l22.323-79.284c-14.355-24.387-21.913-52.134-21.913-80.638    c0-87.765,71.402-159.167,159.167-159.167s159.166,71.402,159.166,159.167c0,87.765-71.401,159.167-159.166,159.167    c-27.347,0-54.125-7-77.814-20.292L68.494,387.41z M154.437,337.406l4.872,2.975c20.654,12.609,44.432,19.274,68.762,19.274    c72.877,0,132.166-59.29,132.166-132.167S300.948,95.321,228.071,95.321S95.904,154.611,95.904,227.488    c0,25.393,7.217,50.052,20.869,71.311l3.281,5.109l-12.855,45.658L154.437,337.406z" />
+                                                        <path style="fill:#FFFFFF;" d="M183.359,153.407l-10.328-0.563c-3.244-0.177-6.426,0.907-8.878,3.037    c-5.007,4.348-13.013,12.754-15.472,23.708c-3.667,16.333,2,36.333,16.667,56.333c14.667,20,42,52,90.333,65.667    c15.575,4.404,27.827,1.435,37.28-4.612c7.487-4.789,12.648-12.476,14.508-21.166l1.649-7.702c0.524-2.448-0.719-4.932-2.993-5.98    l-34.905-16.089c-2.266-1.044-4.953-0.384-6.477,1.591l-13.703,17.764c-1.035,1.342-2.807,1.874-4.407,1.312    c-9.384-3.298-40.818-16.463-58.066-49.687c-0.748-1.441-0.562-3.19,0.499-4.419l13.096-15.15    c1.338-1.547,1.676-3.722,0.872-5.602l-15.046-35.201C187.187,154.774,185.392,153.518,183.359,153.407z" />
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="https://web.whatsapp.com/send?l=en&text=@url  @Model.GetSummery()" target="_blank">
+                                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 455.731 455.731" style="enable-background:new 0 0 455.731 455.731;" xml:space="preserve">
+<g>
+                                                        <rect x="0" y="0" style="fill:#1BD741;" width="455.731" height="455.731" />
+                                                        <g>
+                                                        <path style="fill:#FFFFFF;" d="M68.494,387.41l22.323-79.284c-14.355-24.387-21.913-52.134-21.913-80.638    c0-87.765,71.402-159.167,159.167-159.167s159.166,71.402,159.166,159.167c0,87.765-71.401,159.167-159.166,159.167    c-27.347,0-54.125-7-77.814-20.292L68.494,387.41z M154.437,337.406l4.872,2.975c20.654,12.609,44.432,19.274,68.762,19.274    c72.877,0,132.166-59.29,132.166-132.167S300.948,95.321,228.071,95.321S95.904,154.611,95.904,227.488    c0,25.393,7.217,50.052,20.869,71.311l3.281,5.109l-12.855,45.658L154.437,337.406z" />
+                                                        <path style="fill:#FFFFFF;" d="M183.359,153.407l-10.328-0.563c-3.244-0.177-6.426,0.907-8.878,3.037    c-5.007,4.348-13.013,12.754-15.472,23.708c-3.667,16.333,2,36.333,16.667,56.333c14.667,20,42,52,90.333,65.667    c15.575,4.404,27.827,1.435,37.28-4.612c7.487-4.789,12.648-12.476,14.508-21.166l1.649-7.702c0.524-2.448-0.719-4.932-2.993-5.98    l-34.905-16.089c-2.266-1.044-4.953-0.384-6.477,1.591l-13.703,17.764c-1.035,1.342-2.807,1.874-4.407,1.312    c-9.384-3.298-40.818-16.463-58.066-49.687c-0.748-1.441-0.562-3.19,0.499-4.419l13.096-15.15    c1.338-1.547,1.676-3.722,0.872-5.602l-15.046-35.201C187.187,154.774,185.392,153.518,183.359,153.407z" />
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                                                    </a>
+                                                }
+
+                                                <a href="https://telegram.me/share/url?url=@url&text=@Model.GetName()">
+                                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 455.731 455.731" style="enable-background:new 0 0 455.731 455.731;" xml:space="preserve">
+<g>
+                                                    <rect x="0" y="0" style="fill:#61A8DE;" width="455.731" height="455.731" />
+                                                    <path style="fill:#FFFFFF;" d="M358.844,100.6L54.091,219.359c-9.871,3.847-9.273,18.012,0.888,21.012l77.441,22.868l28.901,91.706   c3.019,9.579,15.158,12.483,22.185,5.308l40.039-40.882l78.56,57.665c9.614,7.057,23.306,1.814,25.747-9.859l52.031-248.76   C382.431,106.232,370.443,96.08,358.844,100.6z M320.636,155.806L179.08,280.984c-1.411,1.248-2.309,2.975-2.519,4.847   l-5.45,48.448c-0.178,1.58-2.389,1.789-2.861,0.271l-22.423-72.253c-1.027-3.308,0.312-6.892,3.255-8.717l167.163-103.676   C320.089,147.518,324.025,152.81,320.636,155.806z" />
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                                                </a>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=@url">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px"><linearGradient id="awSgIinfw5_FS5MLHI~A9a" x1="6.228" x2="42.077" y1="4.896" y2="43.432" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0d61a9" /><stop offset="1" stop-color="#16528c" /></linearGradient><path fill="url(#awSgIinfw5_FS5MLHI~A9a)" d="M42,40c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V8c0-1.105,0.895-2,2-2h32 c1.105,0,2,0.895,2,2V40z" /><path d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.818,7.505-7.818c1.995,0,3.077,0.14,3.598,0.208 l0.858,0.111L37,12.224L37,17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z" opacity=".05" /><path d="M25.5,37.5v-11h-4v-5h4v-2.638c0-4.788,2.422-7.318,7.005-7.318c1.971,0,3.03,0.138,3.54,0.204 l0.436,0.057l0.02,0.442V16.5h-3.135c-1.623,0-1.865,1.901-1.865,3.035V21.5h4.64l-0.773,5H31.5v11H25.5z" opacity=".07" /><path fill="#fff" d="M33.365,16H36v-3.754c-0.492-0.064-1.531-0.203-3.495-0.203c-4.101,0-6.505,2.08-6.505,6.819V22h-4v4 h4v11h5V26h3.938l0.618-4H31v-2.465C31,17.661,31.612,16,33.365,16z" /></svg>
+                                                </a>
+                                            </div>
+                                            <div class="prodetails-barcode">
+                                                <button href="/product/getqr?productId=@(Model.ID)" data-bs-toggle="modal" data-bs-target="#sqr-modal">
+                                                    <p>بارکد خوان</p>
+                                                    <img src="/assets/zeno/images/QRCode.png" alt="">
+                                                </button>
+                                            </div>
+                                            <div class="prodetails-consultation">
+                                                <a href="tel:@BaseContent.WebsiteDetail.Mobile ">
+                                                    <p>مشاوره برای این محصول</p>
+                                                    <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.4996 0C5.60741 0 0 5.63132 0 12.5534C0 14.7149 0.546806 16.9471 1.57661 19.0193C1.53455 19.3638 1.50536 19.7233 1.50536 20.1126C1.50536 24.3012 4.09346 25.8621 5.72473 25.8621H6.32676C7.07586 25.8621 7.68533 25.2497 7.68533 24.4971V15.7276C7.68533 14.9756 7.07586 14.3635 6.32676 14.3635H5.72473C4.48633 14.3635 2.70027 15.2658 1.90967 17.5302C1.25757 15.9023 0.910771 14.2052 0.910771 12.5534C0.910771 6.13563 6.10958 0.914655 12.4996 0.914655C18.8896 0.914655 24.0887 6.13563 24.0887 12.5534C24.0887 14.204 23.7421 15.9012 23.0898 17.5293C22.2989 15.2655 20.5122 14.3635 19.2747 14.3635H18.6727C17.9233 14.3635 17.3135 14.9756 17.3135 15.7276V24.4971C17.3135 25.2497 17.9233 25.8621 18.6727 25.8621H19.2747C20.906 25.8621 23.4941 24.3012 23.4941 20.1124C23.4941 19.723 23.4649 19.3629 23.4228 19.0178C24.4526 16.9451 25 14.7135 25 12.5532C25 5.63132 19.3923 0 12.4996 0Z" fill="white" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @Html.Action("Search", "Product", new
+{
+prnotId = Model.ID,
+prpagesize = 10,
+prviewname = "ProductSlider",
+prcategoryId = Model.ProductCategoryId,
+})
+        <!--ko if:viewModel.Variety.ProductQuantity().length > 0 -->
+
+        <div class="proDetail_box ajax-update">
+            <div class="bordered_title">
+
+                <strong>@Resource.Lang.Stores</strong>
+            </div>
+
+            <!--ko foreach:viewModel.Variety.ProductQuantity-->
+            <div class="seller-list-item " data-bind="css:{'active-sell': $index() === 0}">
+                <div class="row d-flex align-items-center p-2 m-0">
+
+                    <div class="col-lg-3 col-6 p-0">
+                        <div class="pro-seller-detail ">
+                            <svg enable-background="new 0 0 512 512" fill="#7b7777" style="height:40px;width:40px" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><path d="m511.52 172.13-32-128c-1.76-7.136-8.192-12.128-15.52-12.128h-416c-7.328 0-13.76 4.992-15.52 12.128l-32 128c-0.32 1.248-0.48 2.56-0.48 3.872 0 26.816 12.704 50.464 32 64.992v223.01c0 8.832 7.168 16 16 16h160c8.832 0 16-7.168 16-16v-112h64v112c0 8.832 7.168 16 16 16h160c8.832 0 16-7.168 16-16v-223.01c19.296-14.528 32-38.176 32-64.992 0-1.312-0.16-2.624-0.48-3.872zm-63.52 275.87h-128v-112c0-8.832-7.168-16-16-16h-96c-8.832 0-16 7.168-16 16v112h-128v-193.28c3.936 0.672 7.904 1.28 12 1.28 24.384 0 46.08-12.128 60-30.944 13.92 18.816 35.616 30.944 60 30.944s46.08-12.128 60-30.944c13.92 18.816 35.616 30.944 60 30.944s46.08-12.128 60-30.944c13.92 18.816 35.616 30.944 60 30.944 4.096 0 8.064-0.608 12-1.28v193.28zm-12-224c-24.256 0-44-21.536-44-48 0-8.832-7.168-16-16-16s-16 7.168-16 16c0 26.464-19.744 48-44 48s-44-21.536-44-48c0-8.832-7.168-16-16-16s-16 7.168-16 16c0 26.464-19.744 48-44 48s-44-21.536-44-48c0-8.832-7.168-16-16-16s-16 7.168-16 16c0 26.464-19.744 48-44 48-23.68 0-43.072-20.544-43.968-46.144l28.48-113.86h391.01l28.48 113.86c-0.928 25.6-20.32 46.144-44 46.144z" /> </svg>
+                            <a class="seller_prop" data-bind="attr: { 'href': '/seller/'+StoreProduct.Store.ID+'/'+StoreProduct.Store.Name},text: StoreProduct.Store.Name "></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 p-0">
+                        <div class="pro-seller-detail">
+                            <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg" style="width: 40px;height: 40px;fill: #7b7777;"><path d="m410 0c8.285156 0 15 6.714844 15 15v199.027344c52.363281 26.195312 87 79.976562 87 140.722656 0 86.84375-70.40625 157.25-157.25 157.25-60.746094 0-114.527344-34.636719-140.722656-87h-199.027344c-8.285156 0-15-6.714844-15-15v-395c0-8.285156 6.714844-15 15-15zm-126 30v84.0625c0 10.785156-11.507812 19.085938-22.746094 12.84375l-48.753906-24.773438-49.761719 25.289063c-9.988281 5.058594-21.710937-2.324219-21.703125-13.359375l-.035156-84.0625h-111v365h172.703125c-14.519531-54.976562 1.808594-112.394531 40.855469-151.441406s96.464844-55.375 151.441406-40.855469v-172.703125zm23 391h69.996094c15.984375 0 30.488281-6.511719 40.988281-17.015625 11.039063-11.035156 17.015625-25.332031 17.015625-41.980469 0-31.96875-26.035156-58.003906-58.003906-58.003906h-41.683594l8.804688-8.820312c13.871093-13.953126-7.339844-35.042969-21.210938-21.09375l-34.402344 34.464843c-5.824218 5.855469-5.800781 15.328125.058594 21.152344l34.46875 34.402344c13.949219 13.871093 35.042969-7.339844 21.09375-21.210938l-8.914062-8.894531h41.785156c16.242187 0 28.003906 12.984375 28.003906 28.996094 0 15.40625-12.597656 28.003906-28.003906 28.003906h-69.996094c-8.285156 0-15 6.714844-15 15s6.714844 15 15 15zm-42.230469-156.230469c-49.691406 49.695313-49.691406 130.269531 0 179.960938 49.695313 49.695312 130.269531 49.695312 179.960938 0 49.695312-49.691407 49.695312-130.265625 0-179.960938-49.691407-49.691406-130.269531-49.691406-179.960938 0zm-10.769531-234.769531h-83v59.65625l34.726562-17.648438c4.097657-2.078124 9.09375-2.246093 13.511719-.019531l34.761719 17.667969zm0 0" fill-rule="evenodd" /></svg>
+                            <strong data-bind="text: Warranty"> </strong>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6 p-0">
+                        <div class="pro-seller-detail justify-content-l6-center">
+                            <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg" style="width: 40px;height: 40px;fill: #7b7777;"><g><path d="m203.556 345.012 70.71-212.133c2.619-7.859-1.628-16.354-9.487-18.974-7.858-2.619-16.354 1.628-18.974 9.487l-70.71 212.133c-2.619 7.859 1.628 16.354 9.487 18.974 1.573.524 3.173.773 4.745.773 6.28.001 12.133-3.974 14.229-10.26z" /><path d="m309.533 279.203c24.813 0 45-20.187 45-45s-20.187-45-45-45-45 20.187-45 45 20.187 45 45 45zm0-60c8.271 0 15 6.729 15 15s-6.729 15-15 15-15-6.729-15-15 6.729-15 15-15z" /><path d="m139.827 189.203c-24.813 0-45 20.187-45 45s20.187 45 45 45 45-20.187 45-45-20.186-45-45-45zm0 60c-8.271 0-15-6.729-15-15s6.729-15 15-15 15 6.729 15 15-6.728 15-15 15z" /><path d="m509 186-52.307-69.743 2.041-14.283c.667-4.674-.904-9.39-4.243-12.728l-31.82-31.82 31.819-31.82c5.858-5.857 5.858-15.355 0-21.213-5.857-5.857-15.355-5.857-21.213 0l-31.819 31.82-31.82-31.82c-3.338-3.339-8.054-4.905-12.728-4.243l-148.493 21.213c-3.213.459-6.19 1.948-8.485 4.243l-183.848 183.848c-21.445 21.444-21.445 56.338 0 77.782l155.563 155.564c3.182 3.182 6.666 5.881 10.353 8.118v6.082c0 30.327 24.673 55 55 55h220c30.327 0 55-24.673 55-55v-262c0-3.245-1.053-6.404-3-9zm-471.703 80.023c-9.748-9.748-9.748-25.608 0-35.356l180.312-180.312 136.118-19.445 26.517 26.517-21.213 21.213-10.607-10.607c-5.857-5.857-15.355-5.857-21.213 0s-5.858 15.355 0 21.213l42.427 42.427c2.929 2.929 6.768 4.394 10.606 4.394s7.678-1.465 10.606-4.394c5.858-5.857 5.858-15.355 0-21.213l-10.607-10.607 21.213-21.213 26.517 26.517-19.446 136.118-180.311 180.312c-4.722 4.722-11 7.322-17.678 7.322s-12.956-2.601-17.678-7.322zm444.703 190.977c0 13.785-11.215 25-25 25h-220c-13.164 0-23.976-10.228-24.925-23.154 13.567-.376 27.022-5.714 37.353-16.046l183.848-183.848c2.295-2.295 3.784-5.272 4.243-8.485l13.173-92.21 31.308 41.743z" /></g></svg>
+                            <span>@Resource.Lang.Price:</span>
+                            <strong data-bind="text:toCurrency(Price)"></strong>
+                            <span>@Resource.Lang.Toman</span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 p-0 mb-2 mb-md-0">
+                        <!--ko if:StoreProduct.Store.ShippingCity.SendPrice!=null-->
+                        <div class="pro-seller-detail ">
+                            <button data-bind="attr:{'product-id': viewModel.Variety.ProductId(),'product-color-id': viewModel.Variety.ColorId(),'product-size-id': viewModel.Variety.SizeId() ,'product-option-item-id': viewModel.Variety.OptionItemId() ,'store-id' : StoreProduct.StoreId  }" class="btn-basket btn w-100 justify-content-center primary_btn" id="btn_shop_pro_det" codeprocess-action="basket-add" product-id="" product-color-id="" product-size-id="">
+
+                                <svg id="Layer_1" enable-background="new 0 0 510.735 510.735" height="512" viewBox="0 0 510.735 510.735" width="512" xmlns="http://www.w3.org/2000/svg" style="width: 40px;height: 40px;fill: #fff;"><path d="m482.082 171.571h-51.609l-71.834-135.683c-3.876-7.321-12.951-10.114-20.275-6.238-7.321 3.876-10.114 12.954-6.238 20.275l64.403 121.646h-282.41l64.403-121.646c3.876-7.321 1.083-16.399-6.238-20.275-7.319-3.875-16.399-1.083-20.275 6.238l-71.835 135.683h-51.521c-15.799 0-28.653 12.854-28.653 28.653v33.321c0 15.134 11.796 27.557 26.677 28.577l50.322 209.217c1.621 6.741 7.651 11.492 14.584 11.492h327.47c6.93 0 12.958-4.748 14.582-11.484l50.44-209.227c14.873-1.028 26.66-13.447 26.66-28.575v-33.321c0-15.799-12.853-28.653-28.653-28.653zm-452.082 30h450.735v30.626h-450.735zm403.846 140.895h-65.674l10.022-80.269h75.003zm-163.458 110.365v-80.365h63.805l-10.034 80.365zm-83.774 0-10.043-80.365h63.817v80.365zm-129.063-190.634h75.008l10.031 80.269h-65.732zm105.24 0h77.597v80.269h-67.566zm107.597 80.269v-80.269h77.573l-10.022 80.269zm-186.315 30h62.265l10.043 80.365h-52.978zm323.166 80.365h-52.847l10.034-80.365h62.187z" /></svg>
+                                @Resource.Lang.AddToBasket
+                            </button>
+                        </div>
+                        <!--/ko-->
+
+                    </div>
+                    <div class="col-12 my-lg-0 my-md-2">
+                        <strong class="specialOption">@Resource.Lang.CompetitiveFeature</strong>
+                    </div>
+                    <!--ko foreach:StoreProduct.Store.StoreCompetitiveFeatures-->
+                    <div class="col-md-2  p-0 border-top mt-3 pt-3">
+                        <div class="pro-seller-detail">
+
+                            <strong data-bind="text:Text"></strong>
+                        </div>
+
+                    </div>
+                    <!--/ko-->
+                    <div class="col-lg-4 col-md-6 p-0 border-top mt-3 pt-3">
+                        <div class="pro-seller-detail ">
+                            <!--ko if:StoreProduct.Store.ShippingCity.SendPrice==0-->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 407.534 407.534" style="enable-background:new 0 0 407.534 407.534;width: 40px;height: 40px;fill: #7b7777;" xml:space="preserve">
+<g>
+                            <g>
+                            <g>
+                            <path d="M406.962,226.838c-0.001-0.002-0.001-0.003-0.002-0.005l-76.944-193.2c-1.633-4.105-6.286-6.109-10.391-4.476     c-0.003,0.001-0.006,0.002-0.009,0.004L7.464,153.457c-1.273,0.55-2.377,1.428-3.2,2.544C1.668,157.35,0.028,160.02,0,162.945     v208c0,4.418,3.582,8,8,8h336c4.418,0,8-3.582,8-8v-113.6l50.496-20.112C406.6,235.596,408.599,230.942,406.962,226.838z      M336,362.945H16v-192h320V362.945z M133.48,154.985l133.952-53.376c11.955,12.566,28.52,19.708,45.864,19.776l13.36,33.6H133.48     z M352,240.161v-77.216c0-4.418-3.582-8-8-8h-0.128l-16.952-42.576c-0.188-0.355-0.407-0.693-0.656-1.008     c-0.858-3.853-4.426-6.482-8.36-6.16c-16.138,1.471-31.925-5.327-41.944-18.064c-2.493-3.077-6.875-3.842-10.264-1.792     c-0.38,0.045-0.757,0.115-1.128,0.208l-163.536,65.12c-1.979,0.776-3.562,2.315-4.392,4.272H46.976l271.136-107.96l71.032,178.36     L352,240.161z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M37.712,308.937c15.532,4.591,27.686,16.73,32.296,32.256c1.011,3.389,4.128,5.711,7.664,5.712     c0.415-0.026,0.827-0.088,1.232-0.184c0.359,0.102,0.726,0.177,1.096,0.224h192c0.33-0.043,0.656-0.11,0.976-0.2     c3.997,0.972,8.025-1.479,8.998-5.476c0.003-0.015,0.007-0.029,0.01-0.044c4.598-15.542,16.754-27.698,32.296-32.296     c3.769-1.152,6.111-4.908,5.488-8.8c0.107-0.388,0.184-0.784,0.232-1.184v-64c-0.047-0.401-0.127-0.797-0.24-1.184     c0.627-3.893-1.716-7.651-5.488-8.8c-15.542-4.597-27.695-16.758-32.28-32.304c-1.158-3.795-4.951-6.143-8.864-5.488     c-0.37-0.103-0.747-0.178-1.128-0.224H80c-0.403,0.048-0.802,0.128-1.192,0.24c-3.891-0.62-7.645,1.721-8.8,5.488     c-4.601,15.539-16.756,27.691-32.296,32.288c-3.769,1.152-6.111,4.908-5.488,8.8c-0.104,0.389-0.179,0.784-0.224,1.184v64     c0.046,0.376,0.121,0.748,0.224,1.112C31.568,303.974,33.915,307.772,37.712,308.937z M48,238.193     c16.064-6.452,28.796-19.184,35.248-35.248h185.496c6.455,16.064,19.19,28.796,35.256,35.248v57.504     c-16.059,6.459-28.789,19.189-35.248,35.248H83.248C76.789,314.886,64.059,302.156,48,295.697V238.193z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M176,314.945c26.51,0,48-21.49,48-48c0-26.51-21.49-48-48-48c-26.51,0-48,21.49-48,48     C128.026,293.444,149.501,314.919,176,314.945z M176,234.945c17.673,0,32,14.327,32,32s-14.327,32-32,32s-32-14.327-32-32     S158.327,234.945,176,234.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M88,278.945c6.627,0,12-5.373,12-12c0-6.627-5.373-12-12-12s-12,5.373-12,12C76,273.573,81.373,278.945,88,278.945z      M88,262.945c2.209,0,4,1.791,4,4c0,2.209-1.791,4-4,4c-2.209,0-4-1.791-4-4C84,264.736,85.791,262.945,88,262.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M264,278.945c6.627,0,12-5.373,12-12c0-6.627-5.373-12-12-12c-6.627,0-12,5.373-12,12     C252,273.573,257.373,278.945,264,278.945z M264,262.945c2.209,0,4,1.791,4,4c0,2.209-1.791,4-4,4c-2.209,0-4-1.791-4-4     C260,264.736,261.791,262.945,264,262.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                            <span>@Resource.Lang.ShippingPrice</span>
+                            <strong>@Resource.Lang.Free</strong>
+                            <!--/ko-->
+                            <!--ko ifnot:StoreProduct.Store.ShippingCity.SendPrice==0-->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 407.534 407.534" style="enable-background:new 0 0 407.534 407.534;width: 40px;height: 40px;fill: #7b7777;" xml:space="preserve">
+<g>
+                            <g>
+                            <g>
+                            <path d="M406.962,226.838c-0.001-0.002-0.001-0.003-0.002-0.005l-76.944-193.2c-1.633-4.105-6.286-6.109-10.391-4.476     c-0.003,0.001-0.006,0.002-0.009,0.004L7.464,153.457c-1.273,0.55-2.377,1.428-3.2,2.544C1.668,157.35,0.028,160.02,0,162.945     v208c0,4.418,3.582,8,8,8h336c4.418,0,8-3.582,8-8v-113.6l50.496-20.112C406.6,235.596,408.599,230.942,406.962,226.838z      M336,362.945H16v-192h320V362.945z M133.48,154.985l133.952-53.376c11.955,12.566,28.52,19.708,45.864,19.776l13.36,33.6H133.48     z M352,240.161v-77.216c0-4.418-3.582-8-8-8h-0.128l-16.952-42.576c-0.188-0.355-0.407-0.693-0.656-1.008     c-0.858-3.853-4.426-6.482-8.36-6.16c-16.138,1.471-31.925-5.327-41.944-18.064c-2.493-3.077-6.875-3.842-10.264-1.792     c-0.38,0.045-0.757,0.115-1.128,0.208l-163.536,65.12c-1.979,0.776-3.562,2.315-4.392,4.272H46.976l271.136-107.96l71.032,178.36     L352,240.161z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M37.712,308.937c15.532,4.591,27.686,16.73,32.296,32.256c1.011,3.389,4.128,5.711,7.664,5.712     c0.415-0.026,0.827-0.088,1.232-0.184c0.359,0.102,0.726,0.177,1.096,0.224h192c0.33-0.043,0.656-0.11,0.976-0.2     c3.997,0.972,8.025-1.479,8.998-5.476c0.003-0.015,0.007-0.029,0.01-0.044c4.598-15.542,16.754-27.698,32.296-32.296     c3.769-1.152,6.111-4.908,5.488-8.8c0.107-0.388,0.184-0.784,0.232-1.184v-64c-0.047-0.401-0.127-0.797-0.24-1.184     c0.627-3.893-1.716-7.651-5.488-8.8c-15.542-4.597-27.695-16.758-32.28-32.304c-1.158-3.795-4.951-6.143-8.864-5.488     c-0.37-0.103-0.747-0.178-1.128-0.224H80c-0.403,0.048-0.802,0.128-1.192,0.24c-3.891-0.62-7.645,1.721-8.8,5.488     c-4.601,15.539-16.756,27.691-32.296,32.288c-3.769,1.152-6.111,4.908-5.488,8.8c-0.104,0.389-0.179,0.784-0.224,1.184v64     c0.046,0.376,0.121,0.748,0.224,1.112C31.568,303.974,33.915,307.772,37.712,308.937z M48,238.193     c16.064-6.452,28.796-19.184,35.248-35.248h185.496c6.455,16.064,19.19,28.796,35.256,35.248v57.504     c-16.059,6.459-28.789,19.189-35.248,35.248H83.248C76.789,314.886,64.059,302.156,48,295.697V238.193z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M176,314.945c26.51,0,48-21.49,48-48c0-26.51-21.49-48-48-48c-26.51,0-48,21.49-48,48     C128.026,293.444,149.501,314.919,176,314.945z M176,234.945c17.673,0,32,14.327,32,32s-14.327,32-32,32s-32-14.327-32-32     S158.327,234.945,176,234.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M88,278.945c6.627,0,12-5.373,12-12c0-6.627-5.373-12-12-12s-12,5.373-12,12C76,273.573,81.373,278.945,88,278.945z      M88,262.945c2.209,0,4,1.791,4,4c0,2.209-1.791,4-4,4c-2.209,0-4-1.791-4-4C84,264.736,85.791,262.945,88,262.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M264,278.945c6.627,0,12-5.373,12-12c0-6.627-5.373-12-12-12c-6.627,0-12,5.373-12,12     C252,273.573,257.373,278.945,264,278.945z M264,262.945c2.209,0,4,1.791,4,4c0,2.209-1.791,4-4,4c-2.209,0-4-1.791-4-4     C260,264.736,261.791,262.945,264,262.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                            <span>@Resource.Lang.ShippingPrice</span>
+                            <a href="https://zeno.ir/st/PurchaseGuide">به بخش راهنمای خرید مراجعه شود</a>
+
+                            <!--/ko-->
+                            <!--ko if:StoreProduct.Store.ShippingCity.SendPrice==null-->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 407.534 407.534" style="enable-background:new 0 0 407.534 407.534;width: 40px;height: 40px;fill: #7b7777;" xml:space="preserve">
+<g>
+                            <g>
+                            <g>
+                            <path d="M406.962,226.838c-0.001-0.002-0.001-0.003-0.002-0.005l-76.944-193.2c-1.633-4.105-6.286-6.109-10.391-4.476     c-0.003,0.001-0.006,0.002-0.009,0.004L7.464,153.457c-1.273,0.55-2.377,1.428-3.2,2.544C1.668,157.35,0.028,160.02,0,162.945     v208c0,4.418,3.582,8,8,8h336c4.418,0,8-3.582,8-8v-113.6l50.496-20.112C406.6,235.596,408.599,230.942,406.962,226.838z      M336,362.945H16v-192h320V362.945z M133.48,154.985l133.952-53.376c11.955,12.566,28.52,19.708,45.864,19.776l13.36,33.6H133.48     z M352,240.161v-77.216c0-4.418-3.582-8-8-8h-0.128l-16.952-42.576c-0.188-0.355-0.407-0.693-0.656-1.008     c-0.858-3.853-4.426-6.482-8.36-6.16c-16.138,1.471-31.925-5.327-41.944-18.064c-2.493-3.077-6.875-3.842-10.264-1.792     c-0.38,0.045-0.757,0.115-1.128,0.208l-163.536,65.12c-1.979,0.776-3.562,2.315-4.392,4.272H46.976l271.136-107.96l71.032,178.36     L352,240.161z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M37.712,308.937c15.532,4.591,27.686,16.73,32.296,32.256c1.011,3.389,4.128,5.711,7.664,5.712     c0.415-0.026,0.827-0.088,1.232-0.184c0.359,0.102,0.726,0.177,1.096,0.224h192c0.33-0.043,0.656-0.11,0.976-0.2     c3.997,0.972,8.025-1.479,8.998-5.476c0.003-0.015,0.007-0.029,0.01-0.044c4.598-15.542,16.754-27.698,32.296-32.296     c3.769-1.152,6.111-4.908,5.488-8.8c0.107-0.388,0.184-0.784,0.232-1.184v-64c-0.047-0.401-0.127-0.797-0.24-1.184     c0.627-3.893-1.716-7.651-5.488-8.8c-15.542-4.597-27.695-16.758-32.28-32.304c-1.158-3.795-4.951-6.143-8.864-5.488     c-0.37-0.103-0.747-0.178-1.128-0.224H80c-0.403,0.048-0.802,0.128-1.192,0.24c-3.891-0.62-7.645,1.721-8.8,5.488     c-4.601,15.539-16.756,27.691-32.296,32.288c-3.769,1.152-6.111,4.908-5.488,8.8c-0.104,0.389-0.179,0.784-0.224,1.184v64     c0.046,0.376,0.121,0.748,0.224,1.112C31.568,303.974,33.915,307.772,37.712,308.937z M48,238.193     c16.064-6.452,28.796-19.184,35.248-35.248h185.496c6.455,16.064,19.19,28.796,35.256,35.248v57.504     c-16.059,6.459-28.789,19.189-35.248,35.248H83.248C76.789,314.886,64.059,302.156,48,295.697V238.193z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M176,314.945c26.51,0,48-21.49,48-48c0-26.51-21.49-48-48-48c-26.51,0-48,21.49-48,48     C128.026,293.444,149.501,314.919,176,314.945z M176,234.945c17.673,0,32,14.327,32,32s-14.327,32-32,32s-32-14.327-32-32     S158.327,234.945,176,234.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M88,278.945c6.627,0,12-5.373,12-12c0-6.627-5.373-12-12-12s-12,5.373-12,12C76,273.573,81.373,278.945,88,278.945z      M88,262.945c2.209,0,4,1.791,4,4c0,2.209-1.791,4-4,4c-2.209,0-4-1.791-4-4C84,264.736,85.791,262.945,88,262.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <path d="M264,278.945c6.627,0,12-5.373,12-12c0-6.627-5.373-12-12-12c-6.627,0-12,5.373-12,12     C252,273.573,257.373,278.945,264,278.945z M264,262.945c2.209,0,4,1.791,4,4c0,2.209-1.791,4-4,4c-2.209,0-4-1.791-4-4     C260,264.736,261.791,262.945,264,262.945z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                            <span>@Resource.Lang.ShippingPrice</span>
+                            <strong>@Resource.Lang.Unknown</strong>
+
+                            <!--/ko-->
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 p-0 border-top mt-3 pt-3">
+                        <div class="pro-seller-detail ">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;width: 40px;height: 40px;fill: #7b7777;" xml:space="preserve">
+<g>
+                            <g>
+                            <path d="M465.89,43.514h-63.591V18.067C402.299,8.089,394.21,0,384.233,0s-18.067,8.089-18.067,18.067v25.447H145.834V18.067    C145.834,8.089,137.745,0,127.767,0s-18.067,8.089-18.067,18.067v25.447H46.11c-9.978,0-18.067,8.089-18.067,18.067    c0,11.51,0,421.192,0,432.353c0,9.978,8.089,18.067,18.067,18.067H465.89c9.978,0,18.067-8.089,18.067-18.067    c0-11.162,0-420.843,0-432.353C483.957,51.603,475.868,43.514,465.89,43.514z M447.824,475.867H64.176v-301.52h383.647V475.867z     M447.824,138.213H64.176V79.647h383.647V138.213z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</g>
+</g>
+<g>
+                            <g>
+                            <path d="M257.789,212.689l-39.361,23.855c-18.491,11.094-4.171,43.628,13.417,31.906l8.648-5.367v151.778    c0,9.543,11.629,14.314,23.259,14.314c11.63,0,23.26-4.771,23.26-14.314V225.211C287.013,213.027,266.671,207.135,257.789,212.689    z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                            <span>@Resource.Lang.ShippingTime</span>
+                            <a href="https://zeno.ir/st/Map">به بخش نقشه ارسال/شرایط ارسال مراجعه شود</a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 p-0 border-top mt-3 pt-3">
+                        <div class="pro-seller-detail ">
+                            <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg" style="fill: #7b7777;width: 40px;height: 40px;"><g><path d="m60.25 0v512h300.338l91.162-91.162v-420.838zm30 30h331.5v361.625h-90.375v90.375h-241.125zm318.287 391.625-47.162 47.162v-47.162z" /><path d="m120.5 60.25h150.5v30h-150.5z" /><path d="m120.5 301.25h271v30h-271z" /><path d="m120.5 240.976h271v30h-271z" /><path d="m120.5 180.703h271v30h-271z" /><path d="m120.5 120.429h271v30h-271z" /><path d="m120.5 361.5h180.625v30h-180.625z" /><path d="m120.5 421.75h150.5v30h-150.5z" /></g></svg>
+                            <a data-bind="attr: { 'href': '/seller/'+StoreProduct.Store.ID+'/'+StoreProduct.Store.Name}">
+                                @Resource.Lang.StoreDetails
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 p-0 border-top mt-3 pt-3">
+                        <div class="pro-seller-detail ">
+                            <a href="#" data-toggle="modal" data-target="#ModalCenterInfo">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 426.667 426.667" style="enable-background:new 0 0 426.667 426.667;width: 40px;height: 40px;fill: #7b7777;" xml:space="preserve">
+<g>
+                                <g>
+                                <g>
+                                <rect x="192" y="192" width="42.667" height="128"></rect>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <path d="M213.333,0C95.467,0,0,95.467,0,213.333s95.467,213.333,213.333,213.333S426.667,331.2,426.667,213.333     S331.2,0,213.333,0z M213.333,384c-94.08,0-170.667-76.587-170.667-170.667S119.253,42.667,213.333,42.667     S384,119.253,384,213.333S307.413,384,213.333,384z"></path>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <rect x="192" y="106.667" width="42.667" height="42.667"></rect>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                                @Resource.Lang.Description
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="modal fade" id="ModalCenterInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">@Resource.Lang.Description</h5>
+                                    <button type="button" class="close m-0 mr-auto" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p data-bind="text: StoreProduct.Store.Description">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--/ko-->
+
+        </div>
+        <!--/ko-->
+
+        <div class="proDetail_box">
+            <div class="bordered_title">
+                <strong>@Resource.Lang.AboutProduct</strong>
+            </div>
+            <div class="product_explainations">
+                <ul class="nav nav-tabs" id="product_description_tabs" role="tablist">
+                    @{ var ActiveClass = "show active";
+                        var NavLinkActive = "active";}
+                    @if (Model.GetDescription() != "" && Model.GetDescription() != null)
+                    {
+                        ActiveClass = "";
+                        NavLinkActive = "";
+                        <li class="nav-item">
+                            <a class="nav-link active" id="description_tab" data-bs-toggle="tab" href="#description"
+                               role="tab" aria-controls="description" aria-selected="true">@Resource.Lang.Description</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link @NavLinkActive" id="specification_tab" data-bs-toggle="tab" href="#profileTab_content"
+                           role="tab" aria-controls="profileTab_content" aria-selected="false">@Resource.Lang.Detail</a>
+                    </li>
+                    @{
+                        if (Model.Review.Count > 0)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" id="reviw_tab" data-bs-toggle="tab" href="#reviewTab_content" role="tab" aria-controls="review_content"
+                                   aria-selected="false">@Resource.Lang.Review</a>
+                            </li>
+                        }
+                    }
+                    @if (Model.ProductVideo.Count > 0)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" id="video_tab" data-bs-toggle="tab" href="#video_content" role="tab"
+                               aria-controls="video_content" aria-selected="false">مشاهده ویدئو</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" id="comment_tab" data-bs-toggle="tab" href="#commenTab_content"
+                           role="tab" aria-controls="commenTab_content" aria-selected="false">@Resource.Lang.Comments</a>
+                    </li>
+                </ul>
+                <div class="tab-content mt-0" id="peoductDescription_Content">
+                    @if (Model.GetDescription() != "" && Model.GetDescription() != null)
+                    {
+                        <div class="tab-pane fade show active" id="description" role="tabpanel"
+                             aria-labelledby="description_tab">
+                            <p>
+                                @Html.Raw(Model.GetDescription())
+                            </p>
+                        </div>
+                    }
+                    <div class="tab-pane fade @ActiveClass" id="profileTab_content" role="tabpanel"
+                         aria-labelledby="specification_tab">
+                        <div class="specifications">
+                            @foreach (var item in Model.ProductCustomValue)
+                            {
+                                if (item.ProductCustomField.SyncName != "Specialproduct" && item.ProductCustomField.SyncName != "SpecialProduct" && item.ProductCustomField.SyncName != "Call" && item.ProductCustomField.SyncName != "HomeProductHaveVideo")
+                                {
+                                    if ((item.Value != "" || item.ProductCustomItem.Value != ""))
+                                    {
+                                        <div class="specification_one">
+                                            <div class="specification_title"><span>@item.ProductCustomField.Name:</span></div>
+                                            @if (item.ItemId == null)
+                                            {
+                                                <div class="specification_text">@item.Value</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="specification_text">@item.ProductCustomItem.Value</div>
+                                            }
+                                        </div>
+                                    }
+                                }
+
+                            }
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="reviewTab_content" role="tabpanel" aria-labelledby="reviw_tab">
+                        <div class="product_reviw">
+                            <div class="row">
+                                @foreach (var item in Model.Review)
+                                {
+                                    <div class="col-sm-6  mb-3">
+                                        <div class="reviewInfoBox">
+                                            <p>@item.Contect</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="reviewImgBox ">
+                                            <img src="@item.Picture.GetUrl()" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade " id="video_content" role="tabpanel" aria-labelledby="video_tab">
+                        @if (Model.ProductVideo.Count() > 0)
+                        {
+                            <div class="row">
+                                @foreach (var item in Model.ProductVideo)
+                                {
+                                    <div class="col-lg-6">@Html.Raw(item.Url)</div>
+                                }
+                            </div>
+
+
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="commenTab_content" role="tabpanel" aria-labelledby="comment_tab">
+                        <div class="product_comments">
+
+                            @foreach (var item in Model.ProductComment.Where(p => p.Approved == true).OrderByDescending(p => p.ID).Take(10))
+                            {
+                                <div class="comment_item">
+                                    <div class="comment_info">
+                                        <div class="comment_userImg online_user"><img src="/assets/zeno/images/user.png" alt="@item.Account.FullName"></div>
+                                        <div class="comment_name_date">
+                                            <div href="#">
+                                                <strong>@item.Account.FullName</strong>
+                                                @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/ShowRate.cshtml", item.Rate, new ViewDataDictionary())
+                                            </div>
+                                            <span>@item.Datetime.ToPersianWithTime()</span>
+                                        </div>
+                                    </div>
+                                    <div class="comment_text">
+                                        <p>@item.Body</p>
+                                    </div>
+                                    <div class="comment_reply">
+                                        @if (!string.IsNullOrEmpty(item.AnswerString))
+                                        {
+                                            <div class="reply_item">
+                                                <div class="comment_info">
+                                                    <div class="comment_userImg offline_user"><img src="~/Assets/KhoshKala/Image/download.png" alt=""></div>
+                                                    <div class="comment_name_date">
+                                                        <a href="#">
+                                                            <strong>@Resource.Lang.Boss</strong>
+                                                        </a><span>@item.AnswerDatetime.ToPersianWithTime()</span>
+                                                    </div>
+                                                </div>
+                                                <div class="comment_text">
+                                                    @item.AnswerString
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            <div class="comment_item">
+                                <div class="add_comment">
+
+                                    <strong>@Resource.Lang.AddComment</strong>
+                                    <form class="addCm_form text-left">
+                                        <div class="star-rating user-rate">
+                                            <input id="star-5" type="radio" name="rate" value="5" />
+                                            <label for="star-5" title="5 stars">
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                            </label>
+                                            <input id="star-4" type="radio" name="rate" value="4" />
+                                            <label for="star-4" title="4 stars">
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                            </label>
+                                            <input id="star-3" type="radio" name="rate" value="3" />
+                                            <label for="star-3" title="3 stars">
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                            </label>
+                                            <input id="star-2" type="radio" name="rate" value="2" />
+                                            <label for="star-2" title="2 stars">
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                            </label>
+                                            <input id="star-1" type="radio" name="rate" value="1" />
+                                            <label for="star-1" title="1 star">
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <textarea codeprocess-field="body" name="comment" class="form-control" id="" placeholder="@Resource.Lang.YourComment"></textarea>
+                                        <button type="button" codeprocess-action="comment-add" product-id="@Model.ID" class="addCm_btn btn primary_btn  mt-4">
+                                            <span>
+                                                @Resource.Lang.Send
+                                            </span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="sqr-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center">
+        <div class="qr-modal-body text-center">
+            <img src="/product/getqr?productId=@(Model.ID)" alt="" />
+            <button class="btn btn-sm btn-danger closeQr" onclick="qrModalClose()">x</button>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="addcount form-control" placeholder="1" value="1" />
+
+@section endScripts {
+    <script type="text/javascript">
+        initializeProductPageScript();
+        function plusCount() {
+            var count = parseInt($(".addcount").val());
+            var count = count + 1;
+            $(".countP").text(count);
+            $(".addcount").val(count);
+        }
+        function minusCount() {
+            var count = parseInt($(".addcount").val());
+            count = count - 1;
+            if (count == 0) {
+                count = 1;
+                $(".countP").text(count);
+                $(".addcount").val(count);
+            }
+            else {
+                $(".countP").text(count);
+                $(".addcount").val(count);
+            }
+        }
+    </script>
+
+
+}

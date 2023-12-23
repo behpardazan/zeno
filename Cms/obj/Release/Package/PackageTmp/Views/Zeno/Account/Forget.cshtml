@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = Resource.Lang.RecoveryPassword;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+        var changepass = ViewBag.changePass;
+    var email = ViewBag.Email;
+    var mobile= ViewBag.Mobile;
+}
+    <section class="loginRegister">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="loginBox">
+
+                        <div class="page_title">
+                            <strong>@Resource.Lang.RecoveryPassword </strong>
+                        </div>
+
+                        @if (ViewBag.Message != null)
+                        {
+                            <label class="mt-2 mb-2 mr-auto ml-auto alert alert-danger">  @ViewBag.Message.Body</label>
+                        }
+                        @if (changepass != "Success")
+                        {
+                            <form action="@Url.Action("Forget", "account")" method="post" class="forgetPass_form">
+                                <input type="hidden" value="@ViewBag.back" name="back" />
+                                <div class="from-group">
+                                    <input class="form-control" type="tel" name="Mobile" id="Mobile" placeholder="@Resource.Lang.EnterMobileNo">
+                                </div>
+                                <div class="loginFooter">
+
+                                    <button type="submit" class="btn primary_btn">
+                                        <span>@Resource.Lang.Send @Resource.Lang.Password</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20.445" height="16.267" viewBox="0 0 20.445 16.267">
+                                            <g id="Group_331" data-name="Group 331" transform="translate(-9.94 -14.009)">
+                                                <path id="Path_58" data-name="Path 58" d="M5476.9,1363.5h-17.922" transform="translate(-5447.511 -1341.338)" fill="none" stroke="#324755" stroke-linecap="round" stroke-width="2" />
+                                                <path id="Path_59" data-name="Path 59" d="M5458.859,1356.458l6.122,6.741" transform="translate(-5447.506 -1334.336)" fill="none" stroke="#324755" stroke-linecap="round" stroke-width="2" />
+                                                <path id="Path_60" data-name="Path 60" d="M5458.859,1363.2l6.122-6.741" transform="translate(-5447.506 -1341.037)" fill="none" stroke="#324755" stroke-linecap="round" stroke-width="2" />
+                                            </g>
+                                        </svg>
+                                    </button>
+
+                                </div>
+                            </form>
+                        }
+                        @if (changepass == "Success")
+                        {
+                            <div>
+                                <input type="text" name="pass" id="pass" class="form-control">
+                                <button onclick="gotochangePass('@mobile')" class="btn primary_btn change_pass_btn rounded up mx-auto d-flex mt-5"> @Resource.Lang.Entry </button>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

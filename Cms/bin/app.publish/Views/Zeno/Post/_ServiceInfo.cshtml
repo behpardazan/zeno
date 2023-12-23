@@ -1,0 +1,47 @@
+﻿
+@using DataLayer.Base;
+@model  DataLayer.ViewModels.ViewPostModel
+
+@{
+    ViewBag.Title = Model.Post.GetName();
+
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    ViewBag.OgImage = Model.Post.Picture.GetUrl();
+}
+<section class="question_inner" class="">
+    <div class="container">
+        <div class="question_inner_content">
+            <div class="title">
+                <h5 class="titleText"> @Html.Raw(Model.Post.GetName()) </h5>
+            </div>
+            <div class="row">
+                <div class="col-12">
+
+                    @Html.Raw(Model.Post.GetBody())
+                    @if (Model.Post.Writer != null)
+                    {
+                        <div class="col-12">
+                            <div class="author mt-2 pt-2">
+                                @if (Model.Post.Picture1 != null)
+                                {
+                                    <img src="@Html.Raw(Model.Post.Picture1.GetUrl())" alt="">
+
+                                }
+                                <div class="name">
+                                    <label> @Model.Post.Writer </label>
+                                    <span>@Model.Post.WriterPostion</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

@@ -1,0 +1,355 @@
+﻿@using DataLayer.Base;
+@{
+    ViewBag.Title = Resource.Lang.Basket;
+    ViewBag.Follow = "noindex, nofollow";
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+}
+
+<section class="basket-page basket pagepadding">
+    <div class="container">
+        <div class="row w-100 m-0">
+            <div class="basket-tab w-100">
+                <div class="nav nav_tabs d-flex justify-content-center w-100 p-0 basket-tabs">
+                    <div class="row w-100 d-flex align-items-center">
+                        <div class="col-3 p-0 ">
+                            <div class=" bas_Tab">
+                                <div class="tab_span  ">
+                                    <div class="sendinfo_icon basketIcon"></div>
+                                    <strong>@Resource.Lang.Basket</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class=" bas_Tab">
+                                <div class="tab_span">
+                                    <div class="payment_icon basketIcon "></div>
+                                    <strong>@Resource.Lang.Receiver</strong>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class=" bas_Tab bas_tab3">
+                                <div class="tab_span activeT">
+                                    <div class="confirm_icon basketIcon "></div>
+                                    <strong>@Resource.Lang.Invoice</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class="bas_Tab">
+                                <div class="tab_span">
+                                    <div class="bill_icon basketIcon"></div>
+                                    <strong>@Resource.Lang.Receipt</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab_content  w-100 ">
+                    <div class="tab_pane   shoping_confirm d-block">
+
+                        <!--ko if:viewModel.Basket.StoreItems.Count() == 0-->
+                        <div class="blank-basket ">
+                            <p>@Resource.Lang.BasketIsEmpty</p>
+                        </div>
+                        <!--/ko-->
+                        <!--ko ifnot:viewModel.Basket.StoreItems.Count() == 0-->
+                        <!--ko if: viewModel.Basket.Address.CurrentAddress() != ""-->
+                        <div class="invoice">
+                            <div class="invoice_logo">
+                                <a class="navbar-brand" href="#">
+                                    <div class="navbarIcon"><img src="/assets/zeno/images/logo.png" alt=""></div>
+                                    <div class="navbarTxt">
+
+                                        <h2>@BaseContent.WebsiteDetail.Title</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="reciever_info">
+                                <strong>مشخصات گیرنده:</strong>
+                                <div class="reciever_address">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="address_line">
+                                                <div class="address_name">
+                                                    <span data-bind="text: '@Resource.Lang.FullName : '+ viewModel.Basket.Address.CurrentAddress().NameFamily"></span>
+                                                </div>
+                                                <div class="address_phone">
+                                                    <span data-bind="text:'@Resource.Lang.Mobile : '+ viewModel.Basket.Address.CurrentAddress().Mobile"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="address_line">
+
+                                                <span data-bind="text:viewModel.Basket.Address.CurrentAddress().AddressValue"></span>
+                                                <!-- ko if: viewModel.Basket.Address.CurrentAddress().PostalCode != null -->
+                                                <span>-</span> <span data-bind="text:'@Resource.Lang.PostalCode : '+ viewModel.Basket.Address.CurrentAddress().PostalCode"></span>
+                                                <!-- /ko -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ko-->
+                        <div class="invoice_info">
+                            <div class="invoiceProducts">
+                                <!--ko foreach:viewModel.Basket.StoreItems.List-->
+                                <div class="shop_table_one">
+                                    <table class="table table-hover invoice_table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <strong>@Resource.Lang.StoreName</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>@Resource.Lang.Product</strong>
+                                                </td>
+
+                                                <td>
+                                                    <strong>@Resource.Lang.Price (@Resource.Lang.Toman)</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>@Resource.Lang.Count</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>@Resource.Lang.TotalPrice (@Resource.Lang.Toman)</strong>
+                                                </td>
+                                            </tr>
+
+                                            <!--ko foreach:Products-->
+                                            <tr>
+                                                <th scope="row"><span class="invoice_shopName" data-bind="text: Store.Name">>گالری نماز</span></th>
+
+                                                <td>
+                                                    <div class="basketProInfo">
+                                                        <strong data-bind="text:Product.Name">کلاه مردانه مدل 7110</strong>
+                                                    </div>
+                                                </td>
+                                                <td class="d-none">
+                                                    <!--ko if: Color !=null-->
+                                                    <br />
+                                                    <span class="pl-2 detailspan d-none">
+                                                        <span class="proinfospan"> @Resource.Lang.Color :</span>
+                                                        <span data-bind="text: Color.Name,style:{ 'background-color' : '#'+ Color.Hex}" class=" ">
+                                                        </span>
+                                                    </span>
+                                                    <!--/ko-->
+                                                    <!--ko if: Size !=null-->
+                                                    <br />
+
+                                                    <span class="pl-2 detailspan d-none">
+                                                        <span class="proinfospan">@Resource.Lang.Size :</span>
+                                                        <span data-bind="text:Size.Name">
+                                                        </span>
+                                                    </span>
+                                                    <!--/ko-->
+                                                    <!--ko if: ProductOptionItem !=null-->
+                                                    <br />
+                                                    <span class="detailspan">
+                                                        <span data-bind="text:ProductOptionItem.ProductOption.Name" class="proinfospan">
+                                                        </span>
+
+                                                        :
+                                                        <span data-bind="text:ProductOptionItem.Value">
+                                                        </span>
+                                                    </span>
+                                                    <!--/ko-->
+                                                </td>
+                                                <td>
+                                                    <div class="productprice">
+                                                        <!--ko if: (Discount>0)-->
+                                                        <del><span data-bind="text:toCurrency(ProductPrice)"></span></del>
+                                                        <span class="one-total-price" data-bind="text: toCurrency(ProductPrice - Discount)"></span>
+                                                        <!--/ko-->
+                                                        <!--ko ifnot: (Discount>0)-->
+
+                                                        <span data-bind="text: toCurrency(ProductPrice)"></span>
+                                                        <!--/ko-->
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="productCount">
+                                                        <span class="p-2" data-bind="text:Count">1</span>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="pro_total">
+                                                        <span class="one_total_price" data-bind="text: toCurrency(Price)">25,000</span>
+                                                    </div>
+                                                </td>
+
+
+                                            </tr>
+                                            <!--/ko-->
+
+
+                                        </tbody>
+                                    </table>
+                                    <div class="invoice_prices">
+                                        <ul>
+                                            <li>
+                                                <div class="invoice_price border-bottom">
+                                                    <strong>@Resource.Lang.ShippingPrice:</strong>
+                                                    <!--ko if: ShippingCity.SendPrice > 0-->
+                                                    <span data-bind="text:toCurrency(ShippingCity.SendPrice)+'@Resource.Lang.Toman'"></span>
+
+                                                    <!--/ko-->
+                                                    <!--ko ifnot: ShippingCity.SendPrice > 0-->
+                                                    <span class="laBel">
+                                                        @Resource.Lang.Free
+                                                    </span>
+                                                    <!--/ko-->
+                                                    <!--/ko-->
+
+                                                </div>
+                                            </li>
+                                            <!--ko if: HaveAddress==true-->
+                                            <li>
+                                                <div class="invoice_price">
+                                                    <strong>
+                                                        @Resource.Lang.ShippingTime
+                                                    </strong>
+                                                    <!--ko if:ShippingCity.SendTime> 0 -->
+                                                    <span data-bind="text:  ShippingCity.SendTime + ' @Resource.Lang.BusinessDays'"></span>
+                                                    <!--/ko-->
+                                                    <!--ko if:ShippingCity.SendTime== 0 -->
+                                                    <span>@Resource.Lang.ReadyToSend</span>
+                                                    <!--/ko-->
+
+                                                </div>
+                                            </li>
+                                            <!--/ko-->
+                                            <li>
+                                                <div class="invoice_price_total  border-top">
+                                                    <strong>@Resource.Lang.Payable:</strong>
+                                                    <span class="text-primary" data-bind="text:toCurrency(Price + ShippingCity.SendPrice)+'@Resource.Lang.Toman'"></span>
+
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+
+                                </div>
+                                <!--/ko-->
+
+                            </div>
+                            <div class="invoice_prices">
+                                <ul>
+                                    <li>
+                                        <div class="invoice_price border-bottom">
+                                            <strong class="text-primary">@Resource.Lang.TotalPrice:</strong>
+                                            <span class="text-primary" data-bind="text : toCurrency(viewModel.Basket.StoreItems.TotalPrice()+viewModel.Basket.StoreItems.ShippingPrice()) + '@Resource.Lang.Toman'">25,000 تومان</span>
+                                        </div>
+                                    </li>
+                                    <!--ko if: viewModel.Basket.StoreItems.TotalDiscount() > 0 -->
+                                    <li>
+                                        <div class="invoice_price">
+                                            <strong>@Resource.Lang.Discount:</strong>
+                                            <span data-bind="text : toCurrency(viewModel.Basket.StoreItems.TotalDiscount())+'@Resource.Lang.Toman'">25,000 تومان</span>
+                                        </div>
+                                    </li>
+                                    <!--/ko-->
+                                    <!--ko if: viewModel.Basket.Rebate.Valid() -->
+                                    <li>
+                                        <div class="invoice_price">
+                                            <strong>@Resource.Lang.Payable:</strong>
+                                            <span data-bind="text : toCurrency((viewModel.Basket.StoreItems.TotalPrice()+viewModel.Basket.StoreItems.ShippingPrice()) - viewModel.Basket.Rebate.Price()) +'@Resource.Lang.Toman'"></span>
+                                        </div>
+                                    </li>
+                                    <!--/ko-->
+
+                                </ul>
+
+                            </div>
+                            <div class="discountCode">
+                                <input data-bind="value: viewModel.Basket.Rebate.Value" codeprocess-field="rebate-value" type="text" class="form-control" style="height:42px" placeholder="@Resource.Lang.RebateCode">
+                                <button codeprocess-action="rebate" class="btn primary_btn mr-2"><span>@Resource.Lang.Submit</span></button>
+                                <!--ko if: viewModel.Basket.Rebate.Value().length > 0 && viewModel.Basket.Rebate.Message().length > 0 -->
+                                <!--ko if: viewModel.Basket.Rebate.Valid() -->
+                                <p class="alert alert-success">
+                                    <span data-bind="text: viewModel.Basket.Rebate.Message()"></span>
+                                    <br />
+                                    <span data-bind="text:toCurrency(viewModel.Basket.Rebate.Price())"></span>
+                                    <span> @Resource.Lang.Toman</span>
+                                </p>
+                                <!--/ko-->
+                                <!--ko ifnot: viewModel.Basket.Rebate.Valid() -->
+                                <p class="alert alert-danger">
+                                    <span data-bind="text:viewModel.Basket.Rebate.Message()"></span>
+                                </p>
+                                <!--/ko-->
+                                <!--/ko-->
+                            </div>
+                            @Html.Action("GetActiveMerchants", "merchant")
+                            @Html.Action("GetActiveCreditShoping", "CreditShoping")
+
+                        </div>
+                        <!--/ko-->
+
+                        <div class="basketbtns mt-3">
+                            <!--ko if: viewModel.Basket.HaveAddress()==true-->
+                            <a href="/basket/address" class="btn secondary_btn prev_tab pre-page">
+                                <span>
+                                    @Resource.Lang.Previous
+                                </span>
+                            </a>
+                            <!--/ko-->
+                            <!--ko ifnot: viewModel.Basket.HaveAddress()==true-->
+                            <a href="/basket" class="btn secondary_btn prev_tab pre-page">
+                                <span>
+                                    @Resource.Lang.Previous
+                                </span>
+                            </a>
+                            <!--/ko-->
+                            <button class="btn primary_btn next_tab next-page">
+                                <span>
+                                    @Resource.Lang.Payment
+                                </span>
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section endScripts{
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/_AjaxLoader.cshtml")
+
+    <script>
+
+        function ShowRul() {
+            var check = $('input[name=IsCreditShoping]:checked').val();
+            
+            if (check=="1") {
+                $(".divRul").removeClass("d-none");
+            }
+            else {
+                $(".divRul").addClass("d-none");
+            }
+        }
+        var c = $(".basket-page").offset().top * 2 + 400;
+        
+        initializeBasketPageScript();
+        doGetAccountAddresses();
+        doGetBasket(true);
+    </script>
+}

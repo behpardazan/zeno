@@ -1,0 +1,26 @@
+﻿@using DataLayer.Base;
+@using DataLayer.ViewModels;
+@model  ViewSearchPost
+
+@{
+
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    DataLayer.Entities.Post searchModel = Model.Results.FirstOrDefault();
+    ViewBag.Title =searchModel.GetName();
+}
+
+    <section class="about_us">
+        <div class="container">
+            <div class="title">
+                <strong class="titleText">@searchModel.GetName()</strong>
+            </div>
+            <div class="about_us_content">
+
+                <div class="about_txt">
+                    @Html.Raw(searchModel.Body.Replace("../../../Uploads/","https://zeno.ir/panel/Uploads/"))
+                </div>
+            </div>
+        </div>
+    </section>
+
+

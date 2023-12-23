@@ -1,0 +1,20 @@
+﻿@model IEnumerable<DataLayer.Entities.ProductType>
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@{
+    var productTypelist = Model.Where(s => s.Active && s.Deleted != true);
+}
+@if (productTypelist.Count()>0)
+{   
+    foreach (var item in productTypelist)
+    {
+        <a class="social_media_item telegram hvr-grow hvr-float-shadow">
+            @if (item.AttachFileId1 != null)
+            {
+                <img src="@item.WebsiteDocument.GetUrl()" />
+
+            }
+        </a>
+    }
+}
+

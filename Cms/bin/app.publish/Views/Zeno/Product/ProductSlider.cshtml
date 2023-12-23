@@ -1,0 +1,116 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+
+@model IEnumerable<Product>
+<p class="similar-products">@Resource.Lang.SimilarProducts</p>
+
+<div class="product-details-slider">
+    <div class="owl-carousel owl-theme">
+        @foreach (var item in Model)
+        {
+            var DiscountPercent = item.GetDiscountPercent();
+            var DiscountValue = item.GetDiscountObject();
+            var TotalPrice = item.MinPrice;
+            var call = item.ProductCustomValue.FirstOrDefault(s => s.ProductCustomField.SyncName == "Call" && s.Value == "True");
+
+            if (DiscountValue != null)
+            {
+                if (DiscountValue.PriceValue != null)
+                {
+                    TotalPrice += DiscountValue.PriceValue.Value;
+                }
+                if (DiscountPercent == 0)
+                {
+                    DiscountPercent = item.GetDiscountPercentNew(DiscountValue.PriceValue.GetValueOrDefault());
+
+                }
+                else
+                {
+                    var percent = 100 - DiscountPercent;
+                    TotalPrice = (item.MinPrice * 100) / percent;
+                }
+            }
+            <div class="item">
+                <a href="@item.GetLink()">
+                    <div class="prodetails-slider-item">
+                        <div class="prodetails-slider-item-image">
+                            @if (item.Picture != null)
+                            {
+                                <img src="@item.Picture.GetUrl()"
+                                     alt="@item.GetName()">
+                            }
+
+                        </div>
+                        <div class="prodetails-slider-item-text">
+                            <p>@item.GetName()</p>
+                            @if (call != null)
+                            {
+                                <p>برای اطلاع از قیمت تماس بگیرید</p>
+                            }
+                            else
+                            {
+                                if (DiscountValue != null)
+                                {
+                                    <p class="dashed ">@TotalPrice.GetCurrencyFormat()</p>
+                                    <p class="price">@item.MinPrice.GetCurrencyFormat()</p>
+
+                                }
+                                else
+                                {
+
+                                    <p class="price">@item.MinPrice.GetCurrencyFormat()</p>
+
+                                }
+                            }
+                            </div>
+                        <div class="prodetails-slider-item-button">
+                            <button>
+                                <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.042 20.1875C12.042 22.9075 14.2803 25.1458 17.0003 25.1458C19.7203 25.1458 21.9587 22.9075 21.9587 20.1875"
+                                          stroke="#2E2D2A" stroke-width="1.5"
+                                          stroke-miterlimit="10" stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                    <path d="M12.4809 2.83337L7.35254 7.97587" stroke="#2E2D2A"
+                                          stroke-width="1.5" stroke-miterlimit="10"
+                                          stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M21.5195 2.83337L26.6479 7.97587" stroke="#2E2D2A"
+                                          stroke-width="1.5" stroke-miterlimit="10"
+                                          stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2.83301 11.1208C2.83301 8.49998 4.23551 8.28748 5.97801 8.28748H28.0213C29.7638 8.28748 31.1663 8.49998 31.1663 11.1208C31.1663 14.1666 29.7638 13.9541 28.0213 13.9541H5.97801C4.23551 13.9541 2.83301 14.1666 2.83301 11.1208Z"
+                                          stroke="#2E2D2A" stroke-width="1.5" />
+                                    <path d="M4.95801 14.1666L6.95551 26.4066C7.40884 29.155 8.49967 31.1666 12.5513 31.1666H21.0938C25.4997 31.1666 26.1513 29.24 26.6613 26.5766L29.0413 14.1666"
+                                          stroke="#2E2D2A" stroke-width="1.5"
+                                          stroke-linecap="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+    <div class="sliderNavigation">
+        <a class="btn prev">
+            <svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 28.8359L12.4577 17.3782C13.8109 16.0251 13.8109 13.8109 12.4577 12.4577L1 1"
+                      stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+                      stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="btn next">
+            <svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.4727 28.8359L2.01493 17.3782C0.661795 16.0251 0.661795 13.8109 2.01493 12.4577L13.4727 1"
+                      stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+                      stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+</div>
+
+
+
+
+

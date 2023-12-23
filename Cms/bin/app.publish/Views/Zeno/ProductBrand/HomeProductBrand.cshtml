@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DataLayer.Entities.ProductBrand>
+@using DataLayer.Base;
+
+
+@if (Model.Any())
+{
+    foreach (var item in Model.Where(s=>s.Active))
+    {
+        <div class="item">
+            <a href="@item.GetLinkNew()">
+                <div class="HomePartnersItem">
+                    <img src="@item.Picture.GetUrl()" alt="@item.Name">
+                </div>
+            </a>
+        </div>
+    }
+}
+
+

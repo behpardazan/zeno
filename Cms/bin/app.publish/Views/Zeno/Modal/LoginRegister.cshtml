@@ -1,0 +1,206 @@
+﻿@using DataLayer.Base;
+@using DataLayer.ViewModels;
+
+@{
+    ViewAccount CurrentAccount = BaseWebsite.CurrentAccount;
+}
+
+@*@if (CurrentAccount == null)
+    {*@
+<div class="modal fade" id="modal-prelogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header justify-content-between d-none">
+                <strong class="modal-title">@Resource.Lang.SignIn</strong>
+
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <svg enable-background="new 0 0 300 300" height="300px" id="Layer_1" version="1.1" viewBox="0 0 300 300" width="300px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto;width: 200px;height: 200px;"><g><path d="M151.338,14.798C76.78,14.798,16.34,75.24,16.34,149.797c0,74.562,60.44,135.001,134.998,135.001   c74.557,0,135.005-60.439,135.005-135.001C286.343,75.24,225.895,14.798,151.338,14.798z M151.338,265.708   c-64.014,0-115.909-51.897-115.909-115.911c0-64.013,51.895-115.91,115.909-115.91c64.017,0,115.91,51.897,115.91,115.91   C267.248,213.811,215.354,265.708,151.338,265.708z" fill="#EFC849" style="fill: #01b16e;" /><path d="M255.77,149.797c0,57.677-46.756,104.433-104.432,104.433c-57.675,0-104.426-46.756-104.426-104.433   c0-57.674,46.751-104.428,104.426-104.428C209.014,45.369,255.77,92.123,255.77,149.797z" fill="#EFC849" style="fill: #01b16e;" /><g><path d="M151.338,88.713c14.31,0,25.916,11.603,25.916,25.917c0,14.314-11.606,25.915-25.916,25.915    c-14.316,0-25.917-11.601-25.917-25.915C125.421,100.316,137.021,88.713,151.338,88.713z" fill="#FFFFFF" /><path d="M203.415,210.883H99.264v-28.824c0-19.443,15.754-35.205,35.207-35.205h33.739    c19.443,0,35.205,15.762,35.205,35.205V210.883z" fill="#FFFFFF" /></g></g></svg>
+
+                <button type="button" class="btn default_btn flex-fill m-3 show-login-modal ">@Resource.Lang.IhaveCode</button>
+                <button type="button" class="btn primary_btn flex-fill m-3 show-register-modal "><span>@Resource.Lang.InothaveCode</span></button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" value="@Guid.NewGuid()" />
+<!-- The Modal -->
+<div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header justify-content-between">
+                <h5 class="modal-title loginModalLabel"><span>@Resource.Lang.SignIn</span></h5>
+
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body ">
+                <form action="" class="loginForm">
+                    <div class="form-group flex-fill">
+                        <div class="formLbl">
+                            <span>*</span>
+                            <label for="loginName">@Resource.Lang.EnterMobileNo:</label>
+                        </div>
+                        <div class="formInput">
+                            <div class="username_icon"></div>
+                            <input type="text" name="Mobile" class="form-control" data-bind="value: viewModel.Account.Mobile">
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <div class="formLbl">
+                            <span>*</span>
+                            <label for="loginPass">@Resource.Lang.EnterPassword:</label>
+                        </div>
+                        <div class="formInput">
+                            <div class="password_icon"></div>
+                            <input class="form-control" type="password" name="password" data-bind="value: viewModel.Account.Password">
+                        </div>
+                    </div>
+                    <div class="loginFooter">
+                        <div class="login_links">
+                            <a href="/forget" class="forgetpass">
+                                کلمه کاربری/رمزعبور را فراموش کرده
+                                ام.
+                            </a>
+                            <a href="javascript://" class="forgotpass show-register-modal">@Resource.Lang.SignUp</a>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer d-flex">
+                    <button type="button" class="btn default_btn flex-fill m-3"
+                            data-bs-dismiss="modal">
+                        <i class="bi bi-arrow-right"></i>
+                        <span>@Resource.Lang.Back</span>
+                    </button>
+                    <button type="button" codeprocess-action="login" codeprocess-callback="closeModal,gotoAddress" form="loginForm"
+                            class="btn primary_btn flex-fill m-3">
+                        <span>@Resource.Lang.SignIn</span>
+                        <i class="bi bi-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header justify-content-between">
+                <h5 class="modal-title loginModalLabel"><span>@Resource.Lang.SignUp</span></h5>
+
+            </div>
+            <div class="modal-body ">
+                <form class="RegisterForm">
+                    <!--ko ifnot:viewModel.Account.IsVerifay()==true-->
+					<input codeprocess-field="both-EmailMobile"  value="true" type="hidden"/>
+                    <div class="form-group flex-fill">
+                        <div class="formLbl">
+                            <span>*</span>
+                            <label for="loginName">@Resource.Lang.EnterFullName:</label>
+                        </div>
+                        <div class="formInput">
+                            <div class="username_icon"></div>
+                            <input type="text" data-bind="value: viewModel.Account.FullName" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <div class="formLbl">
+                            <span>*</span>
+                            <label for="loginName">@Resource.Lang.EnterMobileNo:</label>
+                        </div>
+                        <div class="formInput">
+                            <div class="username_icon"></div>
+                            <input type="text" data-bind="value:viewModel.Account.Mobile" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <div class="formLbl">
+
+                            <label for="loginName">@Resource.Lang.EnterEmail:</label>
+                        </div>
+                        <div class="formInput">
+                            <div class="username_icon"></div>
+                            <input type="email" data-bind="value: viewModel.Account.Email" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <div class="formLbl">
+                            <span>*</span>
+                            <label for="loginName">@Resource.Lang.EnterPassword:</label>
+                        </div>
+                        <div class="formInput">
+                            <div class="username_icon"></div>
+                            <input type="password" data-bind="value:viewModel.Account.Password" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <div class="formLbl">
+                            <span>*</span>
+                            <label for="loginName">@Resource.Lang.RePassword:</label>
+                        </div>
+                        <div class="formInput">
+                            <div class="username_icon"></div>
+                            <input type="password" class="form-control" data-bind="value:viewModel.Account.ConfirmPassword" codeprocess-field="account-confirm" placeholder="">
+                        </div>
+                    </div>
+                    <!--/ko-->
+                    <!--ko if:viewModel.Account.IsVerifay()==true-->
+                    <div>
+                        <div class="form-group flex-fill">
+                            <div class="formLbl">
+                                <span>*</span>
+                                <label for="loginName">کد ارسال شده به موبایل تان را وارد نمایید:</label>
+                            </div>
+                            <div class="formInput">
+                                <div class="username_icon"></div>
+                                <input type="password" data-bind="value:viewModel.Account.VerifayToken" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--/ko-->
+                    <div class="loginFooter">
+                        <div class="login_links">
+                           
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer d-flex">
+                    <button type="button" class="btn default_btn flex-fill m-3"
+                            data-bs-dismiss="modal">
+                        <i class="bi bi-arrow-right"></i>
+                        <span>بازگشت</span>
+                    </button>
+                    <!--ko ifnot:viewModel.Account.IsVerifay()==true-->
+                    <button type="button"
+                            class="btn primary_btn flex-fill m-3" codeprocess-action="registerbyverifay" id="btnRegister">
+                        <span>@Resource.Lang.SignUp</span>
+                        <i class="bi bi-arrow-left"></i>
+                    </button>
+                    <!--/ko-->
+                    <!--ko if:viewModel.Account.IsVerifay()==true-->
+                    <button type="button"
+                            class="btn primary_btn flex-fill m-3" codeprocess-action="registerVerify" codeprocess-callback="closeModal,gotoAddress" id="btnVerifyRegister">
+                        <span>ثبت نهایی ثبت نام</span>
+                        <i class="bi bi-arrow-left"></i>
+                    </button>
+                    <!--/ko-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*}*@

@@ -1,0 +1,336 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+@using DataLayer.Enumarables;
+
+@model Account
+
+@{
+    ViewBag.Title = Resource.Lang.Profile;
+    Layout = Resources.KhoshKala.WEBSITE_LAYOUT;
+
+    string status_payed_successfull = Enum_Code.ORDER_STATUS_SUCCESS.ToString();
+    string status_store = Enum_Code.ORDER_STATUS_STORE.ToString();
+    string status_post = Enum_Code.ORDER_STATUS_POST.ToString();
+    string status_process = Enum_Code.ORDER_STATUS_PROCESS.ToString();
+
+    List<AccountOrder> listOrder = Model.AccountOrder.Where(p =>
+        p.ParentId != null &&
+
+       (p.Code.Label == status_payed_successfull ||
+        p.Code.Label == status_store ||
+        p.Code.Label == status_post ||
+        p.Code.Label == status_process))
+    .OrderByDescending(s => s.ID)
+    .ToList();
+}
+
+
+    <div class="col-lg-12">
+        @Html.Action("Search", "ProductComment", new { pcoaccountId = Model.ID, pcoviewname = "UserComment" })
+        @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/UserAnswer.cshtml")
+    </div>
+
+<section class="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 p-1">
+                <div class="profile-info text-gray">
+                    <div class="profile-img">
+                        <img src="/Assets/KhoshKala/Image/Pic 2.png" alt="">
+                        <span class="profile-name" data-bind="text: viewModel.Account.FullName"></span>
+                    </div>
+                    <div class="profile-info-content w-100 text-right">
+
+                        <div class="profile-info-content-title border-bottom">
+                            <p>@Resource.Lang.Profile</p>
+                        </div>
+                        <ul>
+                            <li>
+                                <strong>@Resource.Lang.Mobile:</strong>
+                                <span data-bind="text:viewModel.Account.Mobile"></span>
+                            </li>
+
+                            <li>
+                                <strong>@Resource.Lang.Email:</strong>
+                                <span data-bind="text:viewModel.Account.Email"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="profile-info-btns mt-auto w-100">
+                        <div class="btn-edit">
+                            <button class="btn green_btn w-100" data-toggle="modal" data-target="#edit_profile_modal">@Resource.Lang.EditProfile</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="edit_profile_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header producttotal justify-content-start">
+                                            <h5 class="modal-title" id="edit_profile_modal">@Resource.Lang.EditProfile</h5>
+                                        </div>
+                                        <div class="modal-body text-right">
+                                            <form action="">
+                                                <div class="address_modal_input">
+                                                    <label for="name">@Resource.Lang.Name_Family : </label>
+                                                    <input type="text" name="name" class="form-control" data-bind="value: viewModel.Account.FullName">
+                                                </div>
+
+                                                <div class="address_modal_input">
+                                                    <label for="mobile">@Resource.Lang.Mobile : </label>
+                                                    <input type="text" name="mobile" data-bind="value: viewModel.Account.Mobile" class="form-control">
+                                                </div>
+
+                                                <div class="address_modal_input">
+                                                    <label for="phone">@Resource.Lang.Email : </label>
+                                                    <input type="email" name="email" data-bind="value: viewModel.Account.Email" class="form-control">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer d-flex">
+                                            <button type="button" class="btn seemore  flex-fill m-3" data-dismiss="modal">@Resource.Lang.Close</button>
+                                            <button type="button" class="btn green_btn  flex-fill m-3" codeprocess-action="account-edit" codeprocess-callback="closeModal">@Resource.Lang.Register</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="change_pass_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header producttotal justify-content-start">
+                                            <h5 class="modal-title" id="change_pass_modal">@Resource.Lang.ChangePassword</h5>
+                                        </div>
+                                        <div class="modal-body text-right">
+                                            <form action="">
+                                                <div class="address_modal_input">
+                                                    <label for="expass">@Resource.Lang.OldPassword : </label>
+                                                    <input type="password" codeprocess-field="account-password" name="expass" class="form-control">
+                                                </div>
+
+                                                <div class="address_modal_input">
+                                                    <label for="newpass">@Resource.Lang.NewPassword : </label>
+                                                    <input type="password" name="newpass" codeprocess-field="new-password" class="form-control">
+                                                </div>
+                                                <div class="address_modal_input">
+                                                    <label for="newpass2">@Resource.Lang.RepeatNewPassWord : </label>
+                                                    <input type="password" name="newpass2" codeprocess-field="confirm-password" class="form-control">
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer d-flex">
+                                            <button type="button" class="btn seemore  flex-fill m-3" data-dismiss="modal">@Resource.Lang.Close</button>
+                                            <button type="button" codeprocess-action="changepassword" codeprocess-callback="closeModal" class="btn green_btn  flex-fill m-3">@Resource.Lang.Register</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="exit_profile_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header producttotal justify-content-start">
+                                            <h5 class="modal-title" id="exit_profile_modal">@Resource.Lang.Logout</h5>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <span> @Resource.Notify.DoYouLeave ?</span>
+                                        </div>
+                                        <div class="modal-footer d-flex">
+                                            <button type="button" class="btn seemore  flex-fill m-3" data-dismiss="modal">@Resource.Lang.No</button>
+                                            <a href="@Url.Action("logout", "account", new { back = "/" })" class="btn green_btn  flex-fill m-3">@Resource.Lang.Yes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mt-2 profileExitbtns">
+                                <button class="btn seemore flex-fill ml-1" id="btn_exit_profile" data-toggle="modal" data-target="#exit_profile_modal">@Resource.Lang.Logout</button>
+                                <button class="btn seemore flex-fill mr-1" id="btn_change_pass" data-toggle="modal" data-target="#change_pass_modal">@Resource.Lang.ChangePassword</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 p-1">
+                <div class="profile_parts">
+                    <ul class="nav nav-tabs profileTab" id="profile_tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                               aria-selected="true"> <i class="fa fa-history" aria-hidden="true"></i>@Resource.Lang.OrdersList </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                               aria-selected="false"><i class="fa fa-map-marker" aria-hidden="true"></i>@Resource.Lang.Addresses </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                               aria-selected="false"><i class="fa fa-bookmark" aria-hidden="true"></i> @Resource.Lang.FavoriteList</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                               aria-selected="false"><i class="fa fa-bookmark" aria-hidden="true"></i> @Resource.Lang.Comments</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="profileTab_Content">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="myOrders">
+                                <!-- <div class="emptyOrder">
+                                <span class="no-address-t">سفارشی ثبت نشده است</span>
+                                </div>-->
+
+                                <div class="orders_box">
+                                    @if (listOrder.Count == 0)
+                                    {
+                                        <strong class="">@Resource.Notify.NotRegistered</strong>
+                                    }
+                                    else
+                                    { /*var counter = 1;*/
+                                        <div class="order-row_header">
+                                            <div class="row w-100 m-0">
+                                                <div class="col-2 p-0"><strong>  <i class="bt-order-history btOrder"></i> @Resource.Lang.OrderNumber</strong></div>
+                                                <div class="col-3 p-0"> <strong>@Resource.Lang.Date @Resource.Lang.Order </strong></div>
+                                                <div class="col-3 p-0"> <strong>@Resource.Lang.Status @Resource.Lang.Order</strong></div>
+                                                <div class="col-2 p-0"> <strong>@Resource.Lang.ShippingPrice</strong></div>
+                                                <div class="col-2 p-0"> <strong>@Resource.Lang.TotalPrice</strong></div>
+                                                @*<div class="col-1 p-0"> <strong>مشاهده</strong></div>*@
+                                            </div>
+                                        </div>
+                                        <div class="order_box_body">
+                                            @foreach (AccountOrder item in listOrder)
+                                            {
+
+                                                <div class="order-row-one">
+                                                    <div class="order-row-top">
+                                                        <div class="row w-100 m-0">
+                                                            <div class="col-2 p-0">
+                                                                <span>@item.ID.ToPersian()</span>
+                                                            </div>
+                                                            <div class="col-3 p-0">
+                                                                <span>@item.Datetime.ToPersianComplete()</span>
+                                                            </div>
+                                                            <div class="col-3 p-0">
+                                                                <span>@item.Code.Name</span>
+                                                            </div>
+                                                            <div class="col-2 p-0">
+                                                                <span>@((item.SendPrice != null && item.SendPrice > 0) ? item.SendPrice.GetCurrencyFormat().ToPersian() + Resource.Lang.Corrency : Resource.Lang.Free)</span>
+                                                            </div>
+                                                            <div class="col-1 p-0">
+                                                                <span> @item.Price.GetCurrencyFormat().ToPersian()</span>
+                                                            </div>
+
+                                                            <div class="col-1 p-0 order-expand-tr">
+                                                                <a class="expand-row">
+                                                                    <i class="fas fa-chevron-down"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="order-row-bottom">
+                                                        @foreach (var orderProduct in item.AccountOrderProduct)
+                                                        {
+                                                            Product product = orderProduct.Product;
+                                                            <div class="order-product-one">
+                                                                <div class="row d-flex align-items-center w-100 m-0">
+                                                                    <div class=" col-2 order-row-pic m-0 p-0">
+                                                                        <a href="@Url.Action("index", "product", new {
+                                                                  prid = product.ID,
+                                                                  pridname = product.Name.StandardUrl()
+                                                                   })">
+                                                                            <img width="100" height="100" title="@product.Name" alt="@product.Name" src="@orderProduct.Product.Picture.GetUrl()" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-2 p-0">
+                                                                        <p class="orderProImg">
+                                                                            @orderProduct.Product.Name
+                                                                            <br />
+                                                                            @(orderProduct.ColorId != null ? Resource.Lang.Color + " : " + orderProduct.Color.Name : "")
+                                                                            <br />
+                                                                            @(orderProduct.SizeId != null ? Resource.Lang.Size + " : " + orderProduct.Size.Name : "")
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-3 p-0">
+                                                                        <p class="orderproPrice">
+                                                                            <span>@Resource.Lang.UnitAmount :</span> <span class="text-center">  @orderProduct.ProductPrice.GetCurrencyFormat().ToPersian() @Resource.Lang.Corrency</span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class=" col-2 p-0 ">
+                                                                        <p class="orderproPrice">
+                                                                            <span>@Resource.Lang.Cont :</span><span>@orderProduct.Count </span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-3 p-0 ">
+                                                                        <p class="orderproPrice">
+                                                                            <span>@Resource.Lang.TotalPrice : </span>
+                                                                            <span class="text-center"> @orderProduct.Price.GetCurrencyFormat().ToPersian() @Resource.Lang.Corrency</span>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                    </div>
+
+                                                </div>
+                                                //counter++;
+                                            }
+
+                                        </div>
+                                    }
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="profile_address">
+
+                                <!-- ko foreach: viewModel.Account.Addresses.List -->
+                                @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/AddressItem.cshtml", false)
+                                <!-- /ko -->
+                                <div class="basket-address-item d-flex align-items-center">
+                                    <button class="btn add_address_btn ml-3 d-flex align-items-center" id="btnAddNewAddress" data-toggle="modal" data-target="#addaddress_modal" /><div class="basket_address_edit"></div>
+                                    <p>@Resource.Lang.NewAddress</p>
+                                </div>
+                            </div>
+
+                            @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/AddAddress.cshtml", new AccountAddress())
+                            @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/RemoveAddress.cshtml")
+
+
+                        </div>
+
+                        @*@Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Account/Favorite.cshtml")*@
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="row m-0 p-2 pb-4">
+                                <!-- ko foreach: viewModel.Account.Favorites().List -->
+
+                                @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/FavoritProductItem.cshtml")
+                                <!--/ko-->
+                            </div>
+
+                            @*<div class="categorySlider_box favorits_Slider">
+                                    <div class="owl-carousel owl-theme product_category " id="favorits_Slider">
+
+                                    </div>
+                                    <div class="sliderNavigation">
+                                        <a class="btn prev"></a>
+                                        <a class="btn next"></a>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+@*@section Script {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+            });
+
+
+        </script>
+    }*@

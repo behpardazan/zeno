@@ -1,0 +1,7 @@
+﻿@model ?int
+<div class="product-qr-modal">
+    <div class="qr-modal-body">
+        <img src="/product/getqr?productId=@(Model)" alt="" />
+        <button class="btn btn-sm btn-default" onclick="qrModalClose()">@Resource.Lang.Close</button>
+    </div>
+</div>

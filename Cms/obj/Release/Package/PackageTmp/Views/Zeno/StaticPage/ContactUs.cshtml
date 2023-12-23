@@ -1,0 +1,77 @@
+﻿@using DataLayer.Base;
+@{
+    ViewBag.Title = Resource.Lang.ContactUs;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    ViewBag.Follow = "index, follow";
+}
+<section class="ContactUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="ContactUsText">
+                    <div class="ContactUsAddressBox mb-5 mb-lg-0">
+                        <div class="AddressItem First">
+                            @Html.Raw(BaseContent.WebsiteDetail.ContactUs)
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="ContactForm">
+                            <div action="">
+                                <div class="form-group">
+                                    <input type="text" name="contactName" class="form-control" data-bind="value:viewModel.ContactForm.FullName" placeholder="@Resource.Lang.EnterFullName">
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="contactEmail" class="form-control" data-bind="value:viewModel.ContactForm.Email" placeholder="@Resource.Lang.EnterEmail">
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="contactSub" class="form-control" data-bind="value:viewModel.ContactForm.Subject" placeholder="@Resource.Lang.Subject">
+
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="contactTxt" id="contactTxt" cols="30" rows="5" data-bind="value:viewModel.ContactForm.Body" class="form-control" placeholder="@Resource.Lang.EnterText"></textarea>
+
+                                </div>
+                                @*</form>*@
+                                <div class="ContactFormBtnBox">
+                                    <button class="btn primary_btn me-auto float-left mb-3" codeprocess-action="contactform">
+                                        <span>@Resource.Lang.Send</span>
+                                        <i class="bi bi-chevron-left"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                    <div class="ContactUsPhones">
+                        <a href="tel:@Html.Raw(BaseContent.WebsiteDetail.Phone)">@Html.Raw(BaseContent.WebsiteDetail.Phone)</a>
+                        <a href="tel:@Html.Raw(BaseContent.WebsiteDetail.Mobile)">@Html.Raw(BaseContent.WebsiteDetail.Mobile)</a>
+                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M39.3999 47.459C37.7555 49.0945 35.576 49.9951 33.2616 49.9973C22.6933 49.9962 0 27.304 0 16.7363C0 14.4201 0.900553 12.2402 2.53499 10.5979C4.52388 8.60905 6.45498 7.64294 8.44053 7.64294C11.03 7.64294 13.1572 9.33183 15.07 11.1563C17.0183 13.0129 18.3272 15.6379 18.3272 16.924C18.3272 18.5696 17.6033 19.6607 16.9644 20.6235L16.9643 20.6236C15.7705 22.4224 14.8273 23.8436 20.4899 29.5057C23.4855 32.5029 25.6683 33.9601 27.1633 33.9601C27.9749 33.9601 28.5916 33.5507 29.3721 33.0323L29.3747 33.0307C30.3368 32.3922 31.4275 31.6684 33.0716 31.6684C34.3577 31.6695 36.9821 32.979 38.841 34.9257C40.916 37.1018 45.2315 41.629 39.3999 47.459ZM8.44057 9.41241C6.94835 9.41241 5.42613 10.2091 3.78724 11.848C2.48669 13.1546 1.77003 14.8913 1.76947 16.7363C1.77003 21.0746 6.53446 28.6529 13.9083 36.0435C21.2933 43.4451 28.8905 48.2279 33.2611 48.2279C35.1049 48.2267 36.841 47.5095 38.1494 46.2068C42.406 41.9512 40.2999 39.0212 37.5605 36.1485C35.7694 34.2729 33.5944 33.4385 33.0699 33.4385C31.9594 33.4385 31.2138 33.9329 30.35 34.5068L30.3493 34.5072C29.4867 35.0793 28.508 35.7285 27.1633 35.7285C25.12 35.7285 22.6761 34.1957 19.2383 30.7579C13.0322 24.5518 13.7706 22.2379 15.4894 19.6457C16.0628 18.7824 16.5578 18.0363 16.5578 16.9246C16.5578 16.3996 15.7244 14.2252 13.8489 12.4368C12.315 10.9735 10.5056 9.41241 8.44057 9.41241Z" fill="black" />
+                            <path d="M18.0082 5.72906C25.3699 -0.0542544 36.0809 0.533522 42.7704 7.22406C49.4831 13.9368 50.0553 24.6696 44.2281 32.0362C43.9242 32.419 43.9615 32.9762 44.3304 33.2979C44.6981 33.6184 45.2592 33.5812 45.5637 33.1995C51.9981 25.1323 51.3892 13.3407 44.0226 5.97351C36.6787 -1.36981 24.911 -1.99592 16.8499 4.39018C16.4671 4.69351 16.4271 5.25406 16.7471 5.62351C17.0671 5.99295 17.6243 6.03129 18.0082 5.72906Z" fill="black" />
+                            <path d="M37.381 26.3257C37.7715 26.619 38.3299 26.5423 38.591 26.1295C39.6632 24.4307 40.2248 22.484 40.2248 20.4479C40.2248 20.0073 40.1976 19.5635 40.1443 19.1307C39.4871 13.794 34.9315 9.77014 29.5471 9.77014C27.5238 9.77014 25.5882 10.3263 23.8966 11.3862C23.4821 11.6457 23.4038 12.2035 23.696 12.5946C23.9882 12.9862 24.5404 13.0624 24.9588 12.8101C26.3399 11.9768 27.9088 11.5396 29.5471 11.539C34.0399 11.539 37.8404 14.8957 38.3876 19.3473C38.4326 19.709 38.4554 20.079 38.4554 20.4473C38.4554 22.0962 38.0137 23.6746 37.1704 25.0612C36.9165 25.479 36.991 26.0318 37.381 26.3257Z" fill="black" />
+                        </svg>
+                    </div>
+                    <div class="ContactUsEmail">
+                        <a href="maito:@Html.Raw(BaseContent.WebsiteDetail.Email)">@Html.Raw(BaseContent.WebsiteDetail.Email)</a>
+                        <svg width="50" height="37" viewBox="0 0 50 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M43.7567 0H6.24333C2.80111 0 0 2.80604 0 6.25488V30.4118C0 33.8606 2.80111 36.6667 6.24333 36.6667H43.7561C47.1989 36.6667 50 33.8606 50 30.4118V6.25488C50 2.80604 47.1989 0 43.7567 0ZM6.24315 1.77144H43.7559C44.637 1.77144 45.4565 2.03079 46.1493 2.47323L28.2893 19.3713C26.4748 21.0871 23.5243 21.0871 21.7109 19.3713L3.85037 2.47323C4.54315 2.03079 5.36259 1.77144 6.24315 1.77144ZM43.7559 34.8946C46.2242 34.8946 48.2309 32.8833 48.2309 30.4118H48.2303V6.25486C48.2303 5.30486 47.9326 4.42609 47.4281 3.69982L29.502 20.6591C28.2615 21.8339 26.6298 22.4216 24.9992 22.4216C23.3687 22.4216 21.7376 21.8339 20.497 20.6591L2.57034 3.69982C2.0659 4.42554 1.76812 5.30486 1.76812 6.25486V30.4118C1.76812 32.8839 3.7759 34.8946 6.24312 34.8946H43.7559Z" fill="black" />
+                        </svg>
+                    </div>
+                <div class="ContactUsMap">
+                    <input type="hidden" name="Latitude" value=" @Html.Raw(BaseContent.WebsiteDetail.Latitude)" />
+                    <input type="hidden" name="Longitude" value=" @Html.Raw(BaseContent.WebsiteDetail.Longitude)" />
+
+                    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/LocationShow.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

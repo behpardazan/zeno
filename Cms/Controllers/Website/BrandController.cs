@@ -27,12 +27,12 @@ namespace Cms.Controllers
 
 
             ProductBrand ProductBrand = _context.ProductBrand.GetById(int.Parse(brbrandId));
-            if (currentUrl != ProductBrand.GetLinkNew())
-            {
+            //if (currentUrl != ProductBrand.GetLinkNew())
+            //{
 
-                HttpContext.Response.Status = "301 Moved Permanently";
-                HttpContext.Response.AddHeader("Location", ProductBrand.GetLinkNew());
-            }
+            //    HttpContext.Response.Status = "301 Moved Permanently";
+            //    HttpContext.Response.AddHeader("Location", ProductBrand.GetLinkNew());
+            //}
             ViewSearchBrand viewmodel = new ViewSearchBrand();
             prpageSize = prpageSize == null ? 48 : prpageSize;
             prindex = prindex == null ? 1 : prindex;

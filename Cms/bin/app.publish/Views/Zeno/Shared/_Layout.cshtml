@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="fa-IR">
+<head>
+
+    @if (ViewBag.IsHome != true)
+    {
+
+        ViewBag.Title = ViewBag.Title + BaseContent.WebsiteDetail.TitleOtherPage;
+    }
+    <title>@ViewBag.Title</title>
+    <meta name="title" content="@ViewBag.Title" />
+    <meta name="description" content="@ViewBag.MetaDescription ">
+    @RenderSection("Header", false)
+    <link rel="canonical" href="@(ViewBag.Canonical!=null?ViewBag.Canonical:ViewBag.url)" />
+
+    <meta property='og:title' content='@ViewBag.Title' />
+    <meta property='og:url' content='@ViewBag.OgUrl' />
+    <meta property='og:image' content='@ViewBag.OgImage' />
+    <meta property='og:image:url' content='@ViewBag.OgImage' />
+    <meta property='og:image:type' content='image/jpg' />
+    <meta name="twitter:card" content="@ViewBag.OgUrl">
+    <meta name="twitter:image" content="@ViewBag.OgImage">
+    <meta name="twitter:title" content="@ViewBag.Title">
+    <meta name="twitter:description" content="@ViewBag.MetaDescription">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="alternate" type="text/html" href="@ViewBag.url" hreflang="fa-ir" />
+    <meta charset="UTF-8">
+    <meta property="og:locale" content="fa-IR" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/zeno/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/zeno/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/zeno/images/favicon/site.webmanifest">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_BOOTSTRAP_MIN" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_BOOTSTRAP_ICON" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_OWL_CAROUSEL" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_OWL_CAROUSEL_THEME" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_ANIMATE" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_HOVER" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_RANGE" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_MAGIC" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_STYLE" />
+    <link rel="stylesheet" href="@Resources.Default.CSS_PLUGIN_TOASTR" />
+    @if (ViewBag.Follow != null)
+    {
+        <meta name="robots" content='@ViewBag.Follow' />
+
+    }
+    else if (TempData["allNoIndexFollow"] != null && (bool)TempData["allNoIndexFollow"] == true)
+    {
+        <meta name="robots" content='noindex,nofollow' />
+    }
+    else
+    {
+        <meta name="robots" content='@((TempData["noIndex"]!=null && (bool)TempData["noIndex"]==true)?"noindex":"index"),@((TempData["noFollow"]!=null && (bool)TempData["noFollow"]==true)?"nofollow":"follow")' />
+    }
+    <meta property='og:url' content='@ViewBag.OgUrl' />
+    <script type="text/javascript">
+        window.RAYCHAT_TOKEN = "1bc20388-d8c8-4779-aff3-6a09234c864c";
+        (function () {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://widget-react.raychat.io/install/widget.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+    @RenderSection("Head", false)
+</head>
+
+<body>
+
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/LoginRegister.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Shared/_Header.cshtml")
+    @RenderBody()
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/ShippingCity.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/AddAddress.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/RemoveAddress.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Shared/_Footer.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/SuccessRegister.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/OutOfSendStore.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/FinishBasket.cshtml")
+
+
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_JQUERY"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_BOOTSTRAP_BUNDLE"></script>
+    <script src="@Resources.Default.JS_PLUGIN_KNOCKOUT"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_LANGUAGE"></script>
+    <script src="@Resources.Default.JS_PLUGIN_TOASTR"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_CORE"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_AJAX?ver=14"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_OWL_CAROUSEL"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_RANGE_SLIDER"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_MAGIC"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_ZENO"></script>
+    <script type="text/javascript" src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    @using DataLayer.Base;
+    <script type="text/javascript" src="@Resources.Zeno.JS_WEBSITE"></script>
+
+
+    @RenderSection("endScripts", false)
+    <script>
+        initializeCommonScript();
+
+    </script>
+</body>
+</html>

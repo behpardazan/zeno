@@ -1,0 +1,22 @@
+﻿@model IEnumerable<DataLayer.Entities.Category>
+@using DataLayer.Base
+@{
+    DataLayer.Entities.Category CategorySearch = Model.FirstOrDefault();
+}
+<div class="article_summary">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="summary_txt">
+                <strong>@CategorySearch.Name</strong>
+                <p>
+                    @Html.Raw(CategorySearch.Body)
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="summary_img">
+                <img src="@CategorySearch.Picture.GetUrl()" alt="@CategorySearch.Name" title="@CategorySearch.Name">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@using DataLayer.Enumarables
+
+@{
+    Layout = null;
+}
+<hr />
+        responce :
+
+<h3>@ViewBag.res1</h3>
+<hr />
+
+@if (Model.Code.Label == Enum_Code.PAYMENT_STATUS_SUCCESSFUL.ToString())
+{
+    <span class="basket-payment-icon basket-payment-success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+    </span>
+    <h4>
+        پرداخت موفقیت آمیز
+    </h4>
+    <h4>
+        کد رهگیری سفارش: <span>@Model.RefNumber.ToString().ToPersian()</span>
+    </h4>
+}
+else
+{
+    <span class="basket-payment-icon basket-error-icon">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </span>
+    <h4>
+        خطا در هنگام پرداخت
+    </h4>
+}

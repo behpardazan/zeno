@@ -35,7 +35,7 @@
     </div>
 </nav>
 <section class="store pb-0">
-    <form id="searchForm">
+    <form id="searchForm2">
         <input type="hidden" name="brbrandId" value="@brbrandId" />
         <input type="hidden" name="prindex" value="@CurrentIndex" />
         <input type="hidden" name="prpageSize" value="@prpageSize" />
@@ -70,24 +70,24 @@
                     <strong>@Resource.Lang.SortBy :</strong>
                     <ul>
                         <li>
-                            <input id="sort-1" value="@Enum_ProductOrder.MORE_SELL.ToString()" @(prorder == Enum_ProductOrder.MORE_SELL.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" checked />
+                            <input id="sort-1" value="@Enum_ProductOrder.MORE_SELL.ToString()" @(prorder == Enum_ProductOrder.MORE_SELL.ToString() ? "checked" : "") type="radio" name="searchorder" checked />
                             <label for="sort-1">@Resource.Lang.MostViewed</label>
                         </li>
                         <li>
-                            <input id="sort-2" value="@Enum_ProductOrder.NEW.ToString()" @(prorder == Enum_ProductOrder.NEW.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <input id="sort-2" value="@Enum_ProductOrder.NEW.ToString()" @(prorder == Enum_ProductOrder.NEW.ToString() ? "checked" : "") type="radio" name="searchorder" />
                             <label for="sort-2">@Resource.Lang.Newest</label>
                         </li>
 
                         <li>
-                            <input id="sort-3" value="@Enum_ProductOrder.PRICE_MIN_TO_MAX.ToString()" @(prorder == Enum_ProductOrder.PRICE_MIN_TO_MAX.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <input id="sort-3" value="@Enum_ProductOrder.PRICE_MIN_TO_MAX.ToString()" @(prorder == Enum_ProductOrder.PRICE_MIN_TO_MAX.ToString() ? "checked" : "") type="radio" name="searchorder" />
                             <label for="sort-3">@Resource.Lang.Cheapest</label>
                         </li>
                         <li>
-                            <input id="sort-4" value="@Enum_ProductOrder.PRICE_MAX_TO_MIN.ToString()" @(prorder == Enum_ProductOrder.PRICE_MAX_TO_MIN.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <input id="sort-4" value="@Enum_ProductOrder.PRICE_MAX_TO_MIN.ToString()" @(prorder == Enum_ProductOrder.PRICE_MAX_TO_MIN.ToString() ? "checked" : "") type="radio" name="searchorder" />
                             <label for="sort-4">@Resource.Lang.MostExpensive</label>
                         </li>
                         <li>
-                            <input id="sort-5" value="@Enum_ProductOrder.MORE_Rate.ToString()" @(prorder == Enum_ProductOrder.MORE_Rate.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <input id="sort-5" value="@Enum_ProductOrder.MORE_Rate.ToString()" @(prorder == Enum_ProductOrder.MORE_Rate.ToString() ? "checked" : "") type="radio" name="searchorder" />
                             <label for="sort-5">@Resource.Lang.MostPopular</label>
                         </li>
                     </ul>

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<DataLayer.Entities.StoreComment>
+@using DataLayer.Base
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="infoItem">
+            
+            <div class="d-flex flex-column">
+                <a href="/seller/@item.StoreId/@item.Store.Name">
+                    <span>@item.Store.Name</span>
+                    <span> @item.Datetime.ToPersianWithTime()</span>
+                </a>
+            </div>
+            <div class="me-auto ">
+                <button type="button" onclick="ShowAnswerCommentStore(@item.ID)" class="btn">
+                    @Resource.Lang.Details
+                </button>
+                
+            </div>
+        </div>
+        
+    }
+}

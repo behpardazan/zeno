@@ -1,0 +1,51 @@
+﻿
+@using DataLayer.Enumarables;
+@using DataLayer.Base;
+@using DataLayer.Entities;
+
+@model IEnumerable<Product>
+
+<div class="category_sliders">
+    <div class="container">
+        <div class="categorySliders_box">
+            <ul class="selectSlider">
+
+                <li class="proBrand">
+                    <img src="/Assets/KhoshKala/Image/midleBrand.png" alt="خوش کالا" title="خوش کالا">
+                </li>
+                <li class="nav-item mt-auto">
+                    <button class="btn selc1 active" >@Resource.Lang.MostViewedProducts </button>
+                </li>
+                <li class="nav-item d-none">
+                    <button class="btn selc2" >@Resource.Lang.TopSellProducts</button>
+                </li>
+            </ul>
+            <div class="multiSlider">
+                <div class="categorySlider_box cont1" >
+                    <div class="owl-carousel owl-theme product_category">
+                        @Html.Action("Search", "Product", new { prpagesize = 8, prviewname = "ProductItemList", prorder = Enum_ProductOrder.MORE_VISIT, prIsService = false })
+                    </div>
+                    <div class="sliderNavigation">
+                        <a class="btn prev"></a>
+                        <a class="btn next"></a>
+
+                    </div>
+                </div>
+                @*<div class="categorySlider_box cont2 d-none" >
+                    <div class="owl-carousel owl-theme product_category">
+
+                        @Html.Action("Search", "Product", new { prpagesize = 8, prviewname = "ProductItemList", prorder = Enum_ProductOrder.MORE_SELL, prIsService = false })
+                    </div>
+                    <div class="sliderNavigation">
+                        <a class="btn prev"></a>
+                        <a class="btn next"></a>
+
+                    </div>
+                </div>*@
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

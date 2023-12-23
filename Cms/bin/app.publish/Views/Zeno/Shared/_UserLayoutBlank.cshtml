@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/zeno/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/zeno/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/zeno/images/favicon/site.webmanifest">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_BOOTSTRAP_MIN" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_BOOTSTRAP_ICON" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_OWL_CAROUSEL" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_OWL_CAROUSEL_THEME" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_ANIMATE" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_HOVER" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_RANGE" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_MAGIC" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_STYLE" />
+    <link rel="stylesheet" href="@Resources.Default.CSS_PLUGIN_TOASTR" />
+
+    @RenderSection("Head", false)
+
+</head>
+@using DataLayer.ViewModels;
+@using DataLayer.Base;
+
+@{
+       ViewAccount CurrentAccount = BaseWebsite.GetCurrentAccount;
+}
+<body>
+    <section class="profile">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-12 p-1">
+                    <div class="userPanelContent">
+                        @RenderBody()
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/Assets/Plugins/cropit-master/dist/jquery.cropit.js"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_JQUERY"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_BOOTSTRAP_BUNDLE"></script>
+    <script src="@Resources.Default.JS_PLUGIN_KNOCKOUT"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_LANGUAGE"></script>
+    <script src="@Resources.Default.JS_PLUGIN_TOASTR"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_CORE"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_AJAX?ver=1"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_OWL_CAROUSEL"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_RANGE_SLIDER"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_MAGIC"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_ZENO"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_WEBSITE"></script>
+    @RenderSection("endScripts", false)
+    <script type="text/javascript">
+        initializeCommonScript();
+    </script>
+
+    <script>
+
+    </script>
+</body>
+</html>

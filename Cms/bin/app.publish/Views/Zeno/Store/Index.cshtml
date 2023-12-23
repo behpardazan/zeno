@@ -1,0 +1,224 @@
+﻿﻿@using DataLayer.Entities;
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@using DataLayer.ViewModels;
+
+@model ViewSearchStore
+@{
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    string prindex = BaseRouteView.GetStringValue(Request, "prindex");
+    string prpageSize = BaseRouteView.GetStringValue(Request, "prpageSize");
+    string prstoreId = BaseRouteView.GetStringValue(Request, "prstoreId");
+    string prorder = BaseRouteView.GetStringValue(Request, "prorder");
+    if (string.IsNullOrEmpty(prorder))
+    {
+        prorder = Enum_ProductOrder.MORE_SELL.ToString();
+    }
+    int CurrentIndex = prindex.IsInteger() ? prindex.GetInteger() : 1;
+    Nullable<double> totalRate = 0;
+    int count = 0;
+    if (Model.Store.StoreComment.Any())
+    {
+        totalRate = Model.Store.StoreComment.Where(s => s.Rate.HasValue).Average(s => s.Rate);
+        count = Model.Store.StoreComment.Count();
+    }
+	ViewBag.Title = Model.Store.Name;
+}
+<section class="store pb-0">
+    <form id="searchForm">
+        <input type="hidden" name="prstoreId" value="@prstoreId" />
+        <input type="hidden" name="prindex" value="@CurrentIndex" />
+        <input type="hidden" name="prpageSize" value="@prpageSize" />
+        <input type="hidden" name="prorder" value="@prorder" />
+
+    </form>
+
+    <div class="container">
+        <div class="row">
+            <div class=" col-lg-2 ">
+                <div class="storeBreand">
+                    <img src="@Model.Store.Picture.GetUrl()" />
+                </div>
+            </div>
+            <div class="col-lg-6 ">
+                <div class="storeInfo">
+                    <strong class="storeName">@Model.Store.Name</strong>
+                    <hr />
+                    <p>@Model.Store.Description</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="rateParent">
+                    <div class="rateReport">
+                        <span>@count</span>
+                        <span>@Resource.Lang.Count @Resource.Lang.Comments</span>
+                    </div>
+                    <div class="rateBox">
+                        <span>@Resource.Lang.StoreRate : </span>
+                        @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/ShowRate.cshtml", totalRate, new ViewDataDictionary())
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <hr />
+
+    </div>
+	<div class="total-products text-gray pt-0 pr-0 pl-0">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12  p-1">
+                <div class="sort mr-sm-2 ml-2 mb-1">
+             
+                    <strong>@Resource.Lang.SortBy :</strong>
+                    <ul>
+                        <li>
+                            <input id="sort-1" value="@Enum_ProductOrder.MORE_SELL.ToString()" @(prorder == Enum_ProductOrder.MORE_SELL.ToString() ? "checked" : "") type="radio" name="searchorder" checked />
+                            <label for="sort-1">@Resource.Lang.MostViewed</label>
+                        </li>
+                        <li>
+                            <input id="sort-2" value="@Enum_ProductOrder.NEW.ToString()" @(prorder == Enum_ProductOrder.NEW.ToString() ? "checked" : "") type="radio" name="searchorder" />
+                            <label for="sort-2">@Resource.Lang.Newest</label>
+                        </li>
+
+                        <li>
+                            <input id="sort-3" value="@Enum_ProductOrder.PRICE_MIN_TO_MAX.ToString()" @(prorder == Enum_ProductOrder.PRICE_MIN_TO_MAX.ToString() ? "checked" : "") type="radio" name="searchorder" />
+                            <label for="sort-3">@Resource.Lang.Cheapest</label>
+                        </li>
+                        <li>
+                            <input id="sort-4" value="@Enum_ProductOrder.PRICE_MAX_TO_MIN.ToString()" @(prorder == Enum_ProductOrder.PRICE_MAX_TO_MIN.ToString() ? "checked" : "") type="radio" name="searchorder" />
+                            <label for="sort-4">@Resource.Lang.MostExpensive</label>
+                        </li>
+                        <li>
+                            <input id="sort-5" value="@Enum_ProductOrder.MORE_Rate.ToString()" @(prorder == Enum_ProductOrder.MORE_Rate.ToString() ? "checked" : "") type="radio" name="searchorder" />
+                            <label for="sort-5">@Resource.Lang.MostPopular</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="products-boxes d-flex flex-column h-100 pt-0">
+                    <div class="row m-0">
+                        @if (!Model.SearchProduct.Results.Any())
+                        {
+                        <div class="noResult">
+                            <img class="w-100 h-100" src="~/Assets/Zeno/images/noresualt.png" />
+                            <p class="alert ">@Resource.Notify.UnfortunatelyNoProductWasFound</p>
+
+                        </div>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.SearchProduct.Results)
+                            {
+                                <div class="col-lg-3 col-md-4 p-2">
+                                    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Product/ProductItem.cshtml", item)
+
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+            <div class="col-md-5">
+                <div class="add_comment text-right">
+                    <strong>@Resource.Lang.AddComment</strong>
+                    <form class="addCm_form text-left">
+                        <div class="star-rating user-rate">
+                            <input id="star-5" type="radio" name="rate" value="5" />
+                            <label for="star-5" title="5 stars">
+                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                            </label>
+                            <input id="star-4" type="radio" name="rate" value="4" />
+                            <label for="star-4" title="4 stars">
+                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                            </label>
+                            <input id="star-3" type="radio" name="rate" value="3" />
+                            <label for="star-3" title="3 stars">
+                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                            </label>
+                            <input id="star-2" type="radio" name="rate" value="2" />
+                            <label for="star-2" title="2 stars">
+                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                            </label>
+                            <input id="star-1" type="radio" name="rate" value="1" />
+                            <label for="star-1" title="1 star">
+                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                            </label>
+                        </div>
+
+                        <textarea codeprocess-field="body" name="comment" class="form-control" id="" placeholder="@Resource.Lang.YourComment"></textarea>
+                        <button type="button" codeprocess-action="storecomment-add"  product-id="@Model.Store.ID" class="addCm_btn btn primary_btn  mt-4">
+                            <span>
+                                @Resource.Lang.Send
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="product_comments">
+                    @foreach (var item in Model.Store.StoreComment.Where(p => p.Approved == true).OrderByDescending(p => p.ID))
+                    {
+                        <div class="comment_item">
+                            <div class="comment_info">
+                                <div class="comment_userImg online_user"><img src="/assets/zeno/images/user.png" alt=""></div>
+                                <div class="comment_name_date">
+                                    <div href="#">
+                                        <strong>@item.Account.FullName</strong>
+                                        @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/ShowRate.cshtml", item.Rate, new ViewDataDictionary())
+                                    </div>
+                                    <span>@item.Datetime.ToPersianWithTime()</span>
+                                </div>
+                            </div>
+                            <div class="comment_text">
+                                <p>@item.Body</p>
+                            </div>
+                            <div class="comment_reply">
+                                @if (!string.IsNullOrEmpty(item.AnswerString))
+                                {
+                                    <div class="reply_item">
+                                        <div class="comment_info">
+                                            <div class="comment_userImg offline_user"><img src="/assets/zeno/images/user.png" alt=""></div>
+                                            <div class="comment_name_date">
+                                                <a href="#">
+                                                    <strong>@Resource.Lang.Boss</strong>
+                                                </a><span>@item.AnswerDatetime.ToPersianWithTime()</span>
+                                            </div>
+                                        </div>
+                                        <div class="comment_text">
+                                            @item.AnswerString
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</section>
+
+@section endScripts {
+
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/_AjaxLoader.cshtml")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initializeSearchStoreScript();
+        });
+    </script>
+}

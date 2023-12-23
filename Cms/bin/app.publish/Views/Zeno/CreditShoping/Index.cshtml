@@ -1,0 +1,170 @@
+﻿@using DataLayer.Base;
+@using DataLayer.ViewModels;
+@model DataLayer.Entities.CreditShoping
+@{
+    ViewBag.Title = "خرید اعتباری";
+    Layout = Resources.Zeno.WEBSITE_LAYOUT;
+    ViewAccount CurrentAccount = BaseWebsite.CurrentAccount;
+}
+
+<section class="ruls">
+    <div class="container">
+        <div class="ruls_content">
+            <div class="title">
+                <h2 class="titleText">خرید اعتباری</h2>
+            </div>
+            <p>
+                @Html.Action("Search", "Post", new { poviewName = "CreditText", poSize = 1, pocategory = "CreditText" })
+
+            </p>
+            @if (ViewBag.IsCreditShopingActive == true || ViewBag.IsCreditShopingActive == false)
+            {
+                if (ViewBag.IsCreditShopingActive == true)
+                {
+                    <div>
+                        <p class="alert alert-warning">خرید اعتباری در تاریخ @Model.ActiveDate.ToPersian() برای شما فعال شده است شما میتوانید هنگام خرید از گزینه خرید اعتباری برای تسویه سبد خرید خود استفاده نمایید.</p>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <p class="alert alert-warning">شما در تاریخ @Model.CreateDate.ToPersian() درخواست خود را ثبت کرده اید تیم ما پس از بررسی  با شما تماس خواهد گرفت و در صورت تایید خرید اعتباری برای شما فعال خواهد شد.</p>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <div class="row creditShoping-form">
+                    <input type="hidden" value="@CurrentAccount.Id" name="AccountId" id="AccountId" required data-bind="value:viewModel.CreditShoping.AccountId" />
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="text" name="FullName" id="FullName" required data-bind="value:viewModel.CreditShoping.FullName" placeholder="@Resource.Lang.FullName" value="@CurrentAccount.FullName" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="email" name="Email" id="Email" required data-bind="value:viewModel.CreditShoping.Email" placeholder="@Resource.Lang.Email" value="@CurrentAccount.Email" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="text" name="Phone" id="Phone" required data-bind="value:viewModel.CreditShoping.Phone" placeholder="تلفن ثابت" value="@CurrentAccount.Phone" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="text" name="Mobile" id="Mobile" required data-bind="value:viewModel.CreditShoping.Mobile" placeholder="@Resource.Lang.Mobile" value="@CurrentAccount.Mobile" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="text" name="Post" id="Post" required data-bind="value:viewModel.CreditShoping.Post" placeholder="سمت شما" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="text" name="Address" id="Address" required data-bind="value:viewModel.CreditShoping.Address" placeholder="@Resource.Lang.Address" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="text" name="Area2" id="Area2" required data-bind="value:viewModel.CreditShoping.Area2" placeholder="متراژ محل مورد نظر" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group malek-parent">
+                            <span class="malek-title">مالک هستین یا مستاجر؟</span>
+                            <div class="malek">
+                                <label for="Tenant-item1">
+                                    <input id="Tenant-item1" name="Tenant" type="radio" value="true" checked="checked" />
+                                    <span>مالک</span>
+                                </label>
+                                <label for="Tenant-item2">
+                                    <input id="Tenant-item2" name="Tenant" type="radio" value="false" />
+                                    <span>مستاجر</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="text" name="Type" required data-bind="value:viewModel.CreditShoping.Type" id="Type" placeholder="نوع کاربری محل مورد نظر کافه، رستوران، هتل و ..." />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <span>*</span>
+                            <input class="form-control" type="text" name="AvregeBuy2" required data-bind="value:viewModel.CreditShoping.AvregeBuy2" id="AvregeBuy2" placeholder="میانگین میزان خرید ماهیانه به تومان" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group hoghoghi">
+
+                            <input class="form-control" type="text" name="CompanyId" data-bind="value:viewModel.CreditShoping.CompanyId" id="CompanyId" placeholder="شناسه ملی شرکت" />
+                            <span>درج شناسه ملی برای شخصیت حقوقی الزامی میباشد</span>
+                        </div>
+                    </div>
+                    <div class="ContactFormBtnBox">
+                        <button class="btn primary_btn me-auto float-left mb-3" codeprocess-action="creditShoping">
+                            <span>@Resource.Lang.Send</span>
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+@section endScripts {
+    <script type="text/javascript">
+        $("#AvregeBuy2").keyup(function () {
+           
+            var num = $(this).val().replace(/,/g, '');
+             num = toEnNum(num);
+            numberWithCommas(num);
+        });
+
+        function numberWithCommas(x) {
+            $("#AvregeBuy2").val(x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,","));
+}
+
+        $(document).ready(function () {
+            viewModel.CreditShoping.FullName('@CurrentAccount.FullName');
+            viewModel.CreditShoping.FullName('@CurrentAccount.FullName');
+            viewModel.CreditShoping.Mobile('@CurrentAccount.Mobile');
+            viewModel.CreditShoping.Phone('@CurrentAccount.Phone');
+            viewModel.CreditShoping.AccountId('@CurrentAccount.Id')
+
+        });
+        function toEnNum(number)
+        {
+        number = number.toString().replace("۱", "1");
+        number = number.toString().replace("۲","2");
+        number = number.toString().replace("۳","3");
+        number = number.toString().replace("۴","4");
+        number = number.toString().replace("۵","5");
+        number = number.toString().replace("۶","6");
+        number = number.toString().replace("۷","7");
+        number = number.toString().replace("۸","8");
+        number = number.toString().replace("۹","9");
+        number =number.toString().replace("۰","0");
+        return number;
+    }
+    </script>
+}
+
+
+
+
+

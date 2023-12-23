@@ -1,0 +1,29 @@
+﻿
+@using DataLayer.Base;
+@model  DataLayer.ViewModels.ViewPostModel
+
+@{
+    TempData["noIndex"] = Model.Post.NoIndex;
+    TempData["noFollow"] = Model.Post.NoFollow;
+    ViewBag.Title = Model.Post.Title!=null? Model.Post.Title : Model.Post.GetName();
+    ViewBag.MetaDescription = Model.Post.GetSummery();
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    string url = Model.Post.GetLinkWithUrl();
+    ViewBag.url = url;
+    ViewBag.Canonical = Model.Post.Canonical;
+
+    ViewBag.OgImage = Model.Post.Picture.GetUrl();
+    @Html.Raw(Model.Post.Schema)
+}
+
+@if (Model.Post.Category.Label == "Service")
+{
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Post/_ServiceInfo.cshtml", Model)
+}
+else if (Model.Post.Category.Label == "Blog")
+{
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Post/_BlogInfo.cshtml", Model)
+}
+
+
+

@@ -1,0 +1,133 @@
+﻿@using DataLayer.Entities;
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@using DataLayer.ViewModels;
+@model ViewSearchBrand
+@{   
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    string url = Model.Brand.GetLinkNew();
+    ViewBag.url = url;
+    ViewBag.Canonical = Model.Brand.Canonical;
+    string prindex = BaseRouteView.GetStringValue(Request, "prindex");
+    string prpageSize = BaseRouteView.GetStringValue(Request, "prpageSize");
+    string brbrandId = BaseRouteView.GetStringValue(Request, "brbrandId");
+    string prorder = BaseRouteView.GetStringValue(Request, "prorder");
+    if (string.IsNullOrEmpty(prorder))
+    {
+        prorder = Enum_ProductOrder.MORE_SELL.ToString();
+    }
+    int CurrentIndex = prindex.IsInteger() ? prindex.GetInteger() : 1;
+    ViewBag.Title = Model.Brand.Title != "" || Model.Brand.Title != null ? Model.Brand.Title : Model.Brand.Name;
+    ViewBag.MetaDescription = Model.Brand.Summary;
+    ViewBag.OgImage = Model.Brand.Picture.GetUrl();
+    ViewBag.OgUrl = url;
+    TempData["noIndex"] = Model.Brand.NoIndex;
+    TempData["noFollow"] = Model.Brand.NoFollow;
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home">@Resource.Lang.Home</a></li>
+         
+            <li class="breadcrumb-item active" aria-current="page"><a href="@Model.Brand.GetLinkNew()">@Model.Brand.GetName()</a></li>
+
+        </ol>
+    </div>
+</nav>
+<section class="store pb-0">
+    <form id="searchForm">
+        <input type="hidden" name="brbrandId" value="@brbrandId" />
+        <input type="hidden" name="prindex" value="@CurrentIndex" />
+        <input type="hidden" name="prpageSize" value="@prpageSize" />
+        <input type="hidden" name="prorder" value="@prorder" />
+    </form>
+    <div class="container">
+        <div class="row">
+            <div class=" col-lg-4 col-4">
+                <div class="storeBreand">
+                    <img src="@Model.Brand.Picture.GetUrl()" />
+                </div>
+            </div>
+            <div class="col-lg-8 col-8">
+                <div class="storeInfo">
+                    <strong class="storeName">@Model.Brand.Name</strong>
+                    <hr />
+                    <p>@Html.Raw(Model.Brand.Description)</p>
+                </div>
+            </div>
+
+        </div>
+        <hr />
+
+    </div>
+</section>
+<section class="total-products text-gray pt-0 pr-0 pl-0">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 col-md-8 p-1">
+                <div class="sort mr-sm-2 ml-2 mb-1">
+                    <strong>@Resource.Lang.SortBy :</strong>
+                    <ul>
+                        <li>
+                            <input id="sort-1" value="@Enum_ProductOrder.MORE_SELL.ToString()" @(prorder == Enum_ProductOrder.MORE_SELL.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" checked />
+                            <label for="sort-1">@Resource.Lang.MostViewed</label>
+                        </li>
+                        <li>
+                            <input id="sort-2" value="@Enum_ProductOrder.NEW.ToString()" @(prorder == Enum_ProductOrder.NEW.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <label for="sort-2">@Resource.Lang.Newest</label>
+                        </li>
+
+                        <li>
+                            <input id="sort-3" value="@Enum_ProductOrder.PRICE_MIN_TO_MAX.ToString()" @(prorder == Enum_ProductOrder.PRICE_MIN_TO_MAX.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <label for="sort-3">@Resource.Lang.Cheapest</label>
+                        </li>
+                        <li>
+                            <input id="sort-4" value="@Enum_ProductOrder.PRICE_MAX_TO_MIN.ToString()" @(prorder == Enum_ProductOrder.PRICE_MAX_TO_MIN.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <label for="sort-4">@Resource.Lang.MostExpensive</label>
+                        </li>
+                        <li>
+                            <input id="sort-5" value="@Enum_ProductOrder.MORE_Rate.ToString()" @(prorder == Enum_ProductOrder.MORE_Rate.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <label for="sort-5">@Resource.Lang.MostPopular</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="products-boxes d-flex flex-column h-100 pt-0">
+                    <div class="row m-0">
+                        @if (!Model.SearchProduct.Results.Any())
+                        {
+                        <div class="noResult mt-0">
+                            <img class="w-100 h-100" src="~/Assets/zeno/images/noresualt.png" />
+                            <p class="alert ">@Resource.Notify.UnfortunatelyNoProductWasFound</p>
+
+                        </div>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.SearchProduct.Results)
+                            {
+                                <div class="col-lg-3 col-6 p-2">
+                                    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Product/ProductItem.cshtml", item)
+
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@section endScripts {
+
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/_AjaxLoader.cshtml")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initializeSearchStoreScript();
+        });
+    </script>
+}

@@ -1,0 +1,45 @@
+﻿﻿@using DataLayer.Base;
+@using DataLayer.Enumarables;
+
+@model DataLayer.Entities.WebsiteForm
+
+<div class="row">
+    <div class="col-md-6 p-2">
+        <form id="@Model.Label" class="innerPage_form">
+            <input type="hidden" name="FormLabel" value="@Model.Label" />
+            @foreach (var item in Model.WebsiteFormField.Where(x => x.ShowNumber > 0 && x.ShowNumber < 20))
+            {
+                <div class="form-group">
+                    <div class="formLbl">
+                        @if (item.Requier == true)
+                        {
+                            <span>*</span>
+                        }
+                        <label for="innerName">@item.Name @*@Resources.KhoshKala.ResourceManager.GetString(item.ColumnName)*@:</label>
+                    </div>
+                    @if (item.Code.Label == Enum_Code.FIELD_TYPE_TEXT.ToString())
+                    {
+                        <textarea form-field-id="@item.ID" type="text" name="innerComplain" class="form-control"></textarea>
+                    }
+                    else if (item.Code.Label == Enum_Code.CONTACT_TYPE_EMAIL.ToString())
+                    {
+                        <input form-field-id="@item.ID" type="text" class="form-control" name="innerEmail">
+                    }
+                    else if (item.Code.Label == Enum_Code.FIELD_TYPE_STRING.ToString())
+                    {
+                        <input form-field-id="@item.ID" type="text" class="form-control" name="innerName">
+                    }
+                    else if (item.Code.Label == Enum_Code.CONTACT_TYPE_PHONE.ToString())
+                    {
+                        <input form-field-id="@item.ID" type="text" class="form-control" name="innerName">
+                    }
+
+                </div>
+            }
+            <div class="innerForm_btn">
+                <button type="button" codeprocess-action="websiteform" website-form-id="Suggestions" class="btn green_btn ">@Resource.Lang.Send</button>
+            </div>
+        </form>
+    </div>
+
+</div>

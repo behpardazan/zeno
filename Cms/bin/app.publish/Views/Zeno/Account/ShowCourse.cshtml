@@ -1,0 +1,40 @@
+﻿@using DataLayer.Enumarables;
+@using DataLayer.Base;
+@using DataLayer.Entities;
+@using DataLayer.ViewModels;
+@model IEnumerable<DataLayer.Entities.ProductVideo>
+@{
+    ViewBag.Title = Resource.Lang.Orders;
+    Layout = Resources.Lajevard.USER_LAYOUT;
+    ViewAccount CurrentAccount = BaseWebsite.CurrentAccount;
+
+}
+
+
+
+    <div class="row m-0">
+        @foreach (var item in Model.OrderByDescending(s => s.Id))
+        {
+            if (item.Product.ProductTypeId == 1)
+            {
+                <div class="col-md-6 p-1">
+                    <video class="videoBox" controls poster="@item.Picture.GetUrl()">
+                        <source src="@item.Url" type="video/mp4">
+                        <source src="@item.Url" type="video/ogg">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            }
+            else
+            {
+                <audio controls>
+                    <source src="@item.Url" type="audio/ogg">
+                    <source src="@item.Url" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+               
+            }
+
+        }
+    </div>
+

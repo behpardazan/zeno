@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DataLayer.Entities.ProductBrand>
+@using DataLayer.Base;
+@{
+    string prbrandId = BaseRouteView.GetStringValue(Request, "prbrandId");
+    List<string> listprbrandId = new List<string>();
+    if (string.IsNullOrEmpty(prbrandId) == false)
+    {
+        if (prbrandId.Contains("-"))
+        {
+            listprbrandId = prbrandId.Split('-').ToList();
+        }
+        else
+        {
+            listprbrandId.Add(prbrandId);
+        }
+    }
+}
+
+@if (Model.Any())
+{
+    <div class="filtering_item">
+        <strong>@Resource.Lang.Brand</strong>
+        @foreach (var item in Model.Where(s=>s.Active))
+        {
+            <div class="brand_filter brand_filter2 checkBox">
+                @*<input id=@Html.Raw("brand"+@item.ID) class="update-subcategory" type="checkbox" @(listprbrandId.Any(a => a.Equals(item.ID.ToString())) ? "checked" : "") value=@item.ID>*@
+                @*<div class="selector"></div>*@
+                <a href="@item.GetLinkNew()">@item.Name</a>
+            </div>
+        }
+    </div>
+}
+
+

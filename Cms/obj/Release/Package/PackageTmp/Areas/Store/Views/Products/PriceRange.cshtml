@@ -1,0 +1,113 @@
+﻿@using DataLayer.Entities
+@using DataLayer.Base
+
+@model PriceRange
+
+@{
+    List<PriceRange> priceList = ViewBag.PriceList;
+    ViewBag.Title = Resource.Lang.Price;
+}
+@section script{
+    <script>
+        function editrange(id,start,end,price) {
+            $("#ID").val(id);
+            $("#StartCount").val(start);
+            $("#EndCount").val(end);
+            $("#Price").val(price);
+        }
+       
+    </script>
+}
+
+<div class="block-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="zmdi zmdi-home"></i> @Resource.Lang.Home</a></li>
+                <li class="breadcrumb-item">@Resource.Lang.Product</li>
+                <li class="breadcrumb-item ">@Resource.Lang.PriceRange</li>
+            </ul>
+            <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+            <a class="btn btn-primary btn-icon float-right right_icon_toggle_btn" href="/store/products"><i class="zmdi zmdi-arrow-right"></i></a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="card project_list">
+                @using (Html.BeginForm())
+                {
+                    @*@Html.AntiForgeryToken()*@
+                    @Html.Hidden("StoreProductQuantityId", Model.StoreProductQuantityId)
+                <div class="row clearfix input-box">
+                    
+                    <input id="ID" name="ID" value="@Model.ID"  type="hidden"/> 
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.StartCount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.EndCount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <input class="btn btn-primary" type="submit" value="@Resource.Lang.New/@Resource.Lang.Edit" />
+                        </div>
+                    </div>
+                </div>
+
+                }
+                <div class="table-responsive">
+                    <table class="table table-hover c_table theme-color">
+                        <thead>
+                            <tr>
+                                <th>@Resource.Lang.From </th>
+                                <th>@Resource.Lang.To </th>
+                                <th>@Resource.Lang.Price (@Resource.Lang.Corrency)</th>
+                                <th>@Resource.Lang.Edit</th>
+                                <th>@Resource.Lang.Remove</th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in priceList.OrderBy(s => s.StartCount))
+                            {
+
+                            <tr>
+                                <td>
+                                    <strong>@item.StartCount</strong><br>
+                                </td>
+                                <td>
+                                    <strong>@item.EndCount</strong><br>
+                                </td>
+                                <td>@item.Price.GetCurrencyFormat()</td>
+                                <td><button class="btn btn-edit" onclick="editrange(@item.ID,@item.StartCount,@item.EndCount,@item.Price);">@Resource.Lang.Edit</button></td>
+                                <td><a  class="btn btn-edit" href="/store/products/PriceRangeDelete?Id=@item.ID"  >@Resource.Lang.Remove</a></td>
+                                @*<td>@item.DiscountValue.GetCurrencyFormat()</td>*@
+                                <td>
+                                </td>
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

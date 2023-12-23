@@ -1,0 +1,9 @@
+﻿@using DataLayer.Base;
+@model List<DataLayer.Entities.Gallery>
+@using DataLayer.Base
+@using DataLayer.Enumarables
+
+@foreach (var item in Model.OrderBy(s => s.ShowNumber))
+{
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Gallery/_GalleryItem.cshtml", item)
+}

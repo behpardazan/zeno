@@ -1,0 +1,9 @@
+﻿@model IEnumerable<DataLayer.Entities.ProductType>
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@{
+    var ProductType = Model.FirstOrDefault();
+}
+
+<li class="nav-item"><a class="nav-link" href="@ProductType.GetUrlNew()">@ProductType.GetName()</a></li>
+

@@ -1,0 +1,84 @@
+﻿﻿﻿@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@using DataLayer.ViewModels
+@model ViewProductLikeFavorit
+@{
+    ViewBag.Title = Resource.Lang.FavoriteList;
+    Layout = Resources.Zeno.USER_LAYOUT;
+    string prindex = BaseRouteView.GetStringValue(Request, "prindex");
+    string prpageSize = BaseRouteView.GetStringValue(Request, "prpageSize");
+    int CurrentIndex = prindex.IsInteger() ? prindex.GetInteger() : 1;
+}
+
+<input type="hidden" name="prindex" value="@CurrentIndex" />
+<input type="hidden" name="prpageSize" value="@prpageSize" />
+<div class="profileTitle">
+    <h6>@Resource.Lang.FavoriteList</h6>
+</div>
+
+<div class="lastSeenBox">
+
+    @{
+        int? categoryId = 0;
+        string imageurl = "";
+        foreach (var item in Model.Results)
+        {
+            <div class="lastItem">
+                @if (item.Product != null)
+                {
+                    <a href="@item.Product.GetLinkWithUrl()">
+                        @if (item.Product.Picture != null)
+                        {
+                            <img class="" src="@item.Product.Picture.GetUrl()" title="Favorit" alt="@item.Product.GetName()" style="width:100px;height:100px" />
+
+                        }
+                    </a>
+                    <div class="lastItemTxt">
+                        <span>@Resource.Lang.ProductName:: @item.Product.GetName() </span>
+
+                        @if (item.Product.MinPrice > 0)
+                        {
+                            <span> @Resource.Lang.FromPrice: @item.Product.MinPrice.GetCurrencyFormat() @Resource.Lang.Toman</span>
+                        }
+
+
+
+                    </div>
+                    <div class="btn-group dropright">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript://" codeprocess-action="productlike-remove" product-id="@item.Product.ID">حذف</a>
+                        </div>
+                    </div>
+                    if (item.Product.ProductCategory != null)
+                    {
+                        categoryId = item.Product.ProductCategory.ID;
+                    }
+                    if (item.Product.Picture != null)
+                    {
+                        imageurl = item.Product.Picture.GetUrl();
+                    }
+                    <button class="btn waves-effect waves-blue" onclick="getSimilarProduct(@item.Product.ID,@categoryId,@item.Product.Price,'@item.Product.Name','@imageurl')">
+                        @Resource.Lang.SimilarProducts
+                    </button>
+
+                    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/SimilarProduct.cshtml")
+
+
+                    if (item.Product.Code.Label == Enum_Code.PRODUCT_STATUS_NOT_AVAILABLE.ToString())
+                    {
+                        <div class="finish_span"><span>@Resource.Lang.NoAvailable</span></div>
+                    }
+                }
+
+            </div>
+        }
+    }
+
+
+
+</div>
+@Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/FavoritPagination.cshtml")
