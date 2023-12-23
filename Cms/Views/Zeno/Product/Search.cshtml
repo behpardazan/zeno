@@ -1,0 +1,489 @@
+﻿@using DataLayer.Entities;
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@using DataLayer.ViewModels;
+@model ViewSearchProduct
+@{
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    string prindex = BaseRouteView.GetStringValue(Request, "prindex");
+    string prpageSize = BaseRouteView.GetStringValue(Request, "prpageSize");
+    string typeId = BaseRouteView.GetStringValue(Request, "prtypeId");
+    string categoryId = BaseRouteView.GetStringValue(Request, "prcategoryId");
+    string subcategoryId = BaseRouteView.GetStringValue(Request, "prsubcategoryId");
+    string prcolorId = BaseRouteView.GetStringValue(Request, "prcolorId");
+    string prbrandId = BaseRouteView.GetStringValue(Request, "prbrandId");
+    string prstoreId = BaseRouteView.GetStringValue(Request, "prstoreId");
+    string prpricefrom = BaseRouteView.GetStringValue(Request, "prpricefrom");
+    string prpriceto = BaseRouteView.GetStringValue(Request, "prpriceto");
+    string prorder = BaseRouteView.GetStringValue(Request, "prorder");
+    string prname = BaseRouteView.GetStringValue(Request, "prname");
+    string prstockId = BaseRouteView.GetStringValue(Request, "prstockId");
+    string prcustomLabel = BaseRouteView.GetStringValue(Request, "prcustomLabel");
+    string prcustom = BaseRouteView.GetStringValue(Request, "prcustom");
+    string prcompetitiveId = BaseRouteView.GetStringValue(Request, "prcompetitiveId");
+    string proptions = BaseRouteView.GetStringValue(Request, "proptions");
+    var Schema = "";
+    if (string.IsNullOrEmpty(prorder))
+    {
+        prorder = Enum_ProductOrder.MORE_SELL.ToString();
+    }
+
+    if (string.IsNullOrEmpty(prpriceto) || prpriceto == "0")
+    {
+        prpriceto = Model.MaxPrice.ToString();
+    }
+    if (string.IsNullOrEmpty(prpricefrom))
+    {
+        prpricefrom = "0";
+    }
+
+    ProductSubCategory productSubcategory = null;
+    ProductCategory productCategory = null;
+    ProductType productType = null;
+    var name = "";
+    int? pbTypeId = default(int?);
+    ViewBag.SearchName = Model.Name;
+    if (Model.Type == Enum_SearchType.PRODUCTTYPE)
+    {
+        productType = Model.ProductType;
+
+        typeId = Model.ProductType.ID.ToString();
+
+    }
+    else if (Model.Type == Enum_SearchType.PRODUCTCATEGORY)
+    {
+        productCategory = Model.ProductCategory;
+        productType = Model.ProductType;
+        categoryId = Model.ProductCategory.ID.ToString();
+        typeId = Model.ProductType.ID.ToString();
+    }
+    else if (Model.Type == Enum_SearchType.PRODUCTSUBCATEGORY)
+    {
+        productCategory = Model.ProductCategory;
+        productType = Model.ProductType;
+        productSubcategory = Model.ProductSubCategory;
+        categoryId = Model.ProductCategory.ID.ToString();
+        typeId = Model.ProductType.ID.ToString();
+        subcategoryId = Model.ProductSubCategory.ID.ToString();
+
+    }
+    if (productType != null)
+    {
+        pbTypeId = productType.ID;
+        ViewBag.OgImage = Model.ProductType.Picture != null ? Model.ProductType.Picture.GetUrl() : "";
+
+    }
+    int CurrentIndex = prindex.IsInteger() ? prindex.GetInteger() : 1;
+    string H1Value = "";
+    string serchContent = "", absContent = "";
+    if (Model.ProductSubCategory != null)
+    {
+        ViewBag.title = Model.ProductSubCategory.GetTitle();
+        ViewBag.OgImage = Model.ProductSubCategory.Picture != null ? Model.ProductSubCategory.Picture.GetUrl() : "";
+        name = Model.ProductSubCategory.H1;
+        ViewBag.MetaDescription = Model.ProductSubCategory.GetMetaDescription();
+        H1Value = Model.ProductSubCategory.H1;
+        serchContent = Model.ProductSubCategory.Body;
+	
+        Schema = Model.ProductSubCategory.Schema;
+        ViewBag.Canonical= Model.ProductSubCategory.Canonical;
+        TempData["noIndex"] = Model.ProductSubCategory.NoIndex;
+        TempData["noFollow"] = Model.ProductSubCategory.NoFollow;
+    }
+    else if (Model.ProductCategory != null)
+    {
+        name = Model.ProductCategory.H1;
+        ViewBag.title = Model.ProductCategory.GetTitlePage();
+        ViewBag.MetaDescription = Model.ProductCategory.GetMetaDescription();
+        ViewBag.OgImage = Model.ProductCategory.Picture != null ? Model.ProductCategory.Picture.GetUrl() : "";
+        H1Value = Model.ProductCategory.H1;
+        serchContent = Model.ProductCategory.Description;
+        Schema = Model.ProductCategory.Schema;
+        ViewBag.Canonical= Model.ProductCategory.Canonical;
+        TempData["noIndex"] = Model.ProductCategory.NoIndex;
+        TempData["noFollow"] = Model.ProductCategory.NoFollow;
+    }
+    else if (Model.ProductType != null)
+    {
+        name = Model.ProductType.H1;
+        ViewBag.title = Model.ProductType.GetTitle();
+        ViewBag.MetaDescription = Model.ProductType.GetMetaDescription();
+        H1Value = Model.ProductType.H1;
+        serchContent = Model.ProductType.body;
+        Schema = Model.ProductType.Schema;
+        ViewBag.Canonical= Model.ProductType.Canonical;
+        TempData["noIndex"] = Model.ProductType.NoIndex;
+        TempData["noFollow"] = Model.ProductType.NoFollow;
+    }
+    else
+    {
+        name = Resource.Lang.Search;
+        ViewBag.title = Resource.Lang.Search;
+    }
+    if (serchContent != "")
+    {
+        try
+        {
+            absContent = serchContent.Length >= 200 ? serchContent.Substring(0, 199) : serchContent;
+        }
+        catch
+        {
+            absContent = "";
+        }
+
+    }
+    if (ViewBag.title == "" || ViewBag.title == null)
+    {
+        ViewBag.title = H1Value;
+    }
+    if (ViewBag.MetaDescription == "" || ViewBag.MetaDescription == null)
+    {
+        ViewBag.MetaDescription = absContent;
+    }
+}
+@{
+    string canoUrl = "";
+    if (Model.Type == Enum_SearchType.PRODUCTTYPE && Model.ProductType != null)
+    {
+        canoUrl = BaseWebsite.ShopUrl + "search/" + Model.ProductType.CustomLabel;
+    }
+    else if (Model.Type == Enum_SearchType.PRODUCTCATEGORY && Model.ProductCategory != null)
+    {
+        canoUrl = @Model.ProductCategory.GetUrlNewZeno();
+    }
+    else if (Model.Type == Enum_SearchType.PRODUCTSUBCATEGORY && Model.ProductSubCategory != null)
+    {
+        canoUrl = @Model.ProductSubCategory.GetUrlNewZeno();
+    }
+    ViewBag.url = canoUrl;
+    ViewBag.OgUrl = canoUrl;
+
+    string title = ViewBag.title;
+    string ogurl = ViewBag.OgImage;
+    string metades = "";
+    if (Model.ProductCategory != null)
+    {
+        metades = Model.ProductCategory.GetMetaDescription();
+    }
+
+}
+@section Header {
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "WebPage",
+        "mainEntity":{
+        "@@type": "WebPage",
+        "image": "@ogurl",
+        "name": "@title",
+        "alternateName":"@title",
+        "description": "@ViewBag.MetaDescription"
+        }
+        }
+    </script>
+    @Html.Raw(Schema)
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">@Resource.Lang.Home</a></li>
+
+            @if (Model.ProductSubCategory != null)
+            {
+
+                <li class="breadcrumb-item " aria-current="page">
+                    <a href="@Model.ProductType.GetUrlNew()">
+
+                        <span> @Model.ProductType.GetName()</span>
+                    </a>
+                </li>
+
+                <li class="breadcrumb-item " aria-current="page">
+                    <a href="@Model.ProductCategory.GetUrlNewZeno()">
+                        <span> @Model.ProductCategory.GetName()</span>
+                    </a>
+                </li>
+
+                <li class="breadcrumb-item active" >
+                    <a href="@Model.ProductSubCategory.GetUrlNewZeno()">
+                        <span> @Model.ProductSubCategory.GetName()</span>
+                    </a>
+                </li>
+
+            }
+            else if (Model.ProductCategory != null)
+            {
+                <li class="breadcrumb-item " aria-current="page">
+                    <a href="@Model.ProductType.GetUrlNew()">
+
+                        <span> @Model.ProductType.GetName()</span>
+                    </a>
+                </li>
+
+                <li class="breadcrumb-item " aria-current="page">
+                    <a href="@Model.ProductCategory.GetUrlNewZeno()">
+                        <span> @Model.ProductCategory.GetName()</span>
+                    </a>
+                </li>
+
+
+            }
+            else if (Model.ProductType != null)
+            {
+                <li class="breadcrumb-item " >
+                    <a href="@Model.ProductType.GetUrlNew()">
+
+                        <span> @Model.ProductType.GetName()</span>
+                    </a>
+                </li>
+            }
+            
+
+        </ol>
+    </div>
+</nav>
+<section class="totalproducts pagepadding">
+    <div class="">
+	<h1>@H1Value</h1>
+        <div class="totalpro_box">
+            <div class="row w-100 m-0">
+                <div class="col-lg-3 p-0">
+                    <div class="filter_box">
+                        <div class="Filter_Product">
+                            <form id="searchForm">
+                                <a class="btn closeFilter"><i class="bi bi-x"></i></a>
+                                <div class="filtering_item">
+                                    <div class="filter_search">
+                                        <div class="serachBox">
+                                            <div class="searchForm mb-0">
+                                                <input class="form-control" type="search" id="txtCompleteSearch" placeholder="@Resource.Lang.Search..." value="@prname" name="prname" autocomplete="off">
+                                                <button class="btn searchBtn" type="submit">
+                                                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M15.4062 0.90625C10.0668 0.90625 5.71875 5.25427 5.71875 10.5938C5.71875 12.9135 6.53235 15.0402 7.89844 16.709L0.178711 24.4287L1.57129 25.8213L9.29102 18.1016C10.9598 19.4677 13.0865 20.2812 15.4062 20.2812C20.7457 20.2812 25.0938 15.9332 25.0938 10.5938C25.0938 5.25427 20.7457 0.90625 15.4062 0.90625ZM15.4062 2.84375C19.6975 2.84375 23.1562 6.30249 23.1562 10.5938C23.1562 14.885 19.6975 18.3438 15.4062 18.3438C11.115 18.3438 7.65625 14.885 7.65625 10.5938C7.65625 6.30249 11.115 2.84375 15.4062 2.84375Z" fill="black" />
+                                                    </svg>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="proutput" value="@Enum_ProductOutput.SEARCH.ToString().ToLower()" />
+                                <input type="hidden" name="prtypeId" value="@typeId" />
+                                <input type="hidden" name="prcategoryId" value="@categoryId" />
+                                <input type="hidden" name="prsubcategoryId" value="@subcategoryId" />
+                                <input type="hidden" name="prbrandId" value="@prbrandId" />
+                                <input type="hidden" name="prstoreId" value="@prstoreId" />
+                                <input type="hidden" name="prcolorId" value="@prcolorId" />
+                                <input type="hidden" name="prindex" value="@CurrentIndex" />
+                                <input type="hidden" name="prpageSize" value="@prpageSize" />
+                                <input type="hidden" name="prorder" value="@prorder" />
+                                <input type="hidden" name="prstockId" value="@prstockId" />
+                                <input type="hidden" name="prcustomLabel" value="@prcustomLabel" />
+                                <input type="hidden" name="prcustom" value="@prcustom" />
+                                <input type="hidden" name="prcompetitiveId" value="@prcompetitiveId" />
+                                <input type="hidden" name="proptions" value="@proptions" />
+                                @Html.Action("SearchCustom", "ProductType", new { ptviewName = "FilterProductTypeCustom", ptpageSize = 30, isActive = true, typeId = typeId, categoryId = categoryId, subcategoryId = subcategoryId })
+                                <div class="filtering_item">
+                                    <div class="FilterItemBox">
+                                        <strong class="mb-3">@Resource.Lang.PriceRange </strong>
+                                        <input type="text" class="js-range-slider" name="my_range" value="" />
+                                        <input name="prpricefrom" type="hidden" value="@prpricefrom" />
+                                        <input name="prpriceto" type="hidden" value="@prpriceto" />
+                                        <div class="filter_btn">
+                                            <button type="submit" class="btn primary_btn w-100"><span>@Resource.Lang.ApplyChanges</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.Action("SearchOption", "ProductType", new { ptviewName = "FilterProductTypeOption", typeId = typeId, categoryId = categoryId, subcategoryId = subcategoryId })
+                                @Html.Action("SearchCompetitiveFeature", "Store", new { stviewName = "FilterStoreCompetitiveFeature" })
+
+
+                                @if (Model.ProductSubCategory != null)
+                                {
+                                    ProductCustomField forthValue = Model.ProductSubCategory.ProductCustomField.FirstOrDefault(p => p.SyncName == "SEARCH_PAGE");
+                                    List<int> selectedItems = new List<int>();
+                                    if (string.IsNullOrEmpty(prcustom) == false)
+                                    {
+                                        foreach (string item in prcustom.Split('*'))
+                                        {
+                                            if (item.Contains("@"))
+                                            {
+                                                selectedItems.Add(item.Split('@')[1].GetInteger());
+                                            }
+                                        }
+                                    }
+                                    if (forthValue != null)
+                                    {
+                                        <div class="filtering_item">
+                                            <strong>@Resource.Lang.TypeProduct</strong>
+                                            @if (forthValue != null)
+                                            {
+                                                foreach (var item in forthValue.ProductCustomItem)
+                                                {
+                                                    <div class=" checkBox">
+                                                        <input type="checkbox" @(selectedItems.Any(p => p == item.ID) ? "checked" : "") class="custom-check-filter" custom-field-id="@item.FieldId" custom-value="@item.ID" id="@("io" + @item.ID)" />
+                                                        <div class="selector"></div>
+
+                                                        <label for="@("io" + @item.ID)">@item.Value</label>
+
+
+
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    }
+
+
+                                }
+
+                                <div class="DashedFilterLine"></div>
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <p class="accordion-header" id="headingOne">
+                                            <button class="accordion-button btn  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                    aria-expanded="false" aria-controls="collapseOne">
+                                                @Resource.Lang.Brands
+                                            </button>
+                                        </p>
+                                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                @Html.Action("Search", "ProductBrand", new { pbviewName = "FilterProductBrand", pbtypeId = typeId, pbcategoryId = categoryId, pbsubcategoryId = subcategoryId })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <p class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                @Resource.Lang.Stores
+                                            </button>
+                                        </p>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <div class="filter_options">
+                                                    @Html.Action("Search", "Store", new { stviewName = "FilterStore", sttypeId = pbTypeId, stactive = true, categoryId = categoryId, subcategoryId = subcategoryId })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <p class="accordion-header" id="headingThree">
+                                            <button class="accordion-button btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                    aria-expanded="false" aria-controls="collapseThree">
+                                                @Resource.Lang.Status
+                                            </button>
+                                        </p>
+                                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <div class="filter_options">
+                                                    <div class="filtering_item">
+                                                        <ul>
+
+                                                            <li class="radioBox">
+                                                                <input id="stock-1" class="update-stock" value="all" @(prstockId == "all" ? "checked" : "") type="radio" name="prstock" checked />
+                                                                <div class="selector"></div>
+                                                                <label for="stock-1">@Resource.Lang.All</label>
+                                                            </li>
+                                                            <li class="radioBox">
+                                                                <input id="stock-2" class="update-stock" value="available" @(prstockId == "available" ? "checked" : "") type="radio" name="prstock" />
+                                                                <div class="selector"></div>
+                                                                <label for="stock-2">@Resource.Lang.Available</label>
+                                                            </li>
+                                                            <li class="radioBox">
+                                                                <input id="stock-3" class="update-stock" value="not_available" @(prstockId == "not_available" ? "checked" : "") type="radio" name="prstock" />
+                                                                <div class="selector"></div>
+                                                                <label for="stock-3">@Resource.Lang.NoAvailable</label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <button class="btn showFilter">
+                        <span>فیلتر</span>
+                    </button>
+                    <div class="products-boxes">
+                        <div class="container">
+                            <div class="row">
+                           
+                                @if (!Model.Results.Any())
+                                {
+                                    <div class="noResult">
+                                        <img class="w-100 h-100" src="~/Assets/Zeno/images/noresualt.png" />
+                                        <p class="alert ">@Resource.Notify.UnfortunatelyNoProductWasFound</p>
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    foreach (var item in Model.Results)
+                                    {
+                                        <div class="col-lg-4 col-md-6 col-12 p-2 mb-3">
+                                            @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Product/ProductItem.cshtml", item)
+
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/SearchPagination.cshtml")
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	@if(absContent!=null && absContent!=""){
+		<div class="products-description">
+    		<div class="container">
+        	@{
+            	<div class="products-description-inner">
+					<div class="seeMoreBox">
+						<div class="seeMore">
+							<div class="title">
+								<strong class="titleText">@Resource.Lang.ReadMore</strong>
+							</div>
+							<div class="seeMoreText">
+								<div class="totlalText">
+									<p>@Html.Raw(serchContent)</p>
+									<button class="btn hideMoreTextBtn primary_btn"><span>@Resource.Lang.Close</span></button>
+								</div>
+								<div class="limitedText m-0">
+									<p>@Html.Raw(ViewBag.MetaDescription + ". . .")</p>
+									<button class="btn seeMoreButton primary_btn m-0 mt-3"><span>@Resource.Lang.ReadMore</span></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+        	}
+    		</div>
+		</div>
+	}
+</section>
+
+@section Head {
+}
+@section endScripts {
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initializeSearchPageScript();
+        });
+    </script>
+}

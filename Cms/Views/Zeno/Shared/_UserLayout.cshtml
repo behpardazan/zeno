@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/zeno/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/zeno/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/zeno/images/favicon/site.webmanifest">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_BOOTSTRAP_MIN" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_BOOTSTRAP_ICON" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_OWL_CAROUSEL" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_OWL_CAROUSEL_THEME" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_ANIMATE" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_HOVER" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_RANGE" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_MAGIC" />
+    <link rel="stylesheet" href="@Resources.Zeno.CSS_STYLE" />
+    <link rel="stylesheet" href="@Resources.Default.CSS_PLUGIN_TOASTR" />
+
+    @RenderSection("Head", false)
+
+</head>
+@using DataLayer.ViewModels;
+@using DataLayer.Base;
+
+@{
+       ViewAccount CurrentAccount = BaseWebsite.GetCurrentAccount;
+}
+<body>
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Shared/_Header.cshtml")
+    <section class="HomeServices mt-0 p-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-6 Top">
+                    <a href="/CreditShoping">
+                        <div class="HomeServicesParent">
+                            <div class="HomeServicesDownload">
+                                <strong> شرایط خرید اعتباری</strong>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @Html.Action("Search", "ProductType", new { ptviewName = "MenueIcon", ptpageSize = 30, isService = false, isActive = true })
+
+            </div>
+        </div>
+    </section>
+    
+        
+
+    <section class="profile">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 p-1">
+                    <div class="userSideBar">
+                        <div class="userBox">
+                            <div class="userImgBox d-none">
+                                <img src="assets/images/user.png">
+                            </div>
+                            <div class="d-flex flex-column align-items-center">
+                                <strong data-bind="text: viewModel.Account.FullName"></strong>
+                                <span class="mt-2" data-bind="text:viewModel.Account.Mobile"></span>
+                                <button class="editeDashboard" onclick="showEditProfile()"><img src="~/Assets/zeno/Images/profile/edite.png" /></button>
+                                <a class="back2Dashboard" href="/Account/Dashboard"> <img src="~/Assets/zeno/Images/profile/backDashboard.png" /></a>
+                                @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/EditProfile.cshtml")
+
+                            </div>
+                            <hr>
+                            <span class="gmail" data-bind="text:viewModel.Account.Email"></span>
+                        </div>
+                        <ul class="panelOptions">
+                            <li>
+                                <a href="@Url.Action("SearchAccountOrder", "Account", new { aoViewName = "Order", aoStatus =DataLayer.Enumarables.Enum_Code.ORDER_STATUS_INSERTED.ToString()})" class="optionItem"><img src="~/Assets/zeno/Images/profile/orders.png" /><span>سفارشات من</span></a>
+                            </li>
+
+                            <li>
+                                    <a href="/Account/Address" class="optionItem"><img src="~/Assets/zeno/Images/profile/home.png" /><span>@Resource.Lang.Addresses</span></a>
+                                </li>
+                            <li>
+                                <a href="/Account/Favorite" class="optionItem"><img src="~/Assets/zeno/Images/profile/clipboard.png" /><span>علاقه مندی ها</span></a>
+                            </li>
+
+                            <li>
+                                <a href="/Account/UserComment" class="optionItem"><img src="~/Assets/zeno/Images/profile/comment.png" /><span>نظرات</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("logout", "account", new { back = "/" })" class="optionItem"><img src="~/Assets/zeno/Images/profile/logout.png" /><span>@Resource.Lang.SignOut</span></a>
+                            </li>
+                            @*<li>
+                                    <a href="/Account/History" class="optionItem"><img src="~/Assets/lajevard/Images/profile/view.png" /><span>بازدید های اخیر</span></a>
+                                </li>*@
+
+                        </ul>
+                    </div>
+                    <!-- Modal -->
+
+                </div>
+                <div class="col-lg-9 p-1">
+                    <div class="userPanelContent">
+                        @RenderBody()
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/ShippingCity.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/ShippingSubscription.cshtml")
+
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Shared/_Footer.cshtml")
+    @*@Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/AddAddress.cshtml")
+    @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/RemoveAddress.cshtml")*@
+    <script src="~/Assets/Plugins/cropit-master/dist/jquery.cropit.js"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_JQUERY"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_BOOTSTRAP_BUNDLE"></script>
+    <script src="@Resources.Default.JS_PLUGIN_KNOCKOUT"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_LANGUAGE"></script>
+    <script src="@Resources.Default.JS_PLUGIN_TOASTR"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_CORE"></script>
+    <script src="@Resources.Default.JS_CODEPROCESS_AJAX?ver=1"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_OWL_CAROUSEL"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_RANGE_SLIDER"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_MAGIC"></script>
+    <script type="text/javascript" src="@Resources.Zeno.JS_ZENO"></script>
+
+    <script type="text/javascript" src="@Resources.Zeno.JS_WEBSITE"></script>
+    @RenderSection("endScripts", false)
+    <script type="text/javascript">
+        initializeCommonScript();
+    </script>
+
+    <script>
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+
+@model IEnumerable<Product>
+@*<section class="category_sliders">
+    <div class="container">
+        <div class="categorySliders_box">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                <li class="proBrand">
+                    <img src="/Assets/KhoshKala/Image/midleBrand.png" alt="KhoshKala">
+                </li>
+                <li class="">
+                    <strong class="nav-link">@Resource.Lang.SimilarProducts</strong>
+                </li>
+
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="categorySlider_box">
+                        <div class="owl-carousel owl-theme product_category" id="best_sellers">
+                            @foreach (var item in Model)
+                            {
+                                @Html.Partial("~/Views/KhoshKala/Product/ProductItem.cshtml", item)}
+                        </div>
+                        <div class="sliderNavigation">
+                            <a class="btn prev"></a>
+                            <a class="btn next"></a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>*@
+
+<div class="category_sliders">
+    <div class="container">
+        <div class="categorySliders_box">
+            <ul class="selectSlider">
+
+                <li class="proBrand">
+                    <img src="/Assets/KhoshKala/Image/midleBrand.png" alt="خوش کالا" title="خوش کالا">
+                </li>
+                <li class="nav-item mt-auto">
+                    <button class="btn selc1 active">@Resource.Lang.SimilarProducts</button>
+                </li>
+            </ul>
+            <div class="multiSlider">
+                <div class="categorySlider_box cont1">
+                    
+                    <div class="owl-carousel owl-theme product_category" id="best_sellers">
+                        @foreach (var item in Model)
+                        {
+                            @Html.Partial("~/Views/KhoshKala/Product/ProductItem.cshtml", item)}
+                    </div>
+                    <div class="sliderNavigation">
+                        <a class="btn prev"></a>
+                        <a class="btn next"></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

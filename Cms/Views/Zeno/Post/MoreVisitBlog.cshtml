@@ -1,0 +1,15 @@
+﻿@using DataLayer.Base;
+@model IEnumerable<DataLayer.Entities.Post>
+
+<div class="right_title"><strong>@Resource.Lang.MostViewedPosts</strong></div>
+<div class="mosView_articles">
+    <ul>
+        @if (Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <li><a href="@item.GetLinkWithUrl()">@item.GetName()</a></li>
+            }
+        }
+    </ul>
+</div>

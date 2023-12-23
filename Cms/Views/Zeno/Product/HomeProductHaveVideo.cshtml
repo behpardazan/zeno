@@ -1,0 +1,45 @@
+﻿@model List<DataLayer.Entities.Product>
+﻿@using DataLayer.Base;
+
+@if (Model.Count() > 0)
+{
+    var product = Model.FirstOrDefault();
+    <div class="HomeVideoBox">
+        <div class="row Reverse m-0">
+            <div class="col-lg-3 p-0">
+                <div class="HomeVideoDescription">
+                    <strong>@product.GetName()</strong>
+                    <p>@product.GetSummery()</p>
+                    <a href="@product.GetUrl()" class="btn HomeVideoDescriptionBtn">
+                        @Resource.Lang.AddToBasket
+                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9393 21.0607C11.5251 21.6464 12.4749 21.6464 13.0607 21.0607L22.6066 11.5147C23.1924 10.9289 23.1924 9.97918 22.6066 9.3934C22.0208 8.80761 21.0711 8.80761 20.4853 9.3934L12 17.8787L3.51472 9.3934C2.92893 8.80761 1.97918 8.80761 1.3934 9.3934C0.807612 9.97918 0.807612 10.9289 1.3934 11.5147L10.9393 21.0607ZM10.5 0L10.5 20H13.5L13.5 0L10.5 0Z" fill="white" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            @if (product.VideoDemoFileId != null)
+            {
+                <div class="col-lg-9 p-0">
+                    <div class="HomeVideo">
+					@{
+					var urlPic="";
+					if(product.Picture!=null){
+					urlPic=product.Picture.GetUrl();
+					}
+					else{
+					urlPic="https://zeno.ir/Panel/Uploads/5/7/3/7c6ef88b-f901-4cf9-989b-22128bda816e.jpg";
+					}
+					}
+                        <video width="100%" height="400px" poster="@urlPic" controls>
+                            <source src="@Html.Raw("/cdn/file/dl2/"+product.VideoDemoFileId)" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+
+}

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = @Resource.Lang.Gallery;
+    Layout = Resources.Lajevard.WEBSITE_LAYOUT;
+}
+<section class="GalleryBanner">
+    <h3>@Resource.Lang.Gallery</h3>
+</section>
+<section class="Gallery">
+    <div class="GalleryBox">
+        <div class="container">
+            <div class="row">
+                @Html.Action("Search", "Gallery", new { gaviewName = "_GalleryList", gaSize = 30 })
+            </div>
+        </div>
+    </div>
+</section>

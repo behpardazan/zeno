@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b6c69f39e23e4ec1a5a6a5bc16a8ff6d" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="EmptyShopModel.Account" Width="1.5" PointX="3" PointY="209.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountAddress" Width="1.5" PointX="11.25" PointY="223.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountBasket" Width="1.5" PointX="10.75" PointY="241.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountCredit" Width="1.5" PointX="5.25" PointY="205.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountDocument" Width="1.5" PointX="8.25" PointY="206" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountLog" Width="1.5" PointX="5.25" PointY="228.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountLogVisit" Width="1.5" PointX="5.25" PointY="232" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountOrder" Width="1.5" PointX="23.75" PointY="230.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountOrderComment" Width="1.5" PointX="26" PointY="262" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountOrderProduct" Width="1.5" PointX="29" PointY="254.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountPasswordForget" Width="1.5" PointX="5.25" PointY="235.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountReagent" Width="1.5" PointX="5.25" PointY="225.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Agreement" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AgreementModule" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AgreementPlatform" Width="1.5" PointX="19.25" PointY="104.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.AlexaRank" Width="1.5" PointX="29.75" PointY="216.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Bank" Width="1.5" PointX="9.75" PointY="300.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Banner" Width="1.5" PointX="6" PointY="215.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.BannerLanguage" Width="1.5" PointX="17.25" PointY="208" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Category" Width="1.5" PointX="6" PointY="210.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.CategoryLanguage" Width="1.5" PointX="11.25" PointY="210.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Chat" Width="1.5" PointX="5.25" PointY="278.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.City" Width="1.5" PointX="6.75" PointY="201.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.CityLanguage" Width="1.5" PointX="21.5" PointY="196.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Clearing" Width="1.5" PointX="24.5" PointY="218.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Code" Width="1.5" PointX="17" PointY="194" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.CodeGroup" Width="1.5" PointX="14.75" PointY="197.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Color" Width="1.5" PointX="5.25" PointY="261.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ColorLanguage" Width="1.5" PointX="7.5" PointY="262.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Comment" Width="1.5" PointX="16.5" PointY="237" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.CompetitiveFeature" Width="1.5" PointX="17.25" PointY="191.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Contact" Width="1.5" PointX="5.25" PointY="252.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ContactUs" Width="1.5" PointX="6" PointY="220.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ContactUsField" Width="1.5" PointX="8.25" PointY="224.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Country" Width="1.5" PointX="9.75" PointY="201.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Currency" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Dashboard" Width="1.5" PointX="3" PointY="303.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Discount" Width="1.5" PointX="23.75" PointY="253.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.DiscountGroup" Width="1.5" PointX="8.25" PointY="252.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Email" Width="1.5" PointX="12.75" PointY="289.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.EmailAddress" Width="1.5" PointX="7.5" PointY="289.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.EmailAttachment" Width="1.5" PointX="16" PointY="292.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.EmailHost" Width="1.5" PointX="5.25" PointY="285.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.EmailInbox" Width="1.5" PointX="13.75" PointY="293.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.EmailSetting" Width="1.5" PointX="10.75" PointY="294" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.EmailType" Width="1.5" PointX="10.5" PointY="296.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Event" Width="1.5" PointX="8.25" PointY="293.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Gallery" Width="1.5" PointX="11.25" PointY="206.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.GalleryPictures" Width="1.5" PointX="18.5" PointY="212" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Guarantee" Width="1.5" PointX="11.25" PointY="216.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.GuaranteeCompany" Width="1.5" PointX="9" PointY="216" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Language" Width="1.5" PointX="14.25" PointY="190" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Mall" Width="1.5" PointX="9" PointY="210" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.MallContact" Width="1.5" PointX="14.25" PointY="208.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.MallPicture" Width="1.5" PointX="16.25" PointY="214.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Menu" Width="1.5" PointX="13.5" PointY="211.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.MenuLanguage" Width="1.5" PointX="19.75" PointY="208" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Merchant" Width="1.5" PointX="12" PointY="300.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Module" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ModuleItem" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Newsletter" Width="1.5" PointX="21.5" PointY="211.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.NewsletterGroup" Width="1.5" PointX="21.5" PointY="201.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.NewsletterItem" Width="1.5" PointX="23.75" PointY="210.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Notification" Width="1.5" PointX="5.25" PointY="294" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.NotificationApp" Width="1.5" PointX="21.5" PointY="185.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.NotificationProject" Width="1.5" PointX="19.25" PointY="186.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.OnlineOrder" Width="1.5" PointX="19.25" PointY="195.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Package" Width="1.5" PointX="3" PointY="243.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Payment" Width="1.5" PointX="14.25" PointY="249.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.PaymentPackage" Width="1.5" PointX="25.5" PointY="248.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.PaymentProductOrder" Width="1.5" PointX="27" PointY="241.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.PaymentSubject" Width="1.5" PointX="12" PointY="272.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.PaymentType" Width="1.5" PointX="20.25" PointY="273" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.PaymentWebsite" Width="1.5" PointX="12" PointY="304.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Permission" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Picture" Width="1.5" PointX="0.75" PointY="212.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Post" Width="1.5" PointX="14.25" PointY="218" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.PostLanguage" Width="1.5" PointX="19.5" PointY="226.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.PostLike" Width="1.5" PointX="16.5" PointY="218.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.PriceRange" Width="1.5" PointX="34.25" PointY="254.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Product" Width="1.5" PointX="18.5" PointY="252" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductBarcode" Width="1.5" PointX="20.75" PointY="265.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductBrand" Width="1.5" PointX="5.25" PointY="239" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductBrandUser" Width="1.5" PointX="10.5" PointY="268.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCategory" Width="1.5" PointX="8.25" PointY="238.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCategoryCompany" Width="1.5" PointX="12.75" PointY="236.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCategoryLanguage" Width="1.5" PointX="13.5" PointY="240.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductColor" Width="1.5" PointX="23.75" PointY="262.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductComment" Width="1.5" PointX="8.25" PointY="246.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCompany" Width="1.5" PointX="16.25" PointY="285.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCustomField" Width="1.5" PointX="13.5" PointY="257.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCustomFieldLanguage" Width="1.5" PointX="15.75" PointY="257.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCustomItem" Width="1.5" PointX="15.75" PointY="261.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCustomItemLanguage" Width="1.5" PointX="21" PointY="261.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductCustomValue" Width="1.5" PointX="26.75" PointY="257.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductLanguage" Width="1.5" PointX="26.75" PointY="253.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductLike" Width="1.5" PointX="8.25" PointY="227.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductNotify" Width="1.5" PointX="10.5" PointY="237.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductOption" Width="1.5" PointX="5.25" PointY="266.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductOptionItem" Width="1.5" PointX="7.5" PointY="266.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductPicture" Width="1.5" PointX="29.75" PointY="240.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductQuantity" Width="1.5" PointX="23.75" PointY="265.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductSize" Width="1.5" PointX="20.75" PointY="269.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductSubCategory" Width="1.5" PointX="10.5" PointY="228.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductSubCategoryLanguage" Width="1.5" PointX="26.75" PointY="233.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductTypeBrand" Width="1.5" PointX="7.5" PointY="257.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductTypeLanguage" Width="1.5" PointX="8.25" PointY="269.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductVisit" Width="1.5" PointX="16.25" PointY="211.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Rebate" Width="1.5" PointX="21.5" PointY="253" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.RecoverPassword" Width="1.5" PointX="5.25" PointY="296.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Review" Width="1.5" PointX="24.75" PointY="245.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SendType" Width="1.5" PointX="19.5" PointY="234.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ServerException" Width="1.5" PointX="5.25" PointY="299.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Setting" Width="1.5" PointX="10.25" PointY="289.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SettingGroup" Width="1.5" PointX="8" PointY="281.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SetupLevel" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Shipping" Width="1.5" PointX="19.5" PointY="238.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShippingCity" Width="1.5" PointX="25.5" PointY="223.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Shop" Width="1.5" PointX="11.25" PointY="248.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopAddress" Width="1.5" PointX="13.5" PointY="274.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopChat" Width="1.5" PointX="13.5" PointY="232" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopContact" Width="1.5" PointX="19.5" PointY="249" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopCustomField" Width="1.5" PointX="14.25" PointY="278.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopCustomItem" Width="1.5" PointX="14.25" PointY="281.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopCustomValue" Width="1.5" PointX="16.5" PointY="244.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopDocument" Width="1.5" PointX="19.5" PointY="246" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopFollow" Width="1.5" PointX="16.5" PointY="233.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopPackage" Width="1.5" PointX="16.5" PointY="268.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopPaymentType" Width="1.5" PointX="22.5" PointY="250" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopPicture" Width="1.5" PointX="16.5" PointY="240.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopProductType" Width="1.5" PointX="13.5" PointY="263.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopReportBlock" Width="1.5" PointX="16.5" PointY="230.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopReseller" Width="1.5" PointX="22.5" PointY="242" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopResellerCollection" Width="1.5" PointX="28.75" PointY="228.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopResellerCollectionProduct" Width="1.5" PointX="31" PointY="248.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopResellerGallery" Width="1.5" PointX="27.75" PointY="225.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopResellerLanguage" Width="1.5" PointX="27.75" PointY="244" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopResellerProduct" Width="1.5" PointX="27.75" PointY="249.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopResellerStory" Width="1.5" PointX="29.75" PointY="234" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopUser" Width="1.5" PointX="16.5" PointY="272.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShopWebsiteSetting" Width="1.5" PointX="21.5" PointY="214.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SiteUser" Width="1.5" PointX="3" PointY="286.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SiteUserUserGroup" Width="1.5" PointX="5.25" PointY="290.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Size" Width="1.5" PointX="5.25" PointY="273.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SizeLanguage" Width="1.5" PointX="7.5" PointY="274.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Slider" Width="1.5" PointX="5.25" PointY="247.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SliderLanguage" Width="1.5" PointX="16.5" PointY="248.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Sms" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SmsNumber" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SmsProvider" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SmsSetting" Width="1.5" PointX="10.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SmsType" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.State" Width="1.5" PointX="12" PointY="201.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.StaticPage" Width="1.5" PointX="11.25" PointY="219.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Store" Width="1.5" PointX="17.25" PointY="221.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.StoreComment" Width="1.5" PointX="24.5" PointY="214.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.StoreCompetitiveFeature" Width="1.5" PointX="19.5" PointY="231.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.StoreProduct" Width="1.5" PointX="24.75" PointY="241.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.StoreProductQuantity" Width="1.5" PointX="32" PointY="254.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Survey" Width="1.5" PointX="12" PointY="193" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SurveyAnswer" Width="1.5" PointX="14.25" PointY="226.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SurveyAnswerDetail" Width="1.5" PointX="26.5" PointY="228.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SurveyLanguage" Width="1.5" PointX="19.5" PointY="192.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SurveyQuestion" Width="1.5" PointX="24.25" PointY="206" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SurveyQuestionItem" Width="1.5" PointX="24.25" PointY="201.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SurveyQuestionItemLanguage" Width="1.5" PointX="26.5" PointY="196.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SurveyQuestionLanguage" Width="1.5" PointX="26.5" PointY="199.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.SyncLog" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Tag" Width="1.5" PointX="20.25" PointY="205" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.TagPost" Width="1.5" PointX="22.5" PointY="226" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.TagSubcategory" Width="1.5" PointX="26.75" PointY="237.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.TelegramAccount" Width="1.5" PointX="13.5" PointY="266.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.TelegramBot" Width="1.5" PointX="5.25" PointY="313" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.TelegramCommand" Width="1.5" PointX="10.5" PointY="263.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.TelegramKeyBoard" Width="1.5" PointX="7.5" PointY="313.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.TelegramKeyBoardItem" Width="1.5" PointX="13.75" PointY="285.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Template" Width="1.5" PointX="9" PointY="219.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Unit" Width="1.5" PointX="16.25" PointY="265.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.UserGroup" Width="1.5" PointX="3" PointY="282.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.UserGroupDashboard" Width="1.5" PointX="5.25" PointY="282.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.UserGroupPermission" Width="1.5" PointX="5.25" PointY="143.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.UserRole" Width="1.5" PointX="0.75" PointY="283.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.VersionUpdate" Width="1.5" PointX="5.25" PointY="317.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.Website" Width="1.5" PointX="19.25" PointY="215.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteContactForm" Width="1.5" PointX="14.25" PointY="203.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteDetail" Width="1.5" PointX="16.5" PointY="184.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteDocument" Width="1.5" PointX="12" PointY="197" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteDomain" Width="1.5" PointX="27.5" PointY="216.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteForm" Width="1.5" PointX="8.25" PointY="284.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteFormAccount" Width="1.5" PointX="13.5" PointY="245.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteFormField" Width="1.5" PointX="10.5" PointY="281.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteFormValue" Width="1.5" PointX="18.75" PointY="242.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteLanguage" Width="1.5" PointX="27.5" PointY="213.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteShortUrl" Width="1.5" PointX="5.25" PointY="324.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteUser" Width="1.5" PointX="11.25" PointY="286.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmptyShopModel.WebsiteView" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="EmptyShopModel.FK_Account_City" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Account_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Account_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Account_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Account_State" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountAddress_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountBasket_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountCredit_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountDocument_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountLog_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountLogVisit_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrder_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountPasswordForget_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountReagent_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Payment_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PostLikes_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductComment_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductLike_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductNotify_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductVisit_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopChat_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopFollow_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopReportBlock_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Store_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreComment_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyAnswer_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramAccount_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteContactForm_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteFormAccount_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteFormValue_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountAddress_City" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountAddress_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountAddress_State" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Order_AccountAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountBasket_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountBasket_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountBasket_ProductOptionItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountBasket_ShopReseller" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountBasket_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountBasket_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountCredit_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountDocument_Document" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrder_AccountOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrder_Clearing1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrder_SendType" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrder_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrder_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrderComment_AccountOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrderProduct_AccountOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Order_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Order_PaymentType" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Order_Rebate" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PaymentProductOrder_AccountOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrderComment_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrderProduct_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrderProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrderProduct_ProductOptionItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrderProduct_ShopReseller" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountOrderProduct_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Agreement_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AgreementModule_Agreement" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AgreementPlatform_Agreement" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AgreementModule_ModuleItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AgreementPlatform_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_AlexaRank_WebsiteDomain" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Merchant_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Banner_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Banner_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_BannerLanguage_Banner" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_BannerLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Category_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Category_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_CategoryLanguage_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Categories_dbo_Codes_TypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Menus_dbo_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Posts_dbo_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Gallery_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StaticPage_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_CategoryLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Chat_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Chat_SiteUser1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_City_State" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_CityLanguage_City" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Mall_City" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingCity_City" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shop_City" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopReseller_City" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_CityLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Clearing_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Clearing_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Clearing_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Codes_dbo_CodeGroups_CodeGroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Menus_dbo_Codes_TypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_Code1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_DiscountGroup_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailInbox_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Event_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Language_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_MallContact_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_NotificationProject_Code1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_OnlineOrder_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Payment_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Payment_Code1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomField_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Rebate_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shop_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopContact_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopCustomField_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerProduct_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreProduct_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyQuestion_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramCommand_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramKeyBoard_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Template_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Website_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteFormField_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ColorLanguage_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBarcode_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductColor_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductNotify_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductPicture_Color1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductQuantity_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ColorLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Comments_Posts" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreCompetitiveFeature_CompetitiveFeature" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Contact_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Contact_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ContactUs_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ContactUs_WebsiteDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ContactUsField_ContactUs" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Country_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingCity_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_State_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_UserGroupDashboard_Dashboard" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_DiscountGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_ProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_ProductSubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_StoreProductQuantity" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_DiscountGroup_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_DiscountGroup_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Email_EmailAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Email_EmailType" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailAttachment_Email" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Email_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailAddress_EmailHost" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailInbox_EmailAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailSetting_EmailAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailAttachment_EmailInbox" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailHost_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailInbox_EmailInbox" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailInbox_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_EmailSetting_EmailType" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Event_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Menus_dbo_Galleries_GalleryId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Gallery_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_GalleryPictures_Galleries" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_GalleryPictures_Pictures" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Guarantee_GuaranteeCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_GuaranteeCompany_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_GuaranteeCompany_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_MenuLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PostLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCategoryLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomFieldLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomItemLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductSubCategoryLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductTypeLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SizeLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SliderLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyQuestionItemLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyQuestionLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteDetail_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteDomain_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Mall_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_MallContact_Mall" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_MallPicture_Mall" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shop_Mall" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_MallPicture_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Menus_dbo_Menus_ParentId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Menus_dbo_Posts_PostId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Menu_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_MenuLanguage_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Payment_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ModuleItem_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Permission_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Newsletter_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_NewsletterItem_Newsletter" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_NewsletterItem_NewsletterGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Notification_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_NotificationApp_NotificationProject" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_OnlineOrder_WebsiteDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_OnlineOrder_WebsiteDocument1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_OnlineOrder_WebsiteDocumentPassportFile" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Package_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PaymentPackage_Package" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopPackage_Package" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Payment_PaymentSubject" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Payment_PaymentWebsite" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Payment_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PaymentPackage_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PaymentProductOrder_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopPaymentType_PaymentType" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Permissions_dbo_Permissions_ParentId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_UserGroupPermissions_dbo_Permissions_PermissionId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_Posts_dbo_Pictures_MainPiture_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Post_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBrand_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCategory_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCategory_Picture1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductPicture_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductSubCategory_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductSubCategory_PictureIcon" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Review_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shop_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopPicture_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopReseller_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopReseller_Picture1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopReseller_Picture2" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerCollection_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerCollection_Picture1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerCollection_Picture2" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerGallery_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerStory_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SiteUser_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Slider_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StaticPage_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Store_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramCommand_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Template_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Post_State" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Post_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Post_WebsiteDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PostLanguage_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PostLikes_Posts" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TagPost_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_PriceRange_StoreProductQuantity" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_Document" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_ProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_ProductCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_ProductOption" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_ProductSubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBarcode_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductColor_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductComment_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomValue_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductLanguage_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductLike_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductNotify_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductPicture_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductQuantity_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductSize_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductVisit_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Review_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerCollectionProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBarcode_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBrandUser_ProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomField_ProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductTypeBrand_ProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Rebate_ProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerCollectionProduct_ProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerProduct_ProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBrandUser_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCategory_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCategory_ProductCategory1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCategoryLanguage_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomField_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductSubCategory_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Rebate_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCategoryCompany_ProductSubCategory1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductComment_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomField_ProductSubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomFieldLanguage_ProductCustomField" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomItem_ProductCustomField" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomValue_ProductCustomField" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomItemLanguage_ProductCustomItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomValue_ProductCustomItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductNotify_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductOptionItem_ProductOption" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductQuantity_ProductOptionItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductQuantity_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreProductQuantity_ProductQuantity" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductSize_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductSubCategoryLanguage_ProductSubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Rebate_ProductSubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TagSubcategory_ProductSubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Rebate_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Rebate_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_RecoverPassword_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SendType_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ServerException_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Setting_SettingGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Setting_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shipping_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingCity_State" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingCity_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shop_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shop_Template" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shop_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Shop_WebsiteFile" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopAddress_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopChat_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopContact_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopCustomValue_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopDocument_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopFollow_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopPackage_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopPaymentType_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopPicture_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopProductType_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopReportBlock_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopReseller_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopUser_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopCustomItem_ShopCustomField" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopCustomValue_ShopCustomField" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopCustomValue_ShopCustomItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopDocument_WebsiteDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopPackage_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopReseller_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerCollection_ShopReseller" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerGallery_ShopReseller" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerLanguage_ShopReseller" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerProduct_ShopReseller" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerStory_ShopReseller" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerCollectionProduct_ShopResellerCollection" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerGallery_WebsiteDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopUser_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopWebsiteSetting_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_SiteUsers_dbo_SiteUsers_UserCreator_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_SiteUserUserGroups_dbo_SiteUsers_SiteUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Slider_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramAccount_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramBot_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_VersionUpdate_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteForm_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteShortUrl_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteUser_SiteUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_SiteUserUserGroups_dbo_UserGroups_UserGroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SizeLanguage_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Slider_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SliderLanguage_Slider" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SmsNumber_SmsProvider" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SmsSetting_SmsNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SmsSetting_SmsType" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Store_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreComment_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreCompetitiveFeature_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreProduct_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_StoreProductQuantity_StoreProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyAnswer_Survey" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyLanguage_Survey" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyQuestion_SurveyQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyAnswerDetail_SurveyAnswer" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyAnswerDetail_SurveyQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyAnswerDetail_SurveyQuestionItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyQuestionItem_SurveyQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyQuestionLanguage_SurveyQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_SurveyQuestionItemLanguage_SurveyQuestionItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TagPost_Tag" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TagSubcategory_Tag" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramAccount_TelegramBot" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramCommand_TelegramBot" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramKeyBoard_TelegramBot" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramCommand_TelegramKeyBoard" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramKeyBoardItem_TelegramCommand" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_TelegramKeyBoardItem_TelegramKeyBoard" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_Website_Template" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_dbo_UserGroupPermissions_dbo_UserGroups_UserGroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_UserGroup_UserRole" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_UserGroupDashboard_UserGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteContactForm_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteDomain_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteForm_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteLanguage_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteUser_Website" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteFormAccount_WebsiteForm" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteFormField_WebsiteForm" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteFormValue_WebsiteFormAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteFormValue_WebsiteFormField" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductBrandLanguage" Width="1.5" PointX="26.5" PointY="209" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBrandLanguage_Language" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBrandLanguage_ProductBrand" />
+        <EntityTypeShape EntityType="EmptyShopModel.StateLanguage" Width="1.5" PointX="22.5" PointY="193.125" />
+        <AssociationConnector Association="EmptyShopModel.FK_StateLanguage_Language" />
+        <AssociationConnector Association="EmptyShopModel.FK_StateLanguage_State" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductPiceHistory" Width="1.5" PointX="20.75" PointY="276.5" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductPiceHistory_Product" />
+        <EntityTypeShape EntityType="EmptyShopModel.File" Width="1.5" PointX="5.375" PointY="11.75" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_File" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_File1" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_File2" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_File3" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_File4" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_File5" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_File6" />
+        <EntityTypeShape EntityType="EmptyShopModel.GalleryLanguage" Width="1.5" PointX="16.5" PointY="204" />
+        <AssociationConnector Association="EmptyShopModel.FK_GalleryLanguage_Gallery" />
+        <AssociationConnector Association="EmptyShopModel.FK_GalleryLanguage_Language" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductType" Width="1.5" PointX="3" PointY="254.25" />
+        <AssociationConnector Association="EmptyShopModel.FK_Color_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_Discount_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductBrand_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCategory_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCustomField_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductOption_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductTypeBrand_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductTypeLanguage_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_Rebate_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopProductType_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerCollectionProduct_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShopResellerProduct_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_Size_ProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductType_Picture" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductType_WebsiteDocument" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductType_WebsiteDocument1" />
+        <AssociationConnector Association="EmptyShopModel.FK_Post_City" />
+        <AssociationConnector Association="EmptyShopModel.FK_WebsiteFormField_ProductCategory" />
+        <EntityTypeShape EntityType="EmptyShopModel.AccountReport" Width="1.5" PointX="10.5" PointY="259.125" />
+        <EntityTypeShape EntityType="EmptyShopModel.DashboardFiles" Width="1.5" PointX="7.625" PointY="13.5" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountReport_Account" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountReport_Event" />
+        <AssociationConnector Association="EmptyShopModel.FK_DashboardFiles_File" />
+        <AssociationConnector Association="EmptyShopModel.FK_AccountReport_Event1" />
+        <EntityTypeShape EntityType="EmptyShopModel.Question" Width="1.5" PointX="5.25" PointY="197.375" />
+        <AssociationConnector Association="EmptyShopModel.FK_Question_Account" />
+        <EntityTypeShape EntityType="EmptyShopModel.Warranty" Width="1.5" PointX="12.375" PointY="3.75" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCompany_ProductCompany" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductVideo" Width="1.5" PointX="30.75" PointY="243.875" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductVideo_Picture" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductVideo_Product" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShippingSubscription" Width="1.5" PointX="14.25" PointY="200.125" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscription_State" />
+        <EntityTypeShape EntityType="EmptyShopModel.ShippingSubscriptionPayment" Width="1.5" PointX="31.25" PointY="259.375" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscriptionPayment_Account" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscriptionPayment_Code" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscriptionPayment_Code1" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscriptionPayment_Merchant" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscriptionPayment_PaymentSubject" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscriptionPayment_PaymentWebsite" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscriptionPayment_SiteUser" />
+        <AssociationConnector Association="EmptyShopModel.FK_ShippingSubscriptionPayment_AccountAddress" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductCompany_ProductSubCategory" />
+        <EntityTypeShape EntityType="EmptyShopModel.Tmp_TagSubcategory" Width="1.5" PointX="12.375" PointY="6.75" />
+        <EntityTypeShape EntityType="EmptyShopModel.CreditShoping" Width="1.5" PointX="5.25" PointY="192.375" />
+        <AssociationConnector Association="EmptyShopModel.FK_CreditShoping_CreditShoping" />
+        <EntityTypeShape EntityType="EmptyShopModel.AnswerSmartOffer" Width="1.5" PointX="3" PointY="205.125" />
+        <EntityTypeShape EntityType="EmptyShopModel.QuestionSmartOffer" Width="1.5" PointX="0.75" PointY="205.5" />
+        <AssociationConnector Association="EmptyShopModel.FK_AnswerSmartOffer_Picture" />
+        <AssociationConnector Association="EmptyShopModel.FK_AnswerSmartOffer_QuestionSmartOffer" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_Account" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_City" />
+        <AssociationConnector Association="EmptyShopModel.FK_Product_State" />
+        <EntityTypeShape EntityType="EmptyShopModel.LadderPayment" Width="1.5" PointX="32.75" PointY="236.875" />
+        <EntityTypeShape EntityType="EmptyShopModel.LadderSetting" Width="1.5" PointX="30.5" PointY="224.5" />
+        <AssociationConnector Association="EmptyShopModel.FK_LadderPayment_Account" />
+        <AssociationConnector Association="EmptyShopModel.FK_LadderPayment_Code" />
+        <AssociationConnector Association="EmptyShopModel.FK_LadderPayment_LadderSetting" />
+        <AssociationConnector Association="EmptyShopModel.FK_LadderPayment_Merchant" />
+        <AssociationConnector Association="EmptyShopModel.FK_LadderPayment_Product" />
+        <AssociationConnector Association="EmptyShopModel.FK_LadderSetting_LadderSetting" />
+        <EntityTypeShape EntityType="EmptyShopModel.SmartOfferVisit" Width="1.5" PointX="5.25" PointY="188.75" />
+        <AssociationConnector Association="EmptyShopModel.FK_SmartOfferVisit_SmartOfferVisit" />
+        <EntityTypeShape EntityType="EmptyShopModel.AnswerSmartOfferLanguage" Width="1.5" PointX="25.5" PointY="192.875" />
+        <EntityTypeShape EntityType="EmptyShopModel.QuestionSmartOfferLanguage" Width="1.5" PointX="24.5" PointY="189.75" />
+        <AssociationConnector Association="EmptyShopModel.FK_AnswerSmartOfferLanguage_AnswerSmartOffer" />
+        <AssociationConnector Association="EmptyShopModel.FK_AnswerSmartOfferLanguage_Language" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionSmartOfferLanguage_Language" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionSmartOfferLanguage_QuestionSmartOffer" />
+        <EntityTypeShape EntityType="EmptyShopModel.QuestionProduct" Width="1.5" PointX="20.75" PointY="280" />
+        <AssociationConnector Association="EmptyShopModel.FK_Post_Product" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionProduct_Product" />
+        <EntityTypeShape EntityType="EmptyShopModel.QuestionProductLanguage" Width="1.5" PointX="31" PointY="230.875" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionProductLanguage_Language" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionProductLanguage_QuestionProduct" />
+        <EntityTypeShape EntityType="EmptyShopModel.QuestionPost" Width="1.5" PointX="16.5" PointY="180.375" />
+        <EntityTypeShape EntityType="EmptyShopModel.QuestionPostLanguage" Width="1.5" PointX="18.75" PointY="182.875" />
+        <EntityTypeShape EntityType="EmptyShopModel.QuestionProductType" Width="1.5" PointX="5.25" PointY="257.375" />
+        <EntityTypeShape EntityType="EmptyShopModel.QuestionProductTypeLanguage" Width="1.5" PointX="28.5" PointY="220.625" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionPostLanguage_Language" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionProductTypeLanguage_Language" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionPost_Post" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionProductType_QuestionProductType" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionPostLanguage_QuestionPost" />
+        <AssociationConnector Association="EmptyShopModel.FK_QuestionProductTypeLanguage_QuestionProductType" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductsSubCategory" Width="1.5" PointX="28.75" PointY="261.75" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductsSubCategory_Product" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductsSubCategory_ProductSubCategory" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductsType" Width="1.5" PointX="26.75" PointY="265.5" />
+        <AssociationConnector Association="EmptyShopModel.FK_TypesProduct_Product" />
+        <AssociationConnector Association="EmptyShopModel.FK_TypesProduct_TypesProduct" />
+        <EntityTypeShape EntityType="EmptyShopModel.ProductsCategory" Width="1.5" PointX="29.75" PointY="267.75" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductsCategory_Product" />
+        <AssociationConnector Association="EmptyShopModel.FK_ProductsCategory_ProductCategory" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

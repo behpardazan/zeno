@@ -1,0 +1,28 @@
+﻿@using DataLayer.Base;
+@*@model  DataLayer.ViewModels.ViewSearchPost*@
+@{
+    ViewBag.Title = Resource.Lang.AboutUs;
+    Layout = Resources.KhoshKala.WEBSITE_LAYOUT;
+    //var Modelsearch = Model.Results.FirstOrDefault();
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home">@Resource.Lang.Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Resource.Lang.AboutUs</li>
+        </ol>
+    </div>
+</nav>
+<section class="Article aboutUs">
+    <div class="container">
+        <div class="article_body">
+            <p>
+                @Html.Raw(BaseContent.WebsiteDetail.AboutUs)
+            </p>
+        </div>
+    </div>
+</section>
+
+

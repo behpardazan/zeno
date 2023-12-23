@@ -1,0 +1,74 @@
+﻿<div class="modal fade" id="edit_profile_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header producttotal justify-content-start">
+                <h5 class="modal-title" id="edit_profile_modal">@Resource.Lang.EditProfile</h5>
+            </div>
+            <div class="modal-body text-right">
+                <form action="">
+                    <div class="row">
+                        <div class="address_modal_input col-lg-6 d-none">
+                            <label for="name">@Resource.Lang.CoverImage : </label>
+                            <input id="PictureId" uploadtype="3" type="file" class="dropify" name="PictureId" codeprocess="upload" data-height="220" />
+
+                        </div>
+                        <div class="address_modal_input col-lg-6">
+                            <label for="name">@Resource.Lang.Name_Family : </label>
+                            <input type="text" name="name" class="form-control" data-bind="value: viewModel.Account.FullName">
+                        </div>
+                        <div class="address_modal_input col-lg-6">
+                            <label for="name">@Resource.Lang.NationalCode : </label>
+                            <input type="text" name="name" class="form-control" data-bind="value: viewModel.Account.NationalCode">
+                        </div>
+                        <div class="address_modal_input col-lg-6">
+                            <label for="mobile">@Resource.Lang.Mobile : </label>
+                            <input type="text" name="mobile" data-bind="value: viewModel.Account.Mobile" class="form-control">
+                        </div>
+                        <div class="address_modal_input col-lg-6">
+                            <label for="phone">@Resource.Lang.BankAccountCardNo : </label>
+                            <input type="text" name="name" maxlength="16" data-bind="value: viewModel.Account.CardNumber" class="form-control">
+                        </div>
+                        <div class="address_modal_input col-lg-12">
+                            <label for="phone">@Resource.Lang.Email : </label>
+                            <input type="email" name="email" data-bind="value: viewModel.Account.Email" class="form-control">
+                        </div>
+                        <div class="address_modal_input col-lg-6">
+                            <label for="phone">@Resource.Lang.BirthDate : </label>
+                            <input type="text" name="birthdate" data-bind="value: viewModel.Account.FaBirthDay" class="form-control datepicker">
+                        </div>
+                        <div class="address_modal_input col-lg-6">
+                            <label for="phone">@Resource.Lang.Job : </label>
+                            <input type="text" name="name" data-bind="value: viewModel.Account.Job" class="form-control">
+                        </div>
+                        <div class="address_modal_input col-lg-12">
+                            <label for="phone">@Resource.Lang.Country : </label>
+                            <select class="form-control country" onchange="ProfileCountryDropShipping()" id="profileSelectedCountryShipping" disabled>
+                                <option value="-1">@Resource.Lang.Select</option>
+                                <!--ko foreach: viewModel.Country.CountryList() -->
+                                <option data-bind="value:Id , text:FaName"></option>
+                                <!--/ko-->
+                            </select>
+                        </div>
+                        <div class="address_modal_input col-lg-6">
+                            <label for="phone">@Resource.Lang.State : </label>
+                            @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/_State.cshtml")
+                        </div>
+                        <div class="address_modal_input col-lg-6">
+                            <label for="phone">@Resource.Lang.City : </label>
+                            @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/_City.cshtml")
+                        </div>
+
+
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex">
+               
+                <button type="button" class="btn default_btn flex-fill m-3" data-bs-dismiss="modal">@Resource.Lang.Close</button>
+                <button type="button" class="btn primary_btn flex-fill m-3" codeprocess-action="account-edit" codeprocess-callback="closeModal">
+                    <span>@Resource.Lang.Register</span></button>
+            </div>
+        </div>
+    </div>
+</div>

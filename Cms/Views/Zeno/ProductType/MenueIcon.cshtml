@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DataLayer.Entities.ProductType>
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@{
+    var productTypelist = Model.Where(s => s.Active && s.Deleted != true);
+}
+@if (productTypelist.Count()>0)
+{
+
+    foreach (var item in productTypelist)
+    {
+        <div class="col-lg-2 col-md-4 col-sm-6 col-6 Top">
+            <a href="@item.GetUrlNew()">
+                <div class="HomeServicesParent">
+                    <div class="HomeServicesItem">
+                        @if (item.Picture != null)
+                        {
+                            <img src="@item.Picture.GetUrl()" />
+                        }
+                        <span>@item.GetName()</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+}
+
+

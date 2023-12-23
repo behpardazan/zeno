@@ -1,0 +1,52 @@
+﻿@using DataLayer.Base;
+@model  IEnumerable<DataLayer.Entities.Post>
+
+@*@{
+        var Modelsearch = Model.FirstOrDefault();
+    }*@
+
+@{
+    List<DataLayer.Entities.Post> list = Model.ToList();
+}
+@if (list != null)
+{
+    <section class="home_articles">
+
+         
+                <div class="container">
+                    <div class="row">
+                        @for (int i = 0; i < list.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                <img src="@list[0].Picture.GetUrl()" />
+                                <div class="col-md-8">
+                                    <div class="home_article_card">
+
+
+                                        <div class="home_article_card_title">
+                                            <h2>@list[0].GetName()</h2>
+                                        </div>
+                                        <div class="home_article_card_txt">
+                                            <p>@list[0].GetSummery()</p>
+                                        </div>
+                                        <a href="@list[0].GetLinkWithUrl()" class="home_article_card_btn btn morebtn">
+                                            @Resource.Lang.ReadMore
+                                        </a>
+
+                                    </div>
+                                </div>
+                            }
+                            else if (i == 1)
+                            {
+                                <div class="col-md-4">
+                                    <div class="banImgBox">
+                                        <img src="@list[1].Picture.GetUrl()" alt="khoshKala" title="KhoshKala">
+                                    </div>
+                                </div>
+                            }
+                        }
+                        </div>
+                </div>
+    </section>
+}

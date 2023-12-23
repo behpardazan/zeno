@@ -1,0 +1,146 @@
+﻿@model  ViewProductTypeCustom
+@using DataLayer.Base;
+@using DataLayer.ViewModels;
+@{
+    string typeId = "", categoryId = "", subcategoryId = "";
+    if (Model.TypeId == "")
+    {
+        typeId = BaseRouteView.GetStringValue(Request, "prtypeId");
+    }
+    else
+    {
+        typeId = Model.TypeId;
+    }
+    if (Model.CategoryId == "")
+    {
+        categoryId = BaseRouteView.GetStringValue(Request, "prcategoryId");
+    }
+    else
+    {
+        categoryId = Model.CategoryId;
+    }
+    if (Model.SubCategoryId == "")
+    {
+        subcategoryId = BaseRouteView.GetStringValue(Request, "prsubcategoryId");
+    }
+    else
+    {
+        subcategoryId = Model.SubCategoryId;
+    }
+
+}
+
+<div class="filtering_item">
+    <strong>@Resource.Lang.Category</strong>
+    @foreach (var productType in Model.ProductTypes.Where(x => x.Deleted != true && x.Active == true).OrderBy(p => p.Priority).ThenBy(x => x.ID))
+    {
+
+        <div class="product_filter_item">
+            @{
+                string customLabelType = productType.CustomLabel != null && productType.CustomLabel != "" ? productType.CustomLabel : "product-type";
+            }
+            <a href="@productType.GetUrlNew()" category-label="@customLabelType" type="button" value="@productType.ID" class="products_filter_slide  mt-2 btn w-100 text-right">
+                @{
+                    if (productType.ID.ToString() == typeId)
+                    { <div class="filter_item_icon">
+                            <div class="fIcon_line fI_line1"></div>
+                        </div>
+
+
+                    }
+                    else
+                    {
+                        <div class="filter_item_icon">
+                            <div class="fIcon_line fI_line1"></div>
+                            <div class="fIcon_line fI_line2"></div>
+                        </div>
+                    }
+                }
+                <span>@productType.GetName()</span>
+            </a>
+            @if (productType.ID.ToString() == typeId)
+            {
+                <div class="panel_slide">
+                    <div class="filter_slide_body" style=" display:block">
+                        @{ 
+                            var classD = "";
+                        }
+                        <ul>
+                            @foreach (var category in productType.ProductCategory.Where(x => x.Deleted != true && x.Active == true).OrderBy(p => p.Priority).ThenBy(x => x.ID))
+                            {
+                                if (category.Active == true)
+                                {
+
+                                    string customLabelcategory = category.CustomLabel != null && category.CustomLabel != "" ? category.CustomLabel : "product-category";
+                                    <li class="subCat_line brand_filter">
+
+                                        <a href="@category.GetUrlNewZeno()" class="category_id subCat_filter_slide btn w-100 text-right" category-label="@customLabelcategory" value="@category.ID">
+
+
+                                             @if (category.ID.ToString() == categoryId)
+                                            {
+                                                classD = "d-block";
+                                                <div class="filter_item_icon">
+                                                    <div class="fIcon_line fI_line1"></div>
+                                                </div>
+                                                <strong>@category.GetName()</strong>
+                                            }
+                                            else
+                                            {
+                                                classD = "";
+                                                <div class="filter_item_icon">
+                                                    <div class="fIcon_line fI_line1"></div>
+                                                    <div class="fIcon_line fI_line2"></div>
+                                                </div>
+
+                                                <span>@category.GetName()</span>
+                                            }
+                                        </a>
+                                        <div class="panel_slide">
+
+                                            <div class="subCat_slide_body @classD">
+                                                <ul>
+
+                                                    @foreach (var itemProductsubCategory in category.ProductSubCategory.ToList().OrderBy(p => p.Priority).ThenBy(x => x.ID))
+                                                    {
+                                                        if (itemProductsubCategory.Active == true)
+                                                        {
+                                                            if (itemProductsubCategory.Product.Count() > 0)
+                                                            {
+
+                                                                if (itemProductsubCategory.ID.ToString() == subcategoryId || itemProductsubCategory.ProductCategory.ID.ToString() == categoryId)
+                                                                {
+                                                                    <li>
+                                                                        <a href="@itemProductsubCategory.GetUrlNewZeno()">
+
+                                                                            @if (itemProductsubCategory.ID.ToString() == subcategoryId)
+                                                                            {
+                                                                                <strong>  @itemProductsubCategory.GetName()</strong>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span> @itemProductsubCategory.GetName()</span>
+                                                                            }
+                                                                        </a>
+
+                                                                    </li>
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+</div>

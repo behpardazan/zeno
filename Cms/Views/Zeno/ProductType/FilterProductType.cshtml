@@ -1,0 +1,91 @@
+﻿@model  IEnumerable<DataLayer.Entities.ProductType>
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@{
+    string typeId = BaseRouteView.GetStringValue(Request, "prtypeId");
+    string categoryId = BaseRouteView.GetStringValue(Request, "prcategoryId");
+    string subcategoryId = BaseRouteView.GetStringValue(Request, "prsubcategoryId");
+}
+<div class="filtering_item">
+    <h1>@Resource.Lang.Category</h1>
+    @foreach (var productType in Model)
+    {
+        if (productType.Product.Where(x => x.Deleted == false && x.Active == true).Any())
+        {     
+        <div class="product_filter_item">
+            <button type="button" value="@productType.ID" class="products_filter_slide moreBtn btn10 mt-2 btn w-100 text-right">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+
+                <span>@productType.GetName()</span>
+            </button>
+            @if (productType.ID.ToString() == typeId)
+            {
+                <div class="panel_slide">
+                    <div class="filter_slide_body" style=" display:block">
+                        <ul>
+                            @foreach (var category in productType.ProductCategory)
+                            {
+                                string customLabel = category.CustomLabel != null && category.CustomLabel != "" ? category.CustomLabel :"product-category";
+                                <li class="brand_filter">
+
+                                    <a href="javascript://" class="category_id" category-label="@customLabel" value="@category.ID">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+
+                                        @if (category.ID.ToString() == categoryId)
+                                        {
+                                            <strong>@category.GetName()</strong>
+                                        }
+                                        else
+                                        {
+                                            <span>@category.GetName()</span>
+                                        }
+                                    </a>
+                                    <ul>
+                                        @foreach (var itemProductsubCategory in category.ProductSubCategory.ToList())
+                                        {
+
+                                            if (itemProductsubCategory.ID.ToString() == subcategoryId || itemProductsubCategory.ProductCategory.ID.ToString() == categoryId)
+                                            {
+                                                <li>
+                                                    <a href="@itemProductsubCategory.GetUrlNew()">
+
+                                                        @if (itemProductsubCategory.ID.ToString() == subcategoryId)
+                                                        {
+                                                            <strong>  @itemProductsubCategory.GetName()</strong>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span> @itemProductsubCategory.GetName()</span>
+                                                        }
+                                                    </a>
+                                                    @*<a href="@Url.Action("search", "product", new
+                                                        {
+                                                            proutput = Enum_ProductOutput.SEARCH.ToString().ToLower(),
+                                                             prcategoryId = itemProductsubCategory.ProductCategory.ID,
+                                                             prtypeId =itemProductsubCategory.ProductCategory.ProductType.ID,
+                                                            prsubCategoryId = itemProductsubCategory.ID
+                                                        })">
+
+                                                        @if (itemProductsubCategory.ID.ToString() == subcategoryId)
+                                                        {
+                                                            <strong>  @itemProductsubCategory.GetName()</strong>
+                                                        }
+                                                        else
+                                                        {
+                                                    <span> @itemProductsubCategory.GetName()</span>
+                                                        }
+                                                    </a>*@
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+        }
+    }
+</div>

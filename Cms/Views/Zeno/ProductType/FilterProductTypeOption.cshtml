@@ -1,0 +1,49 @@
+﻿@using DataLayer.Base
+@model  List<DataLayer.Entities.ProductOption>
+
+@{
+
+    string proptions = BaseRouteView.GetStringValue(Request, "proptions");
+    List<string>
+        listoptions = new List<string>
+            ();
+    if (string.IsNullOrEmpty(proptions) == false)
+    {
+        if (proptions.Contains("*"))
+        {
+            listoptions = proptions.Split('*').ToList();
+        }
+        else
+        {
+            listoptions.Add(proptions);
+        }
+    }
+
+}
+@foreach (var item in Model)
+{
+    if (Model.Count > 0)
+    {
+        <div class="filtering_item">
+            <strong>@item.Name </strong>
+
+            @foreach (var valueopetion in item.ProductOptionItem)
+            {
+
+                if (valueopetion.ProductQuantity.Any(s => s.StoreProductQuantity.Count > 0))
+                {
+                    <div class=" checkBox">
+                        <input type="checkbox" @(listoptions.Any(a => a.Equals(valueopetion.ID.ToString())) ? "checked" : "") class="option-check-filter" option-id="@valueopetion.ID" option-value="@valueopetion.Value" id="@("option" +item.ID+ valueopetion.ID)" />
+                        <div class="selector"></div>
+
+                        <label for="@("option" +item.ID+ valueopetion.ID)">@valueopetion.Value</label>
+                    </div>
+                }
+
+
+            }
+
+        </div>
+    }
+}
+

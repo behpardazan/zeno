@@ -1,0 +1,27 @@
+﻿@model IEnumerable<DataLayer.Entities.Post>
+@using DataLayer.Base
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        var abs = item.GetSummery().Length >= 200 ?item.GetSummery().Substring(0,200):item.GetSummery();
+        <div class="item">
+            <a href="@item.GetLinkWithUrl()">
+                <div class="HomeBlogItem">
+                    @if (item.Picture != null)
+                    {
+                        <img src="@item.Picture.GetUrl()" alt="@item.GetName()">
+
+                    }
+                    
+                    <div class="HomeBlogItemCaption">
+                        <strong>@item.GetName()</strong>
+                        <p>@abs </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+
+    }
+}

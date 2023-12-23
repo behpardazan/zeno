@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DataLayer.Entities.Banner>
+    @using DataLayer.Base
+    @{
+        List<DataLayer.Entities.Banner> list = Model.OrderBy(s => s.ShowNumber).ToList();
+
+    }
+
+    @if (list.Count() > 0)
+    {
+        var banner = list.FirstOrDefault();
+        
+        if (banner.Picture != null)
+        {
+		<div class="first-banner">
+	<div class="col-lg-8 col-md-9 col-sm-10 col-12 mx-auto">
+		<div class="first-banner-content">
+			<div class="first-banner-btn">
+				<button class="btn">X</button>
+			</div>
+			<div class="first-banner-img">
+				<img src="@banner.Picture.GetUrl()" alt="@banner.GetName()">
+			</div>
+		</div>
+	</div>
+</div>
+                    
+
+        }
+
+    }

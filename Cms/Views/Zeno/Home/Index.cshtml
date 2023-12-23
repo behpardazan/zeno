@@ -1,0 +1,356 @@
+﻿@using System.Web.Mvc.Html;
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@{
+    Layout = Resources.Zeno.WEBSITE_LAYOUT;
+    ViewBag.Title = Html.Raw(BaseContent.WebsiteDetail.Title);
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    ViewBag.MetaDescription = Html.Raw(BaseContent.WebsiteDetail.Summary);
+    ViewBag.OgUrl = url;
+    ViewBag.OgImage = "/Assets/Zeno/Image/side1.jpg";
+    ViewBag.OgImageType = "jpg";
+    ViewBag.Follow = "index, follow";
+    ViewBag.IsHome = true;
+}
+@section Header{
+    <link rel="canonical" href="@url" />
+
+}
+<h1 class="d-none">@BaseContent.WebsiteDetail.Title</h1>
+@Html.Action("Search", "Banner", new { bacategory = "BannerPopupHome", baviewName = "BannerPopupHome", baSize = 1 })
+
+@Html.Action("Search", "Slider", new { slviewname = "MainSlider" })
+<div class="goToTop" id="go-to-top">
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="ms-1 bi bi-chevron-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+</svg>
+	بازگشت به بالا
+</div>
+<section class="HomeServices home-services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-6 Top">
+                <a href="/CreditShoping">
+                    <div class="HomeServicesParent">
+                        <div class="HomeServicesDownload">
+                            <strong> شرایط خرید اعتباری</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @Html.Action("Search", "ProductType", new { ptviewName = "MenueIcon", ptpageSize = 30, isService = false, isActive = true })
+
+
+        </div>
+    </div>
+</section>
+<section class="HomeCards">
+    <div class="container">
+        <div class="HomeCardsTopBox">
+            <div class="row">
+                <div class="col-lg-4 col-0"></div>
+                <div class="col-lg-4">
+                    <div class="HomeCardsNavBtn">
+                        <ul class="nav nav-tabs" id="MostView_MostSale_Products" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="MostSale_tab" data-bs-toggle="tab" href="#MostSaleProducts"
+                                   role="tab" aria-controls="MostSaleProducts" aria-selected="true">تخفیفات ویژه</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="MostView_tab" data-bs-toggle="tab" href="#MostViewProducts"
+                                   role="tab" aria-controls="MostViewProducts" aria-selected="false">جدیدترین ها</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="HomeCardsPic">
+                        <img src="/assets/zeno/images/Logo2.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="HomeCardsBox">
+            <div class="tab-content" id="MostView_MostSale_Products_Content">
+                <div class="tab-pane position-relative fade show active" id="MostSaleProducts" role="tabpanel" aria-labelledby="MostSale_tab">
+                    <div class="owl-carousel owl-theme" id="Slider1">
+ 
+							 @Html.Action("Search", "Product", new { prpageSize = 20, prviewName = "ProductItemList", SyncNameProductCustomField = "SpecialProduct", valueProductCustom = "True", prstock = "AVAILABLE" })
+                    </div>
+					<div class="sliderNavigation">
+						<a class="btn prev">
+							<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+								 xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 28.8359L12.4577 17.3782C13.8109 16.0251 13.8109 13.8109 12.4577 12.4577L1 1"
+									  stroke="#fff" stroke-width="1.24168" stroke-miterlimit="10"
+									  stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+						<a class="btn next">
+							<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+								 xmlns="http://www.w3.org/2000/svg">
+								<path d="M13.4727 28.8359L2.01493 17.3782C0.661795 16.0251 0.661795 13.8109 2.01493 12.4577L13.4727 1"
+									  stroke="#fff" stroke-width="1.24168" stroke-miterlimit="10"
+									  stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+					</div>
+                </div>
+                <div class="tab-pane position-relative fade" id="MostViewProducts" role="tabpanel" aria-labelledby="MostView_tab">
+                    <div class="owl-carousel owl-theme" id="Slider2">
+                            @Html.Action("Search", "Product", new { prpageSize = 20, prviewname = "ProductItemList", prorder = Enum_ProductOrder.NEW, prIsService = false, prstock = "ALL" })
+                   
+
+
+                    </div>
+					<div class="sliderNavigation">
+					<a class="btn prev">
+						<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+							 xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 28.8359L12.4577 17.3782C13.8109 16.0251 13.8109 13.8109 12.4577 12.4577L1 1"
+								  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+								  stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+					<a class="btn next">
+						<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+							 xmlns="http://www.w3.org/2000/svg">
+							<path d="M13.4727 28.8359L2.01493 17.3782C0.661795 16.0251 0.661795 13.8109 2.01493 12.4577L13.4727 1"
+								  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+								  stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+				</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="HomeProducts1">
+    <div class="container">
+	<h3 class="home-pr-title d-lg-block d-none">پربازدیدترین ها</h3>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="HomeProductsFixedPic">
+                    @Html.Action("Search", "Banner", new { bacategory = "Banner1", baviewName = "Banner", baSize = 1 })
+
+
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-6 position-relative">
+			<h3 class="home-pr-title d-lg-none d-block mt-4">پربازدیدترین ها</h3>
+                <div class="owl-carousel owl-theme" id="Slider3">
+                    @Html.Action("Search", "Product", new { prpageSize = 20, prviewname = "ProductItemList", prorder = Enum_ProductOrder.MORE_VISIT, prIsService = false, prstock = "ALL" })
+
+
+
+                </div>
+				<div class="sliderNavigation">
+					<a class="btn prev">
+						<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+							 xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 28.8359L12.4577 17.3782C13.8109 16.0251 13.8109 13.8109 12.4577 12.4577L1 1"
+								  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+								  stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+					<a class="btn next">
+						<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+							 xmlns="http://www.w3.org/2000/svg">
+							<path d="M13.4727 28.8359L2.01493 17.3782C0.661795 16.0251 0.661795 13.8109 2.01493 12.4577L13.4727 1"
+								  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+								  stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+				</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="HomeProducts2">
+
+    <div class="container">
+		<h3 class="home-pr-title d-lg-block d-none">پرفروش ترین ها</h3>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="HomeProductsFixedPic">
+                    @Html.Action("Search", "Banner", new { bacategory = "Banner2", baviewName = "Banner", baSize = 1 })
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-6 position-relative">
+			<h3 class="home-pr-title d-lg-none d-block mt-4">پرفروش ترین ها</h3>
+                <div class="owl-carousel owl-theme" id="Slider4">
+                    @Html.Action("Search", "Product", new { prpageSize = 20, prviewname = "ProductItemList", prorder = Enum_ProductOrder.MORE_SELL, prIsService = false, prstock = "ALL" })
+
+                </div>
+				<div class="sliderNavigation">
+					<a class="btn prev">
+						<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+							 xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 28.8359L12.4577 17.3782C13.8109 16.0251 13.8109 13.8109 12.4577 12.4577L1 1"
+								  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+								  stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+					<a class="btn next">
+						<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+							 xmlns="http://www.w3.org/2000/svg">
+							<path d="M13.4727 28.8359L2.01493 17.3782C0.661795 16.0251 0.661795 13.8109 2.01493 12.4577L13.4727 1"
+								  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+								  stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+				</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="HomeVideoBlog">
+    <div class="container">
+        <div class="HomeVideoBlogInner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-12 col-6 p-1">
+                            <div class="HomeProductsFixedPic">
+                                @Html.Action("Search", "Banner", new { bacategory = "Banner3", baviewName = "Banner", baSize = 1 })
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-6 p-1">
+                            <div class="HomeProductsFixedPic">
+                                @Html.Action("Search", "Banner", new { bacategory = "Banner4", baviewName = "Banner", baSize = 1 })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    @Html.Action("Search", "Product", new { prpageSize = 1, prviewName = "HomeProductHaveVideo", SyncNameProductCustomField = "HomeProductHaveVideo", valueProductCustom = "True" })
+
+
+                    <div class="HomeBlog">
+                        <div class="row m-0">
+                            <div class="col-lg-3">
+                                <a href="/st/Blog" class="btn HomeBlogBtn">@Resource.Lang.Blog</button>
+								<div class="sliderNavigation">
+									<a class="btn prev">
+										<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+											 xmlns="http://www.w3.org/2000/svg">
+											<path d="M1 28.8359L12.4577 17.3782C13.8109 16.0251 13.8109 13.8109 12.4577 12.4577L1 1"
+												  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+												  stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</a>
+									<a class="btn next">
+										<svg width="15" height="30" viewBox="0 0 15 30" fill="none"
+											 xmlns="http://www.w3.org/2000/svg">
+											<path d="M13.4727 28.8359L2.01493 17.3782C0.661795 16.0251 0.661795 13.8109 2.01493 12.4577L13.4727 1"
+												  stroke="#292D32" stroke-width="1.24168" stroke-miterlimit="10"
+												  stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</a>
+								</div>
+                            </div>
+                            <div class="col-lg-9 position-relative">
+                                <div class="owl-carousel owl-theme" id="Slider5">
+                                    @Html.Action("Search", "Post", new { poviewName = "LastArticle", poSize = 4, poorder = Enum_PostOrder.NEW, pocategory = "Blog" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="HomePartners">
+    <h3>همکاری با برند ها</h3>
+    <div class="container position-relative">
+        <div class="owl-carousel owl-theme" id="Slider6">
+            @Html.Action("Search", "ProductBrand", new { pbviewName = "HomeProductBrand",pbpageSize=100 })
+
+
+        </div>
+        <div class="sliderNavigation">
+            <a class="btn prev">
+                <span class="material-icons">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.90991 19.9201L15.4299 13.4001C16.1999 12.6301 16.1999 11.3701 15.4299 10.6001L8.90991 4.08008" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+            </a>
+            <a class="btn next">
+                <span class="material-icons">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 19.9201L8.47997 13.4001C7.70997 12.6301 7.70997 11.3701 8.47997 10.6001L15 4.08008" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="HomeAboutUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="HomeAboutUsPic">
+                    @Html.Action("Search", "Banner", new { bacategory = "Banner5", baviewName = "Banner", baSize = 1 })
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="HomeAboutUsContent">
+                 
+                    <div class="HomeAboutUsIconBox">
+                        @Html.Action("Search", "ProductType", new { ptviewName = "MenueIconFooter", ptpageSize = 30, isService = false, isActive = true })
+
+
+
+                    </div>
+                    <div class="HomeAboutUsItems">
+                        <div class="row">
+                            @Html.Action("Search", "Post", new { poviewName = "HomeService", poSize = 3, poorder = Enum_PostOrder.NEW, pocategory = "Service" })
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*<a href="tel:@Html.Raw(BaseContent.WebsiteDetail.Mobile)">
+	<div class="float-phone">
+		<span>@Html.Raw(BaseContent.WebsiteDetail.Mobile)</span>
+	</div>
+</a>*@
+
+<a href="@Html.Raw(BaseContent.WebsiteDetail.Whatsapp)" class="float_link d-none">
+        <div class="float_img">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M86,6.88c-43.62608,0 -79.12,35.49392 -79.12,79.12c0,13.6224 3.51874,27.01453 10.19234,38.83437l-10.06469,35.91844c-0.33024,1.17992 -0.01328,2.44186 0.83984,3.31906c0.65704,0.67768 1.55402,1.04813 2.4725,1.04813c0.2752,0 0.55465,-0.03542 0.82641,-0.10078l37.48391,-9.28531c11.44488,6.14384 24.33209,9.3861 37.36969,9.3861c43.62608,0 79.12,-35.49392 79.12,-79.12c0,-43.62608 -35.49392,-79.12 -79.12,-79.12zM57.25047,48.16c1.35536,0 2.70335,0.01886 3.89016,0.0739c1.24872,0.06192 2.92771,-0.47472 4.57547,3.44c1.69248,4.01792 5.75291,13.88755 6.25515,14.89547c0.50912,1.00448 0.84893,2.17575 0.17469,3.51391c-0.67424,1.33816 -1.01082,2.17961 -2.02906,3.35265c-1.01824,1.17304 -2.13527,2.61263 -3.05031,3.51391c-1.01824,1.00104 -2.07696,2.08276 -0.8936,4.09172c1.18336,2.00896 5.2603,8.57613 11.30094,13.89437c7.7572,6.83184 14.30368,8.95271 16.33328,9.95719c2.0296,1.00448 3.21742,0.83425 4.40078,-0.50391c1.18336,-1.3416 5.07793,-5.85542 6.42985,-7.86094c1.35192,-2.00552 2.70427,-1.67861 4.56875,-1.00781c1.86448,0.66736 11.85134,5.51942 13.88094,6.5239c2.0296,1.00448 3.38775,1.50893 3.89687,2.34485c0.50912,0.83248 0.50998,4.84535 -1.1825,9.52719c-1.69248,4.68528 -9.81201,8.96615 -13.71297,9.54063c-3.50192,0.51256 -7.93506,0.72783 -12.79922,-0.79953c-2.94808,-0.9288 -6.72944,-2.15866 -11.5764,-4.2261c-20.37512,-8.68944 -33.68411,-28.94996 -34.70235,-30.28812c-1.0148,-1.33816 -8.29094,-10.87142 -8.29094,-20.74078c0,-9.86936 5.24396,-14.72073 7.10844,-16.72969c1.86448,-2.00896 4.06667,-2.51281 5.42203,-2.51281z"></path></g></g></svg>
+        </div>
+        <strong class="float_txt">چطوری میتونم کمکتون کنم؟</strong>
+    </a>
+
+@Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Modal/FirstMessage.cshtml")
+@section endScripts {
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+              doCheckAccountLogVisit(0 , @Html.Raw((int) DataLayer.Enumarables.Enum_PageName.Home_Index));
+			  
+        });
+    </script>
+	 <script>
+       
+        if ($(window).width() < 991) {
+            if (instaModalStatus !== "false") {
+                $('.instaAds').modal('show');
+                console.log("show insta modal")
+            }
+
+        }
+    </script>
+} 

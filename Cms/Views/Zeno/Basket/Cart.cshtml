@@ -1,0 +1,212 @@
+﻿<div id="home" class="tab_pane w-100  sendinfo_content home active shoping_cart">
+     <!--ko if:viewModel.ListOutOfSendStore().length>0-->
+    <p class="alert alert-warning">
+        با توجه به استان انتخابی شما در آدرس محصولات  زیر خارج از محدوده ارسال فروشنده می باشند
+
+    </p>
+    <!--ko foreach:viewModel.ListOutOfSendStore-->
+    <ul>
+        <li class="alert alert-warning">
+            <strong data-bind="text:Name"></strong>
+        </li>
+    </ul>
+    <!--/ko-->
+    <!--/ko-->
+    <!--ko if:viewModel.Basket.StoreItems.Count() == 0-->
+     <div class="no_item">
+        <span>@Resource.Lang.BasketIsEmpty</span>
+    </div>
+    <!--/ko-->
+    <!--ko ifnot:viewModel.Basket.StoreItems.Count() == 0-->
+    <div class="payment_information">
+        <div class="basketOrders">
+            <div class="basketpro_titles">
+                <div class="row w-100 d-flex align-items-center m-0">
+                    <div class="col-2">
+                        <div class="tab_titlee">
+                            <strong>@Resource.Lang.StoreName</strong>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="tab_titlee">
+                            <strong>@Resource.Lang.Product</strong>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="tab_titlee">
+                            <strong>@Resource.Lang.Price (@Resource.Lang.Toman)</strong>
+                        </div>
+                    </div>
+                   
+                    <div class="col-2">
+                        <div class="tab_titlee">
+                            <strong>@Resource.Lang.Count</strong>
+                        </div>
+                    </div>
+                   
+
+                    <div class="col-2">
+                        <div class="tab_titlee">
+                            <strong>@Resource.Lang.TotalPrice (@Resource.Lang.Toman)</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="basketpaymentItems">
+                <!--ko foreach:viewModel.Basket.StoreItems.List-->
+                <div class="paymentItem">
+                    <div class="row">
+                        <div class="col-md-2 d-flex flex-column">
+                            <div class="basket_shopname">
+                                <span class="mobile_title">@Resource.Lang.StoreName:</span>
+                                <strong data-bind="text: Store.Name"></strong>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <!--ko foreach:Products-->
+
+                            <div class="shop_product_item">
+                                <div class="row d-flex align-items-center w-100 m-0">
+                                    <div class="col-md-5  p-0">
+                                        <div class="basketproduct d-flex align-items-center justify-content-start">
+                                            <a data-bind="attr:{href:'/pr/'+Product.Id+'/'+Product.Name} ">
+                                                <img data-bind="attr:{src: (Product.Id !=null ? Product.Picture.Url :'')}" alt="">
+                                            </a>
+                                            <div class="basketProInfo">
+                                                <strong data-bind="text:Product.Name"></strong>
+                                                <div class="infoPrime ">
+                                                    <!--ko if: Color !=null-->
+
+                                                    <span class="ml-2 detailspan">
+                                                        <span class="proinfospan d-none"> @Resource.Lang.Color :</span>
+                                                        <span data-bind="text: Color.Name,style:{ 'background-color' : '#'+ Color.Hex}" class="p-1 rounded text-white shadow">
+                                                        </span>
+                                                    </span>
+                                                    <!--/ko-->
+                                                    <!--ko if: Size !=null-->
+
+                                                    <span class="pl-2 detailspan">
+                                                        <span class="proinfospan d-none">@Resource.Lang.Size :</span>
+                                                        <span data-bind="text:Size.Name">
+                                                        </span>
+                                                    </span>
+                                                    <!--/ko-->
+                                                    <!--ko if: ProductOptionItem !=null-->
+                                                    <br />
+                                                    <span class="detailspan">
+                                                        <span data-bind="text:ProductOptionItem.ProductOption.Name" class="proinfospan">
+                                                        </span>
+
+                                                        :
+                                                        <span data-bind="text:ProductOptionItem.Value">
+                                                        </span>
+                                                    </span>
+                                                    <!--/ko-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-4 p-0">
+                                        <div class="productprice ">
+                                            <span class="mobile_title">@Resource.Lang.Price:</span>
+                                            <!--ko if: (Discount>0)-->
+                                            <del><span data-bind="text:toCurrency(ProductPrice)"></span></del>
+                                            <span  data-bind="text: toCurrency(ProductPrice - Discount)"></span>
+                                            <!--/ko-->
+                                            <!--ko ifnot: (Discount>0)-->
+
+                                            <span data-bind="text: toCurrency(ProductPrice)"></span>
+                                            <!--/ko-->
+                                        </div>
+                                    </div>
+                                    <!--ko if:Product.HaveAddress==true-->
+                                    <div class="col-2 p-0">
+                                        <div class="productCount">
+                                            <button class="btn  pro_plus_count border" data-bind="click:doEditBasketAjax,attr:{'basket-id':Id, 'product-id':Product.Id,'product-color-id':ColorId,'product-size-id':SizeId,'product-option-item-id': OptionItemId,'store-id' : StoreId}" basket-id="" product-id="" product-color-id="" product-size-id="" action-type="add">
+                                                +
+                                            </button>
+                                            <span class="p-2" data-bind="text:Count"></span>
+                                            <button class="btn  pro_minus_count border" data-bind="click:doEditBasketAjax,attr:{'basket-id':Id, 'product-id':Product.Id,'product-color-id':ColorId,'product-size-id':SizeId,'product-option-item-id': OptionItemId,'store-id' : StoreId}" basket-id="" product-id="" product-color-id="" product-size-id="" action-type="remove">
+                                                -
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <!--/ko-->
+                                    <!--ko ifnot:Product.HaveAddress==true-->
+                                    <div class="col-2 p-0">
+                                       
+                                    </div>
+                                    <!--/ko-->
+                                    <div class="col-md-3 col-4 p-0 d-flex justify-content-around align-items-center">
+                                        <div class="pro-total">
+                                            <span class="mobile_title">@Resource.Lang.TotalAmount:</span>
+                                            <span class="one_total_price" data-bind="text: toCurrency(Price)"></span>
+                                        </div>
+                                        <button class="btn btn deleteProBtn" data-bind="click: doRemoveBasketAjax, attr: {'basket-Id': Id, 'product-id': Product.Id,'product-color-id':ColorId,'product-size-id':SizeId,'product-option-item-id': OptionItemId,'store-id' : StoreId}">
+                                            <i class="bi bi-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ko-->
+
+                        </div>
+
+
+                    </div>
+                    <!--ko if: HaveAddress==true-->
+                    <div class="d-flex alert alert-warning d-none">
+                        <div>
+                            <!--ko ifnot:ShippingCity.SendPrice==0 -->
+                            <span>@Resource.Lang.ShippingPrice </span>
+                            <strong data-bind="text: toCurrency(ShippingCity.SendPrice)"></strong>
+                            @Resource.Lang.Toman
+                            <!--/ko-->
+                            <!--ko if:ShippingCity.SendPrice==0 -->
+                            <span>@Resource.Lang.ShippingPrice </span>
+                            <strong>@Resource.Lang.Free</strong>
+
+                            <!--/ko-->
+                        </div>
+
+
+                    </div>
+                    <!--/ko-->
+                </div>
+                <!--/ko-->
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--/ko-->
+    <div class="basketbtns mt-3">
+        <a href="/" class="btn secondary_btn prev_tab ">
+            <i class="bi bi-arrow-right"></i>
+            <span>
+                @Resource.Lang.HomePage
+            </span>
+        </a>
+        <!--ko if: viewModel.Basket.HaveAddress()==true-->
+        <button class="btn primary_btn next_tab" onclick="showAddressInBaket();">
+            <i class="bi bi-arrow-left"></i>
+            <span>
+                انتخاب آدرس
+                @*@Resource.Lang.*@
+            </span>
+        </button>
+        <!--/ko-->
+        <!--ko ifnot: viewModel.Basket.HaveAddress()==true-->
+        <button class="btn primary_btn next_tab" onclick="basketPayment();">
+            <i class="bi bi-arrow-left"></i>
+            <span>
+                پرداخت
+                @*@Resource.Lang.*@
+            </span>
+        </button>
+        <!--/ko-->
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DataLayer.Entities.Banner>
+@using DataLayer.Base
+@{
+    List<DataLayer.Entities.Banner> list = Model.OrderBy(s => s.ShowNumber).ToList();
+
+}
+
+
+
+@if (list.Count() > 0)
+{<div class="FooterLinks">
+        @foreach (var item in list)
+        {
+            <div class="FooterLink">
+                <a href="@item.Url"><span>@item.Name</span></a>
+            </div>
+        }
+    </div>
+}

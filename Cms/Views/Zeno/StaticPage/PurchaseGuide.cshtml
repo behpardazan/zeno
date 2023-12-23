@@ -1,0 +1,32 @@
+﻿
+@using DataLayer.Base;
+@{
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    ViewBag.Title = Resource.Lang.PurchaseGuide;
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    ViewBag.Follow = "index, follow";
+}
+
+<section class="ruls">
+    <div class="container">
+        <div class="ruls_content">
+            <div class="title">
+                <h2 class="titleText"> @Resource.Lang.PurchaseGuide</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-sm-10 mx-auto">
+
+                        @Html.Raw(BaseContent.WebsiteDetail.PurchaseGuide)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+

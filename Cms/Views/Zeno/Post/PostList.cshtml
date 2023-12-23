@@ -1,0 +1,9 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+
+@model IEnumerable<Post> 
+
+@foreach (var post in Model.Where(s=>s.Active).OrderBy(s=>s.ShowNumber))
+{
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Post/PostItem.cshtml", post)
+}

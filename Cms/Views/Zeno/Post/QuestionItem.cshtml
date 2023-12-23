@@ -1,0 +1,19 @@
+﻿@using DataLayer.Base;
+@model DataLayer.Entities.Post
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button btn collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="@Html.Raw("#collapseOne"+Model.ID)" aria-expanded="true" aria-controls="@Html.Raw("collapseOne"+Model.ID)">
+           @Model.GetName()
+        </button>
+    </h2>
+    <div id="@Html.Raw("collapseOne"+Model.ID)" class="accordion-collapse collapse " aria-labelledby="headingOne"
+         data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <p>
+                @Html.Raw(Model.GetBody())
+            </p>
+        </div>
+    </div>
+</div>
+

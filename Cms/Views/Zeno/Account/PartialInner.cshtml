@@ -1,0 +1,145 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+@using DataLayer.Enumarables;
+@using DataLayer.ViewModels;
+@model DataLayer.Entities.AccountOrder
+
+@{
+    ViewShopWebsiteSetting ShopWebsiteSetting = BaseWebsite.WebsiteSetting;
+}
+
+
+
+<table class="table-middle table-print table table-striped table-bordered has-first dataTable">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>@Resource.Lang.ProductName</th>
+            <th>@Resource.Lang.Store</th>
+            <th>@Resource.Lang.Count</th>
+            @if (ShopWebsiteSetting.HasSendByPost)
+            {
+                <th>روش ارسال</th>
+            }
+            <th>@Resource.Lang.UnitAmount (@Resource.Lang.Toman)</th>
+            <th>@Resource.Lang.DiscountPercent</th>
+            <th>@Resource.Lang.DiscountedAmount</th>
+            <th>@Resource.Lang.FinalAmount</th>
+
+            <!--<th>بارکد</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.AccountOrderProduct.Count; i++)
+        {
+            AccountOrderProduct item = Model.AccountOrderProduct.ToList()[i];
+            <tr>
+                <td>@((i + 1).ToString())</td>
+                <td>
+                    @item.Product.Name
+                    @if (item.ColorId != null)
+                    {
+                        <br />
+                        <span>@Resource.Lang.Color: @item.Color.Name</span>
+                    }
+                    @if (item.SizeId != null)
+                    {
+                        <br />
+                        <span>@Resource.Lang.Size: @item.Size.Name</span>
+                    }
+                    @if (item.OptionItemId != null)
+                    {
+                        <br />
+                        <span>@item.ProductOptionItem.ProductOption.Name: @item.ProductOptionItem.Value</span>
+                    }
+                </td>
+                <td>@item.AccountOrder.Store.Name</td>
+                <td>@item.Count</td>
+                @if (ShopWebsiteSetting.HasSendByPost)
+                {
+                    <td>
+                        @if (item.AccountOrder.SendTypeStore == 1)
+                        {
+                            <span>پیک مخصوص تهران</span>
+                        }
+                        else if (item.AccountOrder.SendTypeStore == 2)
+                        {
+                            <span>پست پیشتاز</span>
+                        }
+                        else if (item.AccountOrder.SendTypeStore == 3)
+                        {
+                            <span>پست سفارشی</span>
+                        }
+                    </td>
+                }
+                <td>@item.ProductPrice.GetCurrencyFormat() @Resource.Lang.Toman</td>
+                @if (item.ProductDiscount != 0)
+                {
+                    <td>@((item.ProductDiscount * 100) / item.ProductPrice) %</td>
+                }
+                else
+                {
+                    <td>0 %</td>
+                }
+                <td>@((item.ProductPrice - item.ProductDiscount).GetCurrencyFormat()) @Resource.Lang.Toman</td>
+                <td>@((item.Price).GetCurrencyFormat()) @Resource.Lang.Toman</td>
+
+                @*<td><img class="qr-code" src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=@item.Product.GetLinkAbsolute()" /></td>*@
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="7" class="text-center">
+                @Resource.Lang.TransmissionAndPackagingCosts
+                @if (Model.SendTypeId != null)
+                {
+                    <span>(</span>@Model.SendType.Name<span>)</span>
+                }
+            </td>
+            <td>@Model.SendPrice.GetCurrencyFormat() @Resource.Lang.Toman</td>
+            <!--<td></td>-->
+        </tr>
+        <tr>
+            <td colspan="7" class="text-center">@Resource.Lang.SiteDiscountRate</td>
+            <td>@Model.DiscountPrice.GetCurrencyFormat() @Resource.Lang.Toman</td>
+            <!--<td></td>-->
+        </tr>
+        <tr>
+            @if (Model.RebateId == null)
+            {
+                <td colspan="7" class="text-center">@Resource.Lang.DiscountCode </td>
+                <td>@("0") @Resource.Lang.Toman</td>
+            }
+            else
+            {
+                <td colspan="7" class="text-center">@Resource.Lang.DiscountCode (@Model.Rebate.Name)</td>
+                <td>@(Model.RebatePrice.GetCurrencyFormat()) @Resource.Lang.Toman</td>
+            }
+            <!--<td></td>-->
+        </tr>
+        <tr>
+            <td colspan="7" class="text-center">@Resource.Lang.Sum</td>
+            <td>@Model.Price.GetCurrencyFormat() @Resource.Lang.Toman</td>
+            <!--<td></td>-->
+        </tr>
+        @if (Model.IsCreditShoping == true)
+        {
+            <tr>
+                <td colspan="7" class="text-center">روش پرداخت</td>
+                <td>به صورت اعتباری</td>
+                <!--<td></td>-->
+            </tr>
+        }
+
+    </tfoot>
+</table>
+
+
+
+
+
+
+
+
+

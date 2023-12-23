@@ -1,0 +1,89 @@
+﻿@using DataLayer.Enumarables;
+
+@{
+    ViewBag.Title = Resource.Lang.Blog;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    ViewBag.Follow = "index, follow";
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" ><a href="/Home">@Resource.Lang.Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Resource.Lang.Blog</li>
+        </ol>
+    </div>
+</nav>
+    <section class="Blogs">
+        <div class="container">
+            <div class="BlogsInner">
+                <div class="serachBox">
+                    <div class="searchForm mb-0">
+                        <input class="form-control" id="txtBlogSearch" name="prname" autocomplete="off" type="search" placeholder="@Resource.Lang.Search">
+                        <button class="btn searchBtn" type="submit">
+                            <svg width="45" height="40" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24.0938 0.84375C15.6539 0.84375 8.78125 6.59436 8.78125 13.6562C8.78125 16.7242 10.0673 19.537 12.2266 21.7441L0.0244141 31.9541L2.22559 33.7959L14.4277 23.5859C17.0656 25.3927 20.4271 26.4688 24.0938 26.4688C32.5336 26.4688 39.4062 20.7181 39.4062 13.6562C39.4062 6.59436 32.5336 0.84375 24.0938 0.84375ZM24.0938 3.40625C30.8767 3.40625 36.3438 7.98071 36.3438 13.6562C36.3438 19.3318 30.8767 23.9062 24.0938 23.9062C17.3108 23.9062 11.8438 19.3318 11.8438 13.6562C11.8438 7.98071 17.3108 3.40625 24.0938 3.40625Z" fill="white" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="search_result dv_BlogSearch">
+                        <div class="search_no_result" style="display:none" data-bind="visible: (viewModel.PostSearchResult.Results().length == 0 && viewModel.PostSearchResult.Name().length > 0)">
+                            @Resource.Lang.NoResult
+                        </div>
+                        <div class="search_with_result">
+                            <ul>
+                                <!-- ko foreach: viewModel.PostSearchResult.Results -->
+                                <li class="textHover">
+                                    <a data-bind="attr: { 'href': '/po/' + Id + '/' + Name }">
+                                        <strong data-bind="text: Name"></strong>
+                                    </a>
+                                </li>
+                                <!-- /ko -->
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="TopBlogBox">
+                    <div class="TopBlogItems">
+                        <div class="row">
+                            @Html.Action("Search", "Post", new { poviewName = "TopBlog", poSize = 3, poorder = Enum_PostOrder.NEW, pocategory = "Blog" })
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="BottomBlogBox">
+                    <div class="row">
+                        <div class="col-lg-8 infinity-div">
+                            <div class="BlogItems" id="infinity-content" page-index="1" page-size="10" loading="false">
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.Action("Search", "Post", new { poviewName = "LastBlog", poSize = 10, poorder = Enum_PostOrder.NEW, pocategory = "Blog" })
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<h1 class="d-none">@Resource.Lang.Blog</h1>
+
+
+
+
+@section endScripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initializeBlogSearchScripts();
+            initialArticleInfinity();
+        });
+    </script>
+}

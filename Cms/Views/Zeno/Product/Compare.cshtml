@@ -1,0 +1,137 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+@using DataLayer.Enumarables;
+@model IEnumerable<Product>
+@{
+    ViewBag.Follow = "noindex, nofollow";
+    ViewBag.title = Resource.Lang.Compare;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    var newModel = Model.Distinct().Reverse().Take(3).Reverse().ToList();
+    var newmodelCount = newModel.Count(); List<ProductCustomField> listFields = new List<ProductCustomField>();
+    if (newModel.Any())
+    {
+        Product FirstProduct = newModel.First();
+        listFields = new List<ProductCustomField>();
+        if (FirstProduct.ProductTypeId.HasValue)
+        {
+            listFields.AddRange(FirstProduct.ProductType.ProductCustomField);
+        }
+        if (FirstProduct.ProductCategoryId.HasValue)
+        {
+            listFields.AddRange(FirstProduct.ProductCategory.ProductCustomField);
+        }
+        if (FirstProduct.ProductSubCategoryId.HasValue)
+        {
+            listFields.AddRange(FirstProduct.ProductSubCategory.ProductCustomField);
+        }
+        listFields = listFields.Where(s => s.SyncName != "SpecialProduct" && s.SyncName!="HomeProductHaveVideo").OrderBy(p => p.ShowNumber).ToList();
+    }
+}
+
+<div class="compare pagepadding">
+    <div class="container">
+
+        <div class="compare_search">
+            <div class="serachBox">
+                <form class="searchForm mb-0">
+                    <input id="txtComapreSearch" autocomplete="off" class="form-control" type="text" placeholder="@Resource.Lang.Search">
+                    <button class="btn searchBtn" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+                <div class="search_result">
+                    <div class="search_no_result" data-bind="visible: (viewModel.CompareSearchResult.Results().length == 0 && viewModel.CompareSearchResult.Name().length > 0)">  @Resource.Lang.NoResult</div>
+                    <div class="search_with_result" data-bind="visible: viewModel.CompareSearchResult.Results().length > 0">
+                        <ul>
+                            <!-- ko foreach: viewModel.CompareSearchResult.Results() -->
+                            <li class="textHover"><a href="javascript://" data-bind="click: addToCompareList"><strong data-bind="text: Name">Tackling Heavy Traffic</strong></a></li>
+                            <!-- /ko -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <form class="compare-form">
+            <div class="compare_table table-responsive">
+                <table class="table table-bordered mb-0">
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            @for (int i = 0; i < newmodelCount; i++)
+                            {
+                                var item = newModel[i];
+                                <td class="product_cell pt-4 px-4" width="22%">
+
+
+                                    <input type="hidden" name="productId" value="@item.ID" />
+                                    <a>
+                                        <button type="button" class="btn remove_td btn-remove-pr" data-dismiss="modal">×</button>
+
+                                    </a>
+                                    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Product/ProductItemCompare.cshtml", item)
+
+
+                                </td>
+                            }
+
+                            @if ((4 - newmodelCount) > 0)
+                            {
+                                for (int i = 1; i <= (4 - newmodelCount); i++)
+                                {
+                                    <td width="22%"></td>
+
+                                }
+                            }
+                        </tr>
+                        @foreach (var item in listFields)
+                        {
+                            <tr>
+                                <th class="config-name">@item.GetName()</th>
+                                @for (int i = 0; i < newmodelCount; i++)
+                                {
+                                    var pr = newModel[i];
+                                    <td>
+                                        @{
+                                            var productCustomValue = pr.ProductCustomValue.FirstOrDefault(s => s.FieldId == item.ID);
+                                        }
+                                        @if (productCustomValue != null)
+                                        {
+                                            if (productCustomValue.ItemId == null)
+                                            {
+
+                                                <text>@productCustomValue.Value</text>
+                                            }
+                                            else
+                                            {
+                                                <text>@productCustomValue.ProductCustomItem.Value</text>
+                                            }
+                                        }
+                                    </td>
+                                }
+                                @if ((4 - newmodelCount) > 0)
+                                {
+                                    for (int i = 1; i <= (4 - newmodelCount); i++)
+                                    {
+                                        <td></td>
+
+                                    }
+                                }
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section endScripts {
+    <script type="text/javascript">
+        initializeCompareSearchScripts();
+    </script>
+}

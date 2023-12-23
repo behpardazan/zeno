@@ -1,0 +1,231 @@
+﻿@using DataLayer.ViewModels;
+@using DataLayer.Base;
+
+@{
+    ViewAccount CurrentAccount = BaseWebsite.CurrentAccount;
+    ViewShopWebsiteSetting ShopWebsiteSetting = BaseWebsite.WebsiteSetting;
+}
+<header id="my-header">
+    <div class="container">
+        <div class="headerInner">
+            <div class="header_top">
+            <div class="HeaderLogoBox">
+                <a href="/" class="navbar-brand"><img src="/assets/zeno/images/Logo.png" alt="@BaseContent.WebsiteDetail.Title"></a>
+            </div>
+            <div class="HeaderSearchBox">
+                <a href="tel:@BaseContent.WebsiteDetail.Phone">
+                    <div class="HeaderPhoneBox">
+                     <span class="ms-2">پشتیبانی :</span>
+                        @BaseContent.WebsiteDetail.Phone
+                    </div>
+                </a>
+                <div class="serachBox">
+                    <form class="searchForm mb-0" action="/search/all">
+                        <input class="form-control" name="prname" type="text" placeholder="@Resource.Lang.Search" id="txtHeaderSearch">
+                        <button class="btn searchBtn" type="submit">
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.4428 10.2214C19.4428 12.6089 18.53 14.7883 17.0356 16.4273L24.874 24.266C25.042 24.434 25.042 24.706 24.874 24.874C24.706 25.042 24.434 25.042 24.266 24.874L16.4274 17.0353C14.7882 18.5297 12.6095 19.4425 10.2213 19.4425C5.13678 19.4425 1 15.3057 1 10.2211C1 5.13656 5.13678 0.999733 10.2213 1C15.3061 1 19.4428 5.13682 19.4428 10.2214ZM1.85999 10.2214C1.85999 14.8318 5.61064 18.5828 10.2215 18.5828C14.8319 18.5828 18.5831 14.8316 18.5831 10.2214C18.5831 5.61044 14.8322 1.85948 10.2215 1.85948C5.61064 1.85948 1.85999 5.61044 1.85999 10.2214Z" fill="#09A636" />
+                                <path d="M17.0356 16.4273L16.2967 15.7535L15.6533 16.4591L16.3285 17.1344L17.0356 16.4273ZM24.874 24.266L24.1669 24.9731L24.1669 24.9731L24.874 24.266ZM24.266 24.874L24.9731 24.1669L24.266 24.874ZM16.4274 17.0353L17.1345 16.3282L16.4593 15.653L15.7537 16.2963L16.4274 17.0353ZM10.2213 1L10.2212 2H10.2213V1ZM17.7746 17.1011C19.4298 15.2857 20.4428 12.8685 20.4428 10.2214H18.4428C18.4428 12.3492 17.6303 14.2909 16.2967 15.7535L17.7746 17.1011ZM25.5811 23.5589L17.7428 15.7202L16.3285 17.1344L24.1669 24.9731L25.5811 23.5589ZM25.5811 25.5811C26.1396 25.0226 26.1396 24.1174 25.5811 23.5589L24.1669 24.9731C23.9444 24.7506 23.9444 24.3894 24.1669 24.1669L25.5811 25.5811ZM23.5589 25.5811C24.1174 26.1396 25.0226 26.1396 25.5811 25.5811L24.1669 24.1669C24.3894 23.9444 24.7506 23.9444 24.9731 24.1669L23.5589 25.5811ZM15.7203 17.7424L23.5589 25.5811L24.9731 24.1669L17.1345 16.3282L15.7203 17.7424ZM10.2213 20.4425C12.8693 20.4425 15.2856 19.4294 17.1011 17.7743L15.7537 16.2963C14.2908 17.63 12.3498 18.4425 10.2213 18.4425V20.4425ZM0 10.2211C0 15.858 4.58448 20.4425 10.2213 20.4425V18.4425C5.68907 18.4425 2 14.7534 2 10.2211H0ZM10.2213 0C4.58448 -0.000295639 0 4.58429 0 10.2211H2C2 5.68882 5.68907 1.99976 10.2212 2L10.2213 0ZM20.4428 10.2214C20.4428 4.58453 15.8583 0 10.2213 0V2C14.7538 2 18.4428 5.68912 18.4428 10.2214H20.4428ZM10.2215 17.5828C6.16293 17.5828 2.85999 14.2795 2.85999 10.2214H0.859991C0.859991 15.3841 5.05834 19.5828 10.2215 19.5828V17.5828ZM17.5831 10.2214C17.5831 14.2793 14.2796 17.5828 10.2215 17.5828V19.5828C15.3842 19.5828 19.5831 15.3839 19.5831 10.2214H17.5831ZM10.2215 2.85948C14.2799 2.85948 17.5831 6.16269 17.5831 10.2214H19.5831C19.5831 5.05818 15.3845 0.859482 10.2215 0.859482V2.85948ZM2.85999 10.2214C2.85999 6.16267 6.16297 2.85948 10.2215 2.85948V0.859482C5.0583 0.859482 0.859991 5.0582 0.859991 10.2214H2.85999Z" fill="#09A636" />
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="search_result search_with_result d-none">
+                        <div class="search_no_result quick-no-results" data-bind="visible: (viewModel.SearchResult.Results().length == 0 && viewModel.SearchResult.Name().length > 0)">  @Resource.Lang.NoResult </div>
+                        <div class="search_with_result" data-bind="visible: viewModel.SearchResult.Results().length > 0">
+                            <ul>
+                                <!-- ko foreach: viewModel.SearchResult.Results -->
+                                <li class="textHover">
+                                    <a data-bind="attr: { 'href': '/pr/' + Id + '/' + Name }" name="search resault item">
+                                        <strong class="searchresult" data-bind="text: Name"></strong>
+                                    </a>
+                                   
+                                </li>
+                                <!-- /ko -->
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+             <div class="header_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#MyHeader" aria-controls="MyHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="toggler_line line1"></div>
+                    <div class="toggler_line line2"></div>
+                    <div class="toggler_line line3"></div>
+                </button>
+                <div class="collapse navbar-collapse" id="MyHeader">
+                    <ul class="navbar-nav multiLevelDropDown">
+					<li class="nav-item">
+					 <a class="nav-link" href="/">
+					 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#4A4A4A" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+  <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
+</svg>
+					 صفحه اصلی
+					 </a>
+					</li> <button class="btn products-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">  <svg xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 32.000000 32.000000" preserveAspectRatio="xMidYMid meet" width="30" height="30">
+
+                <g transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)" stroke="none" fill="#4A4A4A">
+                    <path d="M44 218 c3 -29 6 -79 6 -110 l0 -58 110 0 110 0 0 58 c0 31 3 81 6 110 l7 52 -123 0 -123 0 7 -52z m216 17 c0 -12 -18 -15 -100 -15 -82 0 -100 3 -100 15 0 12 18 15 100 15 82 0 100 -3 100 -15z m-130 -45 c0 -5 14 -10 30 -10 17 0 30 5 30 10 0 6 14 10 30 10 l30 0 0 -65 0 -65 -90 0 -90 0 0 65 0 65 30 0 c17 0 30 -4 30 -10z"></path>
+                </g>
+            </svg>محصولات
+					          
+					</button>
+										@Html.Action("Search", "ProductType", new { ptviewName = "Menue", ptpageSize = 30, isService = false, isActive = true })						
+                      
+
+				
+<li class="nav-item">
+                            <a class="nav-link" href="/brands">
+                               
+                               برند ها
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/basket">
+                                <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.6284 23.0833L15.7534 25.2083L20.3576 20.9583" stroke="#4A4A4A" stroke-width="2"
+                                          stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M12.4809 3.25L7.35254 8.3925" stroke="#4A4A4A" stroke-width="2" stroke-miterlimit="10"
+                                          stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M21.519 3.25L26.6474 8.3925" stroke="#4A4A4A" stroke-width="2" stroke-miterlimit="10"
+                                          stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2.83325 11.5375C2.83325 8.91668 4.23575 8.70418 5.97825 8.70418H28.0216C29.7641 8.70418 31.1666 8.91668 31.1666 11.5375C31.1666 14.5833 29.7641 14.3708 28.0216 14.3708H5.97825C4.23575 14.3708 2.83325 14.5833 2.83325 11.5375Z"
+                                          stroke="#4A4A4A" stroke-width="2" />
+                                    <path d="M4.95825 14.5833L6.95575 26.8233C7.40909 29.5717 8.49992 31.5833 12.5516 31.5833H21.0941C25.4999 31.5833 26.1516 29.6567 26.6616 26.9933L29.0416 14.5833"
+                                          stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                                @Resource.Lang.Basket
+                                <span class="BasketNumber" data-bind="text:viewModel.Basket.StoreItems.Count()">0</span>
+                            </a>
+                        </li>
+                        @if (CurrentAccount != null)
+                        {
+                            <li class="nav-item">
+                                <div class="userProfile">
+                                    <a href="#" class="userProfile_icon" rel="nofollow">
+                                        <svg width="36" height="39" viewBox="0 0 36 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g filter="url(#filter0_d_517_224)">
+                                                <mask id="mask0_517_224" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="0" width="34" height="34">
+                                                    <rect x="1" width="34" height="34" fill="white" />
+                                                </mask>
+                                                <g mask="url(#mask0_517_224)">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9167 9.91666C10.9167 13.8224 14.0942 17 18 17C21.9057 17 25.0833 13.8224 25.0833 9.91666C25.0833 6.01091 21.9057 2.83333 18 2.83333C14.0942 2.83333 10.9167 6.01091 10.9167 9.91666ZM13.75 9.91666C13.75 7.57349 15.6568 5.66666 18 5.66666C20.3432 5.66666 22.25 7.57349 22.25 9.91666C22.25 12.2598 20.3432 14.1667 18 14.1667C15.6568 14.1667 13.75 12.2598 13.75 9.91666ZM30.75 28.3333C30.75 22.8664 26.3002 18.4167 20.8333 18.4167H15.1667C9.69833 18.4167 5.25 22.8664 5.25 28.3333V29.75H8.08333V28.3333C8.08333 24.4276 11.2609 21.25 15.1667 21.25H20.8333C24.7391 21.25 27.9167 24.4276 27.9167 28.3333V29.75H30.75V28.3333Z" fill="#4A4A4A" />
+                                                    <path d="M5.25 29.75H4.75V30.25H5.25V29.75ZM8.08333 29.75V30.25H8.58333V29.75H8.08333ZM27.9167 29.75H27.4167V30.25H27.9167V29.75ZM30.75 29.75V30.25H31.25V29.75H30.75ZM10.4167 9.91666C10.4167 14.0986 13.8181 17.5 18 17.5V16.5C14.3704 16.5 11.4167 13.5463 11.4167 9.91666H10.4167ZM18 17.5C22.1819 17.5 25.5833 14.0986 25.5833 9.91666H24.5833C24.5833 13.5463 21.6296 16.5 18 16.5V17.5ZM25.5833 9.91666C25.5833 5.73477 22.1819 2.33333 18 2.33333V3.33333C21.6296 3.33333 24.5833 6.28705 24.5833 9.91666H25.5833ZM18 2.33333C13.8181 2.33333 10.4167 5.73477 10.4167 9.91666H11.4167C11.4167 6.28705 14.3704 3.33333 18 3.33333V2.33333ZM14.25 9.91666C14.25 7.84964 15.933 6.16666 18 6.16666V5.16666C15.3807 5.16666 13.25 7.29735 13.25 9.91666H14.25ZM18 6.16666C20.067 6.16666 21.75 7.84964 21.75 9.91666H22.75C22.75 7.29735 20.6193 5.16666 18 5.16666V6.16666ZM21.75 9.91666C21.75 11.9837 20.067 13.6667 18 13.6667V14.6667C20.6193 14.6667 22.75 12.536 22.75 9.91666H21.75ZM18 13.6667C15.933 13.6667 14.25 11.9837 14.25 9.91666H13.25C13.25 12.536 15.3807 14.6667 18 14.6667V13.6667ZM31.25 28.3333C31.25 22.5903 26.5764 17.9167 20.8333 17.9167V18.9167C26.0241 18.9167 30.25 23.1426 30.25 28.3333H31.25ZM20.8333 17.9167H15.1667V18.9167H20.8333V17.9167ZM15.1667 17.9167C9.42214 17.9167 4.75 22.5903 4.75 28.3333H5.75C5.75 23.1425 9.97452 18.9167 15.1667 18.9167V17.9167ZM4.75 28.3333V29.75H5.75V28.3333H4.75ZM5.25 30.25H8.08333V29.25H5.25V30.25ZM8.58333 29.75V28.3333H7.58333V29.75H8.58333ZM8.58333 28.3333C8.58333 24.7037 11.5371 21.75 15.1667 21.75V20.75C10.9848 20.75 7.58333 24.1514 7.58333 28.3333H8.58333ZM15.1667 21.75H20.8333V20.75H15.1667V21.75ZM20.8333 21.75C24.4629 21.75 27.4167 24.7037 27.4167 28.3333H28.4167C28.4167 24.1514 25.0152 20.75 20.8333 20.75V21.75ZM27.4167 28.3333V29.75H28.4167V28.3333H27.4167ZM27.9167 30.25H30.75V29.25H27.9167V30.25ZM31.25 29.75V28.3333H30.25V29.75H31.25Z" fill="#4A4A4A" />
+                                                </g>
+                                            </g>
+                                            <defs>
+                                                <filter id="filter0_d_517_224" x="-3" y="0" width="42" height="42" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                                    <feOffset dy="4" />
+                                                    <feGaussianBlur stdDeviation="2" />
+                                                    <feComposite in2="hardAlpha" operator="out" />
+                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_517_224" />
+                                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_517_224" result="shape" />
+                                                </filter>
+                                            </defs>
+                                        </svg>
+                                        <span>@Resource.Lang.Profile</span>
+                                    </a>
+                                    <div class="profile_items">
+                                        <ul>
+                                            <li>
+                                                <a href="/Account/Dashboard" class="prfile_item_name" rel="nofollow">
+                                                    <strong>@CurrentAccount.FullName</strong>
+                                                    <span>
+                                                        @Resource.Lang.Profile <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            @if (CurrentAccount.StoreId > 0)
+                                            {
+                                                <li><a href="/store/dashboard" rel="nofollow"> <i class="bi bi-cart4" aria-hidden="true"></i> @Resource.Lang.StorePanel</a></li>
+                                              
+                                            }                                           
+                                            <li><a href="/Account/Favorite" rel="nofollow"> <i class="bi bi-heart" aria-hidden="true"></i> @Resource.Lang.FavoriteList </a></li>
+                                            <li><a href="@Url.Action("logout", "account", new { back = "/" })"> <i class='bi bi-door-closed'></i> @Resource.Lang.SignOut </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login"  rel="nofollow">
+                                    <svg width="36" height="39" viewBox="0 0 36 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g filter="url(#filter0_d_517_224)">
+                                            <mask id="mask0_517_224" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="0"
+                                                  width="34" height="34">
+                                                <rect x="1" width="34" height="34" fill="white" />
+                                            </mask>
+                                            <g mask="url(#mask0_517_224)">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M10.9167 9.91666C10.9167 13.8224 14.0942 17 18 17C21.9057 17 25.0833 13.8224 25.0833 9.91666C25.0833 6.01091 21.9057 2.83333 18 2.83333C14.0942 2.83333 10.9167 6.01091 10.9167 9.91666ZM13.75 9.91666C13.75 7.57349 15.6568 5.66666 18 5.66666C20.3432 5.66666 22.25 7.57349 22.25 9.91666C22.25 12.2598 20.3432 14.1667 18 14.1667C15.6568 14.1667 13.75 12.2598 13.75 9.91666ZM30.75 28.3333C30.75 22.8664 26.3002 18.4167 20.8333 18.4167H15.1667C9.69833 18.4167 5.25 22.8664 5.25 28.3333V29.75H8.08333V28.3333C8.08333 24.4276 11.2609 21.25 15.1667 21.25H20.8333C24.7391 21.25 27.9167 24.4276 27.9167 28.3333V29.75H30.75V28.3333Z"
+                                                      fill="#4A4A4A" />
+                                                <path d="M5.25 29.75H4.75V30.25H5.25V29.75ZM8.08333 29.75V30.25H8.58333V29.75H8.08333ZM27.9167 29.75H27.4167V30.25H27.9167V29.75ZM30.75 29.75V30.25H31.25V29.75H30.75ZM10.4167 9.91666C10.4167 14.0986 13.8181 17.5 18 17.5V16.5C14.3704 16.5 11.4167 13.5463 11.4167 9.91666H10.4167ZM18 17.5C22.1819 17.5 25.5833 14.0986 25.5833 9.91666H24.5833C24.5833 13.5463 21.6296 16.5 18 16.5V17.5ZM25.5833 9.91666C25.5833 5.73477 22.1819 2.33333 18 2.33333V3.33333C21.6296 3.33333 24.5833 6.28705 24.5833 9.91666H25.5833ZM18 2.33333C13.8181 2.33333 10.4167 5.73477 10.4167 9.91666H11.4167C11.4167 6.28705 14.3704 3.33333 18 3.33333V2.33333ZM14.25 9.91666C14.25 7.84964 15.933 6.16666 18 6.16666V5.16666C15.3807 5.16666 13.25 7.29735 13.25 9.91666H14.25ZM18 6.16666C20.067 6.16666 21.75 7.84964 21.75 9.91666H22.75C22.75 7.29735 20.6193 5.16666 18 5.16666V6.16666ZM21.75 9.91666C21.75 11.9837 20.067 13.6667 18 13.6667V14.6667C20.6193 14.6667 22.75 12.536 22.75 9.91666H21.75ZM18 13.6667C15.933 13.6667 14.25 11.9837 14.25 9.91666H13.25C13.25 12.536 15.3807 14.6667 18 14.6667V13.6667ZM31.25 28.3333C31.25 22.5903 26.5764 17.9167 20.8333 17.9167V18.9167C26.0241 18.9167 30.25 23.1426 30.25 28.3333H31.25ZM20.8333 17.9167H15.1667V18.9167H20.8333V17.9167ZM15.1667 17.9167C9.42214 17.9167 4.75 22.5903 4.75 28.3333H5.75C5.75 23.1425 9.97452 18.9167 15.1667 18.9167V17.9167ZM4.75 28.3333V29.75H5.75V28.3333H4.75ZM5.25 30.25H8.08333V29.25H5.25V30.25ZM8.58333 29.75V28.3333H7.58333V29.75H8.58333ZM8.58333 28.3333C8.58333 24.7037 11.5371 21.75 15.1667 21.75V20.75C10.9848 20.75 7.58333 24.1514 7.58333 28.3333H8.58333ZM15.1667 21.75H20.8333V20.75H15.1667V21.75ZM20.8333 21.75C24.4629 21.75 27.4167 24.7037 27.4167 28.3333H28.4167C28.4167 24.1514 25.0152 20.75 20.8333 20.75V21.75ZM27.4167 28.3333V29.75H28.4167V28.3333H27.4167ZM27.9167 30.25H30.75V29.25H27.9167V30.25ZM31.25 29.75V28.3333H30.25V29.75H31.25Z"
+                                                      fill="#4A4A4A" />
+                                            </g>
+                                        </g>
+                                        <defs>
+                                            <filter id="filter0_d_517_224" x="-3" y="0" width="42" height="42"
+                                                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                                <feColorMatrix in="SourceAlpha" type="matrix"
+                                                               values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                                <feOffset dy="4" />
+                                                <feGaussianBlur stdDeviation="2" />
+                                                <feComposite in2="hardAlpha" operator="out" />
+                                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_517_224" />
+                                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_517_224" result="shape" />
+                                            </filter>
+                                        </defs>
+                                    </svg>
+                                    @Resource.Lang.SignIn
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register"  rel="nofollow">
+                                    <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <mask id="mask0_744_13" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="43" height="43">
+                                            <rect width="43" height="43" fill="white" />
+                                        </mask>
+                                        <g mask="url(#mask0_744_13)">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.4999 14.3333C21.4999 18.2914 18.2913 21.5 14.3333 21.5C10.3752 21.5 7.16659 18.2914 7.16659 14.3333C7.16659 10.3753 10.3752 7.16667 14.3333 7.16667C18.2913 7.16667 21.4999 10.3753 21.4999 14.3333C21.4999 18.2914 21.4999 14.3333 21.4999 14.3333ZM17.9166 14.3333C17.9166 16.3124 16.3123 17.9167 14.3333 17.9167C12.3542 17.9167 10.7499 16.3124 10.7499 14.3333C10.7499 12.3543 12.3542 10.75 14.3333 10.75C16.3123 10.75 17.9166 12.3543 17.9166 14.3333C17.9166 16.3124 17.9166 14.3333 17.9166 14.3333ZM34.0416 14.3333V19.7083H39.4166V23.2917H34.0416V28.6667H30.4583V23.2917H25.0833V19.7083H30.4583V14.3333H34.0416ZM25.0833 34.0417C25.0833 28.1046 20.2703 23.2917 14.3333 23.2917C8.39619 23.2917 3.58325 28.1046 3.58325 34.0417H7.16659C7.16659 30.0836 10.3752 26.875 14.3333 26.875C18.2913 26.875 21.4999 30.0836 21.4999 34.0417H25.0833Z" fill="#4A4A4A" />
+                                        </g>
+                                    </svg>
+                                    @Resource.Lang.SignUp
+                                </a>
+                            </li>
+                        }
+
+
+                       
+                      
+                    </ul>
+                </div>
+            </nav>
+<div class="InnerBanner">
+
+    <div class="MainSliderTopBox">
+        <a href="@Url.Action("SearchCategory", "Post", new { poviewName = "plus", poidlabel = "plus" })" class="btn  MainSliderPlusBtn">
+        + پلاس
+          
+        </a>
+        <a href="@Url.Action("SearchCategory", "Post", new { poviewName = "ShippingSubscription", poidlabel = "ShippingSubscription" })" class="btn  MainSliderFreeSendBtn d-none">
+            <h6>عضویت و ارسال رایگان</h6>
+          
+        </a>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+

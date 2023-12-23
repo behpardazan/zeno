@@ -1,0 +1,97 @@
+﻿
+<div class="modal fade suggestionModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="similarFavesLabel">@Resource.Lang.SimilarProducts </h5>
+                <button type="button" class="close btn me-auto ml-0 waves-effect waves-blue"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+           
+            <div class="modal-body">
+                <div class="lastItem">
+                    <img class="" data-bind="attr: { src: viewModel.FavoriteSimilarProduct.PictureProduct }">
+                    <div class="lastItemTxt">
+                        <span data-bind="text:viewModel.FavoriteSimilarProduct.NameProduct">@Resource.Lang.ProductName: @Resource.Enum.TheProductYouWant </span>
+                        <div class="d-flex">
+                            <span>@Resource.Lang.Price:</span>  <span data-bind="text:toCurrency(viewModel.FavoriteSimilarProduct.Price())">  </span> @Resource.Lang.Toman
+                        </div>
+                    </div>
+                </div>
+                <div class="profileTitle mt-2">
+                    <h6>@Resource.Lang.SimilarProducts</h6>
+                </div>
+
+                <!--ko if:viewModel.FavoriteSimilarProduct.Items().length != 0-->
+                <div class="row">
+                    <!--ko foreach: viewModel.FavoriteSimilarProduct.Items-->
+                    <div class="col-sm-4 p-1">
+                        <div >
+                            <div class="ProductItem">
+                                
+                                <div class="ProductPic">
+                                    <!--ko if:Picture!=null-->
+                                    <a data-bind="attr: { href: '/pr/' + Id + '/' + Name }">
+                                        <img data-bind="attr: { src: Picture.Url }">
+                                    </a>
+                                   
+                                    <!--/ko-->
+                                    <div class="ProductPlus">
+                                        <img src="/assets/zeno/images/Plus.png" alt="">
+                                    </div>
+                                    <a class="btn LikeProduct" href="javascript://" codeprocess-action="productlike-add" data-bind="attr: { 'product-id':  Id  }">
+                                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <mask id="mask0_520_260" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="34" height="34">
+                                                <rect width="34" height="34" fill="white" />
+                                            </mask>
+                                            <g mask="url(#mask0_520_260)">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9999 7.08333C16.5189 6.52919 15.958 6.04532 15.3393 5.64173C13.972 4.74985 12.322 4.25 10.6249 4.25C6.26159 4.25 2.83325 7.61294 2.83325 11.8931C2.83325 13.4139 3.19555 14.858 3.81618 16.2319C5.74111 20.4972 10.1514 24.0965 13.9477 27.1947C15.0407 28.0867 16.0827 28.9372 16.9999 29.75C17.9171 28.9372 18.9592 28.0867 20.0521 27.1947C23.8484 24.0966 28.2586 20.4973 30.1836 16.2322C30.8042 14.8582 31.1666 13.4139 31.1666 11.8931C31.1666 7.61294 27.7383 4.25 23.3749 4.25C21.6779 4.25 20.0278 4.74985 18.6605 5.64173C18.0418 6.04532 17.481 6.52919 16.9999 7.08333C16.5189 6.52919 16.9999 7.08333 16.9999 7.08333ZM16.9999 26.0241C17.4572 25.6451 17.9246 25.2629 18.3913 24.8813C18.7867 24.5581 19.1815 24.2353 19.5691 23.9152C21.1211 22.6339 22.6402 21.3322 23.9854 19.968C25.6501 18.2797 26.8873 16.6548 27.6077 15.0509C28.0829 13.992 28.3333 12.9431 28.3333 11.8931C28.3333 9.22894 26.2251 7.08333 23.3749 7.08333C21.6913 7.08333 20.1202 7.81111 19.1395 8.94075L16.9999 11.4054L14.8603 8.94075C13.8797 7.81111 12.3085 7.08333 10.6249 7.08333C7.77471 7.08333 5.66659 9.22894 5.66659 11.8931C5.66659 12.9431 5.91697 13.992 6.39211 15.0509C7.11257 16.6548 8.34979 18.2797 10.0145 19.968C11.3597 21.3322 12.8788 22.6339 14.4307 23.9152C14.8184 24.2353 15.2132 24.5581 15.6085 24.8813C16.0752 25.2629 16.5426 25.6451 16.9999 26.0241C17.4572 25.6451 16.9999 26.0241 16.9999 26.0241Z" fill="black" />
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="ProductCaption">
+                                    <div class="ProductItemText">
+                                        <h6 data-bind="text:Name">نام محصول</h6>
+                                       
+                                        <span class="NewPrice" data-bind="text:toCurrency(Price)">8.500.000</span>
+                                    </div>
+                                    <button class="btn ProductItemBasket">
+                                        <svg width="36" height="38" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g filter="url(#filter0_d_549_71)">
+                                                <path d="M13.0417 20.1875C13.0417 22.9075 15.2801 25.1458 18.0001 25.1458C20.7201 25.1458 22.9584 22.9075 22.9584 20.1875" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M13.4809 2.83337L8.35254 7.97587" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M22.519 2.83337L27.6474 7.97587" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M3.83325 11.1208C3.83325 8.49998 5.23575 8.28748 6.97825 8.28748H29.0216C30.7641 8.28748 32.1666 8.49998 32.1666 11.1208C32.1666 14.1666 30.7641 13.9541 29.0216 13.9541H6.97825C5.23575 13.9541 3.83325 14.1666 3.83325 11.1208Z" stroke="white" stroke-width="1.5" />
+                                                <path d="M5.95825 14.1666L7.95575 26.4066C8.40909 29.155 9.49992 31.1666 13.5516 31.1666H22.0941C26.4999 31.1666 27.1516 29.24 27.6616 26.5766L30.0416 14.1666" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                            </g>
+                                            <defs>
+                                                <filter id="filter0_d_549_71" x="-2" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                                    <feOffset dy="3" />
+                                                    <feGaussianBlur stdDeviation="1.5" />
+                                                    <feComposite in2="hardAlpha" operator="out" />
+                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_549_71" />
+                                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_549_71" result="shape" />
+                                                </filter>
+                                            </defs>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!--/ko-->
+                </div>
+                <!--/ko-->
+
+            </div>
+        </div>
+    </div>
+</div>

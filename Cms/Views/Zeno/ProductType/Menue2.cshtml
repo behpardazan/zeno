@@ -1,0 +1,240 @@
+﻿﻿@model IEnumerable<DataLayer.Entities.ProductType>
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@{
+    var productTypelist = Model.Where(s => s.Active && s.Deleted != true).OrderBy(s => s.Priority);
+}
+@if (productTypelist.Count() > 0)
+{
+
+    <li class="nav-item dropdown d-none">
+        <a class="nav-link dropLink" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>@Resource.Lang.Products</span>
+        </a>
+        <button class="btn p-0">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50"
+                 width="50px" xml:space="preserve" style="    width: 15px;    height: 15px;">
+            <rect fill="none" height="50" width="50" /> <polygon points="47.25,15 45.164,12.914 25,33.078 4.836,12.914 2.75,15 25,37.25 " /></svg>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" toggle-state="close">
+
+            @foreach (var item in productTypelist)
+            {
+                var listCategory = item.ProductCategory.Where(s => s.Active && s.Deleted != true).OrderBy(s => s.Priority);
+                if (listCategory.Count() == 0)
+                {
+                    <li><a class="dropdown-item" href="@item.GetUrlNew()">@item.GetName()</a></li>
+                }
+                else
+                {
+                    <li class="subDropDown">
+                        <a class="dropdown-item" href="@item.GetUrlNew()">
+                            @item.GetName()
+
+                        </a>
+                        <button class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1"
+                                 viewBox="0 0 50 50" width="50px" xml:space="preserve"
+                                 style="    width: 15px;  height: 15px; transform: rotate(90deg);">
+                            <rect fill="none" height="50" width="50" /><polygon points="47.25,15 45.164,12.914 25,33.078 4.836,12.914 2.75,15 25,37.25 " /></svg>
+                        </button>
+                        <ul class="dropdown-menu" toggle-state="close">
+                            @foreach (var Categoryitem in listCategory)
+                            {
+                                var listsubCategory = Categoryitem.ProductSubCategory.Where(s => s.Active && s.Deleted != true).OrderBy(s => s.Priority);
+
+                                if (listsubCategory.Count() == 0)
+                                {
+                                    <li><a class="dropdown-item" href="@Categoryitem.GetUrlNewZeno()"> @Categoryitem.GetName()</a></li>
+                                }
+                                else
+                                {
+                                    <li class="subDropDown">
+                                        <a class="dropdown-item" href="@Categoryitem.GetUrlNewZeno()">
+                                            @Categoryitem.GetName()
+
+                                        </a>
+                                        <button class="btn">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                 enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1"
+                                                 viewBox="0 0 50 50" width="50px" xml:space="preserve"
+                                                 style="    width: 15px;  height: 15px; transform: rotate(90deg);">
+                                            <rect fill="none" height="50" width="50" /><polygon points="47.25,15 45.164,12.914 25,33.078 4.836,12.914 2.75,15 25,37.25 " /></svg>
+                                        </button>
+                                        <ul class="dropdown-menu" toggle-state="close">
+                                            @foreach (var subCategoryitem in listsubCategory)
+                                            {
+                                                <li><a class="dropdown-item" href="@subCategoryitem.GetUrlNewZeno()"> @subCategoryitem.GetName()</a></li>
+                                            }
+
+                                        </ul>
+                                    </li>
+                                }
+
+                            }
+
+                        </ul>
+                    </li>
+                }
+            }
+
+        </ul>
+    </li>
+
+
+    <div class="category_item dropdown nav-item">
+        <a class="category_link">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 32.000000 32.000000" preserveAspectRatio="xMidYMid meet" width="30" height="30">
+
+                <g transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)" stroke="none" fill="#4A4A4A">
+                    <path d="M44 218 c3 -29 6 -79 6 -110 l0 -58 110 0 110 0 0 58 c0 31 3 81 6 110 l7 52 -123 0 -123 0 7 -52z m216 17 c0 -12 -18 -15 -100 -15 -82 0 -100 3 -100 15 0 12 18 15 100 15 82 0 100 -3 100 -15z m-130 -45 c0 -5 14 -10 30 -10 17 0 30 5 30 10 0 6 14 10 30 10 l30 0 0 -65 0 -65 -90 0 -90 0 0 65 0 65 30 0 c17 0 30 -4 30 -10z"></path>
+                </g>
+            </svg>@Resource.Lang.Products
+        </a>
+        <div class="dropDownContent">
+            <div class="dropDownContent_title">
+                <a class="navbar-brand" href="/"><img src="/assets/zeno/images/Logo.png" alt="فروشگاه اینترنتی زنو"></a>
+                <a href="#" class="btn closeSide">✖</a>
+            </div>
+            <div class="dropDownContent_body">
+                <div class="selectedContent">
+                    <div class="dropContentBox d-block" name="cat1">
+                        <div class="row d-none d-lg-flex">
+                            @foreach (var item in productTypelist)
+                            {
+                                var listCategory = item.ProductCategory.Where(s => s.Active && s.Deleted != true).OrderBy(s => s.Priority);
+                                if (listCategory.Count() == 0)
+                                {
+
+
+                                    <div class="col-md-3  p-1">
+                                        <div class="proSubCategory">
+                                            <a href="@item.GetUrlNew()"> <strong>     @item.GetName()<i class="bi bi-chevron-left"></i></strong></a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-3  p-1">
+                                        <div class="proSubCategory">
+
+                                            <a href="@item.GetUrlNew()">
+                                                <strong>
+                                                    @item.GetName()<i class="bi bi-chevron-left"></i>
+                                                </strong>
+                                            </a>
+                                            <ul class="subcat_items">
+                                                @foreach (var Categoryitem in listCategory)
+                                                {
+                                                    if (Categoryitem.ProductSubCategory.Any(s => s.Active && s.Deleted != true))
+                                                    {
+                                                        <li class="subcat_link"><a href="@Categoryitem.GetUrlNewZeno()"><strong>@Categoryitem.GetName()<i class="bi bi-chevron-left"></i></strong></a>
+																<ul class="pr-3-type">
+																	@foreach (var itemProductsubCategory in Categoryitem.ProductSubCategory.Where(s => s.Active && s.Deleted != true).OrderBy(p => p.Priority).ThenBy(x => x.ID))
+																	{
+																		if (itemProductsubCategory.Active == true)
+																		{
+																				<li>
+																					<a href="@itemProductsubCategory.GetUrlNewZeno()">@itemProductsubCategory.GetName()</a>
+																				</li>
+
+																		}
+																	}
+																</ul>
+														</li>
+                                                        
+                                                    }
+                                                    else
+                                                    {
+                                                        <li class="subcat_link"><a href="@Categoryitem.GetUrlNewZeno()"><strong>@Categoryitem.GetName()</strong></a></li>
+
+                                                    }
+
+                                                }
+                                            </ul>
+                                            @if (listCategory.Count() > 10)
+                                            {
+                                                <li class="subcat_link more_categories"><a href="@item.GetUrlNew()">همه @item.GetName()...</a></li>
+                                            }
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                        <div class="mobile-menu-dropdowns d-lg-none">
+                            @foreach (var item in productTypelist)
+                            {
+                                <div class="mobile-menu-dropdown-item1">
+                                    <div class="mobile-menu-dropdown-item-title align justify-content-between">
+                                        <span><a href="@item.GetUrlNew()">@item.GetName()</a></span>
+                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.29303 8.29534C4.48056 8.10787 4.73487 8.00255 5.00003 8.00255C5.26519 8.00255 5.5195 8.10787 5.70703 8.29534L12 14.5883L18.293 8.29534C18.3853 8.19983 18.4956 8.12365 18.6176 8.07124C18.7396 8.01883 18.8709 7.99124 19.0036 7.99009C19.1364 7.98894 19.2681 8.01424 19.391 8.06452C19.5139 8.1148 19.6255 8.18905 19.7194 8.28294C19.8133 8.37684 19.8876 8.48849 19.9379 8.61139C19.9881 8.73428 20.0134 8.86596 20.0123 8.99874C20.0111 9.13152 19.9835 9.26274 19.9311 9.38474C19.8787 9.50675 19.8025 9.61709 19.707 9.70934L12.707 16.7093C12.5195 16.8968 12.2652 17.0021 12 17.0021C11.7349 17.0021 11.4806 16.8968 11.293 16.7093L4.29303 9.70934C4.10556 9.52181 4.00024 9.2675 4.00024 9.00234C4.00024 8.73718 4.10556 8.48287 4.29303 8.29534Z" fill="black"></path>
+                                        </svg>
+                                    </div>
+                                    @{
+                                        var listCategory = item.ProductCategory.Where(s => s.Active && s.Deleted != true).OrderBy(s => s.Priority);
+                                        int i = 1;
+                                        int j = 2;
+                                    }
+                                    <div class="@Html.Raw("mobile-menu-dropdown-content1")">
+                                        @foreach (var pc in listCategory)
+                                        {
+                                            var listSub = pc.ProductSubCategory.Where(s => s.Active && s.Deleted != true).OrderBy(s => s.Priority).ToList();
+                                            if (listSub.Count == 0)
+                                            {
+                                                <a href="@pc.GetUrlNewZeno()" class="mobile-menu-dropdown-all align justify-content-between">
+                                                    <span href="@pc.GetUrlNewZeno()">@pc.GetName()</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+                                                    </svg>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <div class="@Html.Raw("mobile-menu-dropdown-item"+j.ToString())">
+
+                                                    <div class="mobile-menu-dropdown-item-title align justify-content-between">
+                                                        <span><a href="@pc.GetUrlNewZeno()">@pc.GetName()</a></span>
+                                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.29303 8.29534C4.48056 8.10787 4.73487 8.00255 5.00003 8.00255C5.26519 8.00255 5.5195 8.10787 5.70703 8.29534L12 14.5883L18.293 8.29534C18.3853 8.19983 18.4956 8.12365 18.6176 8.07124C18.7396 8.01883 18.8709 7.99124 19.0036 7.99009C19.1364 7.98894 19.2681 8.01424 19.391 8.06452C19.5139 8.1148 19.6255 8.18905 19.7194 8.28294C19.8133 8.37684 19.8876 8.48849 19.9379 8.61139C19.9881 8.73428 20.0134 8.86596 20.0123 8.99874C20.0111 9.13152 19.9835 9.26274 19.9311 9.38474C19.8787 9.50675 19.8025 9.61709 19.707 9.70934L12.707 16.7093C12.5195 16.8968 12.2652 17.0021 12 17.0021C11.7349 17.0021 11.4806 16.8968 11.293 16.7093L4.29303 9.70934C4.10556 9.52181 4.00024 9.2675 4.00024 9.00234C4.00024 8.73718 4.10556 8.48287 4.29303 8.29534Z" fill="black"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class=@Html.Raw("mobile-menu-dropdown-content"+j.ToString())>
+                                                        @foreach (var sub in listSub)
+                                                        {
+                                                            <a href="@sub.GetUrlNewZeno()" class="mobile-menu-dropdown-all align justify-content-between">
+                                                                <span>@sub.GetName()</span>
+                                                                @*<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+                                                                    </svg>*@
+                                                            </a>
+                                                        }
+
+                                                        @*<div class="mobile-menu-dropdown-item3 linkbox">
+                                                                <a href="#"></a>
+                                                                <div class="mobile-menu-dropdown-item-title align justify-content-between">
+                                                                    <span>Services</span>
+                                                                </div>
+                                                            </div>*@
+                                                    </div>
+                                                </div>
+                                            }
+
+
+
+                                            i++;
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

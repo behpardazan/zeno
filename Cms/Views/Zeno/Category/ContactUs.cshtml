@@ -1,0 +1,8 @@
+﻿@model IEnumerable<DataLayer.Entities.Category>
+ @using DataLayer.Base;
+@{ 
+    var SearchModel= Model.FirstOrDefault();
+}
+    
+
+<img width="100%" height="100%" alt="@SearchModel.Name" title="@SearchModel.Name" src="@SearchModel.Picture.GetUrl()" />

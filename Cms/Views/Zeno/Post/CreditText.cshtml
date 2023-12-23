@@ -1,0 +1,6 @@
+﻿@model IEnumerable<DataLayer.Entities.Post>
+
+@if (Model != null && Model.FirstOrDefault() != null)
+{
+    <p>@Html.Raw(Model.FirstOrDefault().Body)</p>
+}

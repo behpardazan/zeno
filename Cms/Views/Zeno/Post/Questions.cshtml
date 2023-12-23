@@ -1,0 +1,79 @@
+﻿@using DataLayer.Enumarables;
+@model  DataLayer.ViewModels.ViewSearchPost
+@using DataLayer.Base;
+@{
+    ViewBag.Title = Resource.Lang.CommonQuestions;
+    Layout = Resources.Zeno.WEBSITE_LAYOUTIndex;
+    string poorder = BaseRouteView.GetStringValue(Request, "poorder");
+    if (string.IsNullOrEmpty(poorder))
+    {
+        poorder = Enum_PostOrder.NEW.ToString();
+    }
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    ViewBag.url = url;
+    ViewBag.Follow = "index, follow";
+}
+<input type="hidden" name="prorder" value="@poorder" />
+
+<section class="question question_accordion">
+    <div class="blog_content">
+        <div class="question_cover"></div>
+        <div class="container">
+
+            @*<form id="searchForm">
+                <input type="hidden" name="poorder" value="@poorder" />
+                <input type="hidden" name="poviewName" value="Questions" />
+                <input type="hidden" name="pocategory" value="Questions" />
+
+            </form>
+            <div class="questionParent">
+                <div class="questionFilter">
+                    <ul>
+                        <li class="radioBox">
+                            <input id="sort-2" value="@Enum_PostOrder.NEW.ToString()" @(poorder == Enum_PostOrder.NEW.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" checked />
+                            <div class="selector"></div>
+
+                            <label for="sort-2">@Resource.Lang.Newest</label>
+                        </li>
+                        <li class="radioBox">
+                            <input id="sort-1" value="@Enum_PostOrder.MORE_VISIT.ToString()" @(poorder == Enum_PostOrder.MORE_VISIT.ToString().ToLower() ? "checked" : "") type="radio" name="searchorder" />
+                            <div class="selector"></div>
+                            <label for="sort-1">@Resource.Lang.MostViewed</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>*@
+            <div class="row">
+                @if (Model.Results.Count() == 0)
+                {
+                    <img src="~/Assets/Lajevard/images/noresualt.png" class="w-100 h-100" />
+                }
+                else
+                {
+                    <div class="accordion" id="accordionExample">
+                        @foreach (var item in Model.Results.OrderBy(s=>s.ShowNumber))
+                        {
+                            @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Post/QuestionItem.cshtml", item)
+                        }
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Head {
+}
+@section endScripts {
+
+    @Html.Partial("~/Views/" + BaseWebsite.WebsiteLabel + "/Partial/_AjaxLoader.cshtml")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initializeQuestionSearchScripts();
+            //GetQuestionSort();
+        });
+    </script>
+}

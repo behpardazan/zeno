@@ -1,0 +1,473 @@
+﻿@model DataLayer.Entities.Product
+@using DataLayer.Base;
+@using DataLayer.Enumarables;
+@{
+
+    Layout = Resources.KhoshKala.WEBSITE_LAYOUT;
+    Nullable<double> totalRate = 0;
+    if (Model.ProductComment.Any())
+    {
+        totalRate = Model.ProductComment.Where(s => s.Rate.HasValue).Average(s => s.Rate);
+    }
+    ViewBag.Title = Model.GetName();
+}
+<nav aria-label="breadcrumb" class="BREADCRUMB">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">@Resource.Lang.Home</a></li>
+            @if (Model.ProductTypeId != null)
+            {
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("search", "product", new {
+                        @prtypeId = Model.ProductType.ID,
+                        @prpagesize = 12,
+                        @prindex = 1,
+                        @proutput = Enum_ProductOutput.SEARCH.ToString().ToLower(),
+                        @prorder = Enum_ProductOrder.NEW.ToString().ToLower(),
+                        @prtitle = Model.ProductType.Name.ToLower().StandardUrl()
+                    })">@Model.ProductType.GetName()</a>
+                </li>
+            }
+            @if (Model.ProductCategoryId != null)
+            {
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("search", "product", new {
+                    @prcategoryId = Model.ProductCategory.ID,
+                    @prtypeId = Model.ProductType.ID,
+                    @prpagesize = 12,
+                    @prindex = 1,
+                    @proutput = Enum_ProductOutput.SEARCH.ToString().ToLower(),
+                    @prorder = Enum_ProductOrder.NEW.ToString().ToLower(),
+                    @prtitle = Model.ProductCategory.Name.ToLower().StandardUrl()
+                })">@Model.ProductCategory.GetName()</a>
+            </li>
+        }
+            @if (Model.ProductSubCategoryId != null)
+            {
+                <li class="breadcrumb-item">
+
+                    <a href="@Url.Action("search", "product", new {
+                    @prsubcategoryId = Model.ProductSubCategory.ID,
+                    @prpagesize = 12,
+                    @prindex = 1,
+                    @proutput = Enum_ProductOutput.SEARCH.ToString().ToLower(),
+                    @prorder = Enum_ProductOrder.NEW.ToString().ToLower(),
+                    @prtitle = Model.ProductSubCategory.Name.ToLower().StandardUrl()
+                })">@Model.ProductSubCategory.GetName()</a>
+            </li>
+        }
+        </ol>
+    </div>
+</nav>
+
+<section class="product_details">
+    <div class="container">
+        <div class="productDetail_card">
+            <div class="proDetail_box">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!--<div class="proDetail_img">
+                        <img src="assets/images/Pic 2.png" alt="">
+                    </div>-->
+                        <div class="product-detail-magiczoom h-100">
+                            <div class="magic_big_img">
+                                <a href="@Model.Picture.GetUrl()" class=" MagicZoom" id="magicSmallImg"
+                                   data-options="cssClass: mz-show-arrows;">
+                                    <img src="@Model.Picture.GetUrl()" alt="@Model.GetName()" title="@Model.GetName()" style="width: 300px ; height: 300px">
+                                </a>
+                            </div>
+                            <div class="d-flex  magic_options">
+                                <a data-zoom-id="magicSmallImg" href="@Model.Picture.GetUrl()" data-image="@Model.Picture.GetUrl()"><img src="@Model.Picture.GetUrl()" title="@Model.GetName()" alt="@Model.GetName()"></a>
+
+                                @foreach (var item in Model.ProductPicture)
+                                {
+                                    <a data-zoom-id="magicSmallImg" href="@item.GetUrl()" data-image="@item.GetUrl()"><img src="@item.GetUrl()" title="@Model.GetName()" alt="@Model.GetName()"></a>
+                                }
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6">
+                        <div class="proDetails ">
+                            <div class="proDetail_part">
+                                <div class="proDetail_name">
+                                    <h1>@Model.GetName()</h1>
+                                </div>
+                                @{
+                                    var weight = Model.ProductCustomValue.FirstOrDefault(x => x.ProductCustomField.SyncName == "Weight");
+                                    if (weight != null && weight.Value != "")
+                                    {
+                                        <div class="proDetail_weight">
+                                            <strong>@Resource.Lang.Weight:</strong>
+                                            <p>@weight.Value <span>@Resource.Lang.Gram</span></p>
+                                        </div>
+                                    }
+                                }
+                                <div class="proDetail_line">
+                                    <div class="p_brand ml-5"><strong>@Resource.Lang.Brand:</strong><span>@Model.GetBrand()</span></div>
+                                    @if (Model.ProductCategory != null)
+                                    {
+                                        <div class="p_cat">
+                                            <strong>@Resource.Lang.Category:</strong><span>
+                                                <a href="@Url.Action("search", "product", new {
+                    @prcategoryId = Model.ProductCategory.ID,
+                    @prpagesize = 12,
+                    @prindex = 1,
+                    @proutput = Enum_ProductOutput.SEARCH.ToString().ToLower(),
+                    @prorder = Enum_ProductOrder.NEW.ToString().ToLower(),
+                    @prtitle = Model.ProductCategory.Name.ToLower().StandardUrl()
+                })">@Model.ProductCategory.GetName()</a>
+            </span>
+        </div>
+    }
+                                    @if (Model.ProductSubCategory != null)
+                                    {
+                                        <div class="p_cat">
+                                            <strong>@Resource.Lang.ProductSubCategory:</strong><span>
+
+                                                <a href="@Url.Action("search", "product", new {
+                    @prsubcategoryId = Model.ProductSubCategory.ID,
+                    @prpagesize = 12,
+                    @prindex = 1,
+                    @proutput = Enum_ProductOutput.SEARCH.ToString().ToLower(),
+                    @prorder = Enum_ProductOrder.NEW.ToString().ToLower(),
+                    @prtitle = Model.ProductSubCategory.Name.ToLower().StandardUrl()
+                })">@Model.ProductSubCategory.GetName()</a>
+            </span>
+        </div>
+    }
+                                </div>
+                                <div class="variety ajax-update">
+                                    <input type="hidden" name="productid" value="@Model.ID" />
+                                    <div class="proDetail_line">
+                                        <!--ko if: viewModel.Variety.Colors().length > 0-->
+                                        <div class="p_color">
+                                            <strong>@Resource.Lang.Color:</strong>
+                                            <!--ko foreach: viewModel.Variety.Colors-->
+                                            <a data-bind="attr:{'color-id': Id  , 'color-name' : Name },css:{'selectColor' : (viewModel.Variety.ColorId() == Id) },style :{'background-color' : '#'+Hex}" class="btn-color btn text-white  p-1 m-1" href="javascript://" style="text-shadow: -1px 2px 3px black;"></a>
+                                            <!--/ko-->
+                                        </div>
+                                        <!--/ko-->
+                                        <!-- ko if:viewModel.Variety.Colors().length == 0-->
+                                        <a data-bind="attr:{'color-id': 'null' }" class="btn-color text-white  p-1 m-1 selectColor" href="javascript://" style="text-shadow: -1px 2px 3px black;display:none"></a>
+                                        <!--/ko-->
+                                    </div>
+                                    <!-- ko if:viewModel.Variety.Colors().length == 0-->
+                                    <a data-bind="attr:{'color-id': 'null'}" class="btn-color text-white  p-1 m-1 selectColor" href="javascript://" style="text-shadow: -1px 2px 3px black;display:none"></a>
+                                    <!--/ko-->
+                                    <div class="proDetail_line">
+                                        <!--ko if: viewModel.Variety.Sizes().length > 0-->
+                                        <div class="p_size">
+                                            <strong>@Resource.Lang.Size:</strong>
+                                            <!--ko foreach: viewModel.Variety.Sizes-->
+                                            <a data-bind="attr:{'size-id': Id ,'size-name' : Name},css:{'selectColor' : (viewModel.Variety.SizeId() == Id) },text : Name" class="btn-size text-white  p-1 m-1" href="javascript://" style="background-color:black; text-shadow: -1px 2px 3px black;"></a>
+                                            <!--/ko-->
+                                        </div>
+                                        <!--/ko-->
+                                        <!-- ko if:viewModel.Variety.Sizes().length == 0-->
+                                        <a data-bind="attr:{'size-id': 'null'}" class="btn-size text-white  p-1 m-1 selectColor" href="javascript://" style="text-shadow: -1px 2px 3px black;display:none"></a>
+                                        <!--/ko-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="proElement" data-bind="visible:viewModel.Variety.ProductQuantity().length ==0 ">
+                            <button class="btn-basket ajax-update btn  btn-danger rounded-0" codeprocess-action="" product-id="" color-id="" size-id="">@Resource.Lang.NoAvailable</button>
+                        </div>
+                        <div class="product-qr hidden-print">
+                            <a href="/product/getqr?productId=@(Model.ID)" data-toggle="modal" data-target="#sqr-modal">
+                                <img src="~/Assets/Default/Image/qrcode.png" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 ajax-update">
+                        <!--ko if:viewModel.Variety.ProductQuantity().length >0-->
+                        <div class="proDetails priCeBox text-center">
+                            @Html.Partial("~/Views/" + DataLayer.Base.BaseWebsite.WebsiteLabel + "/Partial/ShowRate.cshtml", totalRate, new ViewDataDictionary())
+                            <div class="proDetail_line">
+                                <!--ko ifnot: viewModel.Variety.ProductQuantity()[0].Discount > 0-->
+                                <div class="productprice d-flex justify-content-between w-100">
+                                    <span>@Resource.Lang.Price: </span><h3 class="text_green" data-bind="text: toCurrency(viewModel.Variety.ProductQuantity()[0].Price)"></h3><span>@Resource.Lang.Toman</span>
+                                </div>
+                                <!--/ko-->
+                                <!--ko if: viewModel.Variety.ProductQuantity()[0].Discount > 0-->
+                                <div class="productprice discountPro w-100">
+                                    <div class="d-flex  justify-content-between w-100 text-danger">
+                                        <span>@Resource.Lang.Price: </span><del> <strong class="firstPrice text-danger" data-bind="text: toCurrency(viewModel.Variety.ProductQuantity()[0].BasePrice) "> </strong></del><span>@Resource.Lang.Toman</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between w-100">
+                                        <span>@Resource.Lang.Price: </span><h3 class="discountPrice text-success" data-bind="text: toCurrency(viewModel.Variety.ProductQuantity()[0].Price) "></h3><span>@Resource.Lang.Toman</span>
+                                    </div>
+                                    <div class="d-none">
+                                        <span class="" data-bind="text: toCurrency(viewModel.Variety.ProductQuantity()[0].Discount) "></span><span>@Resource.Lang.Toman</span>
+                                    </div>
+                                </div>
+                                <!--/ko-->
+                            </div>
+                            <hr />
+                            <div class="border-top">
+                                <ul class="buyPreInfo">
+                                    <li><a href="javascript://"><span>@Resource.Lang.Seller : </span><span data-bind="text: viewModel.Variety.ProductQuantity()[0].StoreProduct.Store.Name"> </span></a></li>
+                                    <!--ko if: viewModel.Variety.ColorName()-->
+                                    <li>
+                                        <a href="javascript://"><span>@Resource.Lang.Color : </span></a>
+
+                                        <a data-bind="style :{'background-color' : '#'+viewModel.Variety.ColorHex()}" class="btn-color btn text-white  p-1 m-1" href="javascript://" style="text-shadow: -1px 2px 3px black;"></a>
+
+                                    </li>
+                                    <!--/ko-->
+                                    <!--ko if: viewModel.Variety.SizeName()-->
+                                    <li><a href="javascript://"><span>@Resource.Lang.Size : </span><span data-bind="text:viewModel.Variety.SizeName()"> </span></a></li>
+                                    <!--/ko-->
+                                    <!--ko if: viewModel.Variety.OptionName()-->
+                                    <li><a href="javascript://"><span data-bind="text : viewModel.Variety.OptionName() + ' : '"></span><span data-bind="text:viewModel.Variety.OptionItemValue()"> </span></a></li>
+                                    <!--/ko-->
+
+                                </ul>
+                            </div>
+                            <div class="add_to_basket">
+                                @if (Model.Code.Label == Enum_Code.PRODUCT_STATUS_AVAILABLE.ToString())
+                                {
+                                    <!--ko if:viewModel.Variety.ProductQuantity().length >0-->
+                                    <button data-bind="attr:{'product-id': viewModel.Variety.ProductId(),'product-color-id': viewModel.Variety.ColorId(),'product-size-id': viewModel.Variety.SizeId(),'product-option-item-id': viewModel.Variety.OptionItemId() ,'store-id' : viewModel.Variety.ProductQuantity()[0].StoreProduct.StoreId  }" class="btn green_btn" codeprocess-action="basket-add" product-id="" product-color-id="" product-size-id=""> @Resource.Lang.AddToBasket</button>
+                                    <!--/ko-->
+                                }
+                                <div class="likeAndcomp">
+                                    <button class="btn seemore " href="javascript://" codeprocess-action="productlike-add" product-id="@Model.ID">  @Resource.Lang.AddToFavorites</button>
+                                    <a href="/product/compare?productId=@Model.ID" class="btn seemore "> @Resource.Lang.Compare</a>
+                                </div>
+                            </div>
+                            <div class="facilities_box proIcons row">
+                                <div class="facility col-3">
+                                    <div class="facility_brand send"></div>
+                                </div>
+                                <div class="facility col-3">
+                                    <div class="facility_brand quality"></div>
+                                </div>
+                                <div class="facility col-3">
+                                    <div class="facility_brand support"></div>
+                                </div>
+                                <div class="facility col-3">
+                                    <div class="facility_brand waranty"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ko-->
+                    </div>
+                </div>
+            </div>
+            <!--ko if:viewModel.Variety.ProductQuantity().length > 0 -->
+
+            <div class="proDetail_box ajax-update">
+                <div class="bordered_title">
+
+                    <strong>@Resource.Lang.Stores</strong>
+                </div>
+
+                <!--ko foreach:viewModel.Variety.ProductQuantity-->
+                <div class="seller-list-item " data-bind="css:{'active-sell': $index() === 0}">
+                    <div class="row d-flex align-items-center p-4">
+
+                        <div class="col-md-2 col-6 p-0">
+                            <div class="pro-seller-detail ">
+                                <div class="storeIcon store-store"></div>
+                                <strong data-bind="text: StoreProduct.Store.Name"></strong>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-6 p-0">
+                            <div class="pro-seller-detail">
+                                <div class="storeIcon store-send"></div>
+                                <strong data-bind="text: (DeliveryDateCount > 0 ? '@Resource.Lang.SendUpTo '+ DeliveryDateCount + ' @Resource.Lang.Day' : '@Resource.Lang.ReadyToSend')"></strong>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-6 p-0">
+                            <div class="pro-seller-detail">
+                                <div class="storeIcon store-warranty"></div>
+                                <strong data-bind="text: Warranty"> </strong>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 p-0">
+                            <div class="pro-seller-detail justify-content-center">
+                                <div class="storeIcon store-price"></div>
+                                <span>@Resource.Lang.Price:</span>
+                                <strong data-bind="text:toCurrency(Price)"></strong>
+                                <span>@Resource.Lang.Toman</span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 p-0">
+                            <div class="pro-seller-detail ">
+                                <button data-bind="attr:{'product-id': viewModel.Variety.ProductId(),'product-color-id': viewModel.Variety.ColorId(),'product-size-id': viewModel.Variety.SizeId() ,'product-option-item-id': viewModel.Variety.OptionItemId() ,'store-id' : StoreProduct.StoreId  }" class="btn-basket btn moreBtn btn10" id="btn_shop_pro_det" codeprocess-action="basket-add" product-id="" product-color-id="" product-size-id="">
+                                    <div class="storeIcon store-shopping "></div>
+                                    @Resource.Lang.AddToBasket
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ko-->
+
+            </div>
+            <!--/ko-->
+
+            <div class="proDetail_box">
+                <div class="bordered_title">
+                    <strong>@Resource.Lang.AboutProduct</strong>
+                </div>
+                <div class="product_explainations">
+                    <ul class="nav nav-tabs" id="product_description_tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="description_tab" data-toggle="tab" href="#description" role="tab" aria-controls="description"
+                               aria-selected="true">@Resource.Lang.Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="specification_tab" data-toggle="tab" href="#profileTab_content" role="tab" aria-controls="profileTab_content"
+                               aria-selected="false">@Resource.Lang.Detail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="comment_tab" data-toggle="tab" href="#commenTab_content" role="tab" aria-controls="commenTab_content"
+                               aria-selected="false">@Resource.Lang.Comments</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-0" id="peoductDescription_Content">
+                        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description_tab">
+                            @Html.Raw(Model.GetDescription())
+                        </div>
+
+                        <div class="tab-pane fade" id="profileTab_content" role="tabpanel" aria-labelledby="specification_tab">
+                            <div class="specifications">
+                                @foreach (var item in Model.ProductCustomValue)
+                                {
+                                    if (item.ProductCustomField.SyncName != "SpecialProduct")
+                                    {
+                                        if (item.Value != "" || item.ProductCustomItem.Value != "")
+                                        {
+                                            <div class="specification_one">
+                                                <div class="specification_title"><span>@item.ProductCustomField.Name:</span></div>
+                                                @if (item.ItemId == null)
+                                                {
+                                                    <div class="specification_text">@item.Value</div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="specification_text">@item.ProductCustomItem.Value</div>
+                                                }
+                                            </div>
+                                        }
+                                    }
+
+                                }
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="commenTab_content" role="tabpanel" aria-labelledby="comment_tab">
+                            <div class="product_comments">
+
+                                @foreach (var item in Model.ProductComment.Where(p => p.Approved == true).OrderByDescending(p => p.ID).Take(10))
+                                {
+                                    <div class="comment_item">
+                                        <div class="comment_info">
+                                            <div class="comment_userImg online_user"><img src="~/Assets/KhoshKala/Image/download.png" alt=""></div>
+                                            <div class="comment_name_date">
+                                                <div href="#">
+                                                    <strong>@item.Account.FullName</strong>
+                                                    @Html.Partial("~/Views/Default/Partial/ShowRate.cshtml", item.Rate, new ViewDataDictionary())
+                                                </div>
+                                                <span>@item.Datetime.ToPersianWithTime()</span>
+                                            </div>
+                                        </div>
+                                        <div class="comment_text">
+                                            <p>@item.Body</p>
+                                        </div>
+                                        <div class="comment_reply">
+                                            @if (!string.IsNullOrEmpty(item.AnswerString))
+                                            {
+                                                <div class="reply_item">
+                                                    <div class="comment_info">
+                                                        <div class="comment_userImg offline_user"><img src="~/Assets/KhoshKala/Image/download.png" alt=""></div>
+                                                        <div class="comment_name_date">
+                                                            <a href="#">
+                                                                <strong>@Resource.Lang.Boss</strong>
+                                                            </a><span>@item.AnswerDatetime.ToPersianWithTime()</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment_text">
+                                                        @item.AnswerString
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                <div class="comment_item">
+                                    <div class="add_comment">
+                                        <strong>@Resource.Lang.AddComment</strong>
+                                        <form class="addCm_form text-left">
+                                            <div class="star-rating user-rate">
+                                                <input id="star-5" type="radio" name="rate" value="5" />
+                                                <label for="star-5" title="5 stars">
+                                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                                </label>
+                                                <input id="star-4" type="radio" name="rate" value="4" />
+                                                <label for="star-4" title="4 stars">
+                                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                                </label>
+                                                <input id="star-3" type="radio" name="rate" value="3" />
+                                                <label for="star-3" title="3 stars">
+                                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                                </label>
+                                                <input id="star-2" type="radio" name="rate" value="2" />
+                                                <label for="star-2" title="2 stars">
+                                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                                </label>
+                                                <input id="star-1" type="radio" name="rate" value="1" />
+                                                <label for="star-1" title="1 star">
+                                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <textarea codeprocess-field="body" name="comment" class="form-control" id="" placeholder="@Resource.Lang.YourComment"></textarea>
+                                            <button type="button" codeprocess-action="comment-add" product-id="@Model.ID" class="addCm_btn btn green_btn  mt-4">@Resource.Lang.Send</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade" id="sqr-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="qr-modal-body text-center">
+                    <img src="/product/getqr?productId=@(Model.ID)" alt="" />
+                    <button class="btn btn-sm btn-danger closeQr" onclick="qrModalClose()">x</button>
+                </div>
+            </div>
+            </div>
+        </div>
+</section>
+<div class="proDetail_box">
+
+    @Html.Action("Search", "Product", new
+{
+prnotId = Model.ID,
+prpagesize = 10,
+prviewname = "ProductSlider",
+prcategoryId = Model.ProductCategoryId,
+})
+
+</div>
+
+
+@section endScripts {
+    <script type="text/javascript">
+        initializeProductPageScript();
+
+    </script>
+}

@@ -1,0 +1,81 @@
+﻿@*<div class="modal modal-add-address">*@
+<div class="modal fade modal-add-address" id="addaddress_modal" tabindex="-1" role="dialog" aria-labelledby="addaddress_modal_Title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header producttotal justify-content-start">
+                <h5 class="addaddress_modal_Title" id="editaddress_modal_Title">@Resource.Lang.Address</h5>
+
+            </div>
+            <div class="modal-body">
+                @*<form action="">*@
+                <div class="row">
+                    <div class="address_modal_input col-lg-12">
+                        <label for="name">@Resource.Lang.FullName (@Resource.Lang.Receiver): </label>
+                        <input type="text" data-bind="value: viewModel.Account.Addresses.Item.NameFamily" name="name" class="form-control fullNameaddress">
+                    </div>
+                    <div class="address_modal_input col-lg-6">
+                        <label for="phone">@Resource.Lang.Mobile (@Resource.Lang.Receiver):</label>
+                        <input type="text" data-bind="value: viewModel.Account.Addresses.Item.Mobile" name="phone" class="form-control mobileaddress">
+                    </div>
+                    <div class="address_modal_input col-lg-6">
+                        <label for="phone">@Resource.Lang.Phone (@Resource.Lang.Receiver):</label>
+                        <input type="text" data-bind="value: viewModel.Account.Addresses.Item.Phone" name="phone" class="form-control">
+                    </div>
+
+                    <div class="address_modal_input col-lg-12">
+                        <label for="address">@Resource.Lang.Address (@Resource.Lang.Receiver):</label>
+                        <textarea name="address" id="" data-bind="value: viewModel.Account.Addresses.Item.AddressValue" class="form-control"></textarea>
+                    </div>
+
+                    <div class="address_modal_input col-lg-6 d-none">
+                        <label for="phone">@Resource.Lang.Country : </label>
+                        <div class="form-group">
+                            <select class="form-control country" onchange="CountryDropAddress()" id="addressCountry" disabled >
+                                <option value="-1">@Resource.Lang.Select</option>
+                                <!--ko foreach: viewModel.Country.CountryList() -->
+                                <option data-bind="value:Id , text:FaName"></option>
+                                <!--/ko-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="address_modal_input col-lg-6">
+                        <label for="phone">@Resource.Lang.PostalCode :</label>
+                        <input type="text" data-bind="value: viewModel.Account.Addresses.Item.PostalCode" maxlength="10" name="postalCode" class="form-control">
+                    </div>
+                    <div class="address_modal_input col-lg-6">
+                        <label for="phone">@Resource.Lang.State : </label>
+                        <div class="form-group">
+                            <select class="form-control" onchange="stateDropAddress()" id="addressState">
+                                <option value="0">@Resource.Lang.Select</option>
+                                <!--ko foreach: viewModel.State.StateList() -->
+                                <option data-bind="value:Id , text:Name"></option>
+                                <!--/ko-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="address_modal_input col-lg-6">
+                        <label for="phone">@Resource.Lang.City : </label>
+
+                        <div class="form-group">
+                            <select class="form-control" onchange="GetSelectCityIdAddress()" id="addressCity">
+                                <option value="0">@Resource.Lang.Select</option>
+                                <!--ko foreach: viewModel.City.CityList() -->
+                                <option data-bind="value:Id , text:Name"></option>
+                                <!--/ko-->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                @*</form>*@
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn default_btn flex-fill m-3" onclick="closeAddressModal()">@Resource.Lang.Close</button>
+                <button type="button" class="btn primary_btn flex-fill m-3" codeprocess-action="address-add" codeprocess-callback="gotocurrentUrl">
+                    <span>@Resource.Lang.Register</span>
+              </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*</div>*@
