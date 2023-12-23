@@ -1,0 +1,276 @@
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\csc.exe
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\csc.exe.config
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\csc.rsp
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\csi.exe
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\csi.exe.config
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\csi.rsp
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.Managed.Core.targets
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.Managed.EditorConfig.targets
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\System.Buffers.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\System.Collections.Immutable.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\System.Memory.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\System.Numerics.Vectors.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\System.Reflection.Metadata.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\vbc.exe
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\vbc.exe.config
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\vbc.rsp
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\VBCSCompiler.exe
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\roslyn\VBCSCompiler.exe.config
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\SyncServer.dll.config
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\SyncServer.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\SyncServer.pdb
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Common.Logging.Core.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Common.Logging.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\DataLayer.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\EntityFramework.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\EntityFramework.SqlServer.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Microsoft.Web.Infrastructure.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Quartz.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Helpers.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Mvc.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Razor.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Webpages.Deployment.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Webpages.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Webpages.Razor.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\OpenPop.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Telegram.Bot.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\RestSharp.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\ZarinPal.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\HtmlAgilityPack.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Hashids.net.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Persia.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Resource.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Newtonsoft.Json.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Binbin.Linq.PredicateBuilder.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\DataLayer.pdb
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\DataLayer.dll.config
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Common.Logging.pdb
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Common.Logging.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Common.Logging.Core.pdb
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Common.Logging.Core.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\EntityFramework.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\EntityFramework.SqlServer.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Quartz.pdb
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Quartz.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Razor.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Webpages.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Webpages.Deployment.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Webpages.Razor.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Helpers.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\System.Web.Mvc.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\OpenPop.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Telegram.Bot.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\RestSharp.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\HtmlAgilityPack.pdb
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\HtmlAgilityPack.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Resource.pdb
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\Newtonsoft.Json.xml
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\ar\Resource.resources.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\fa\Resource.resources.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\ru\Resource.resources.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\tr\Resource.resources.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\bin\zh\Resource.resources.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\obj\x86\Debug\SyncServer.csproj.AssemblyReference.cache
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\obj\x86\Debug\SyncServer.csproj.CoreCompileInputs.cache
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\obj\x86\Debug\SyncServer.csproj.CopyComplete
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\obj\x86\Debug\SyncServer.dll
+D:\abak\Project\KhoshKalaFinal\khoshkala\SyncServer\obj\x86\Debug\SyncServer.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\csc.exe
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\csc.exe.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\csc.rsp
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\csi.exe
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\csi.exe.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\csi.rsp
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.Managed.Core.targets
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.Managed.EditorConfig.targets
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\System.Buffers.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\System.Collections.Immutable.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\System.Memory.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\System.Numerics.Vectors.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\System.Reflection.Metadata.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\vbc.exe
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\vbc.exe.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\vbc.rsp
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\VBCSCompiler.exe
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\roslyn\VBCSCompiler.exe.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\SyncServer.dll.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\SyncServer.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\SyncServer.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Common.Logging.Core.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Common.Logging.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\DataLayer.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\EntityFramework.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\EntityFramework.SqlServer.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Microsoft.Web.Infrastructure.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Quartz.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Helpers.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Mvc.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Razor.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Webpages.Deployment.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Webpages.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Webpages.Razor.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\OpenPop.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Telegram.Bot.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\RestSharp.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\ZarinPal.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\HtmlAgilityPack.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Hashids.net.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Persia.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Resource.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Newtonsoft.Json.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Binbin.Linq.PredicateBuilder.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\DataLayer.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\DataLayer.dll.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Common.Logging.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Common.Logging.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Common.Logging.Core.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Common.Logging.Core.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\EntityFramework.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\EntityFramework.SqlServer.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Quartz.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Quartz.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Razor.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Webpages.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Webpages.Deployment.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Webpages.Razor.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Helpers.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\System.Web.Mvc.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\OpenPop.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Telegram.Bot.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\RestSharp.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\HtmlAgilityPack.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\HtmlAgilityPack.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Resource.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\Newtonsoft.Json.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\ar\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\fa\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\ru\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\tr\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\bin\zh\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\obj\x86\Debug\SyncServer.csproj.AssemblyReference.cache
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\obj\x86\Debug\SyncServer.csproj.CoreCompileInputs.cache
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\obj\x86\Debug\SyncServer.csproj.CopyComplete
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\obj\x86\Debug\SyncServer.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\SyncServer\obj\x86\Debug\SyncServer.pdb
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\csc.exe
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\csc.exe.config
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\csc.rsp
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\csi.exe
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\csi.exe.config
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\csi.rsp
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.Managed.Core.targets
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.Managed.EditorConfig.targets
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\System.Buffers.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\System.Collections.Immutable.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\System.Memory.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\System.Numerics.Vectors.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\System.Reflection.Metadata.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\System.Threading.Tasks.Extensions.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\vbc.exe
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\vbc.exe.config
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\vbc.rsp
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\VBCSCompiler.exe
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\roslyn\VBCSCompiler.exe.config
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\SyncServer.dll.config
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\SyncServer.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\SyncServer.pdb
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Common.Logging.Core.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Common.Logging.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\DataLayer.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\EntityFramework.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\EntityFramework.SqlServer.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Microsoft.Web.Infrastructure.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Quartz.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Helpers.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Mvc.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Razor.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Webpages.Deployment.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Webpages.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Webpages.Razor.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\OpenPop.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Telegram.Bot.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\RestSharp.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\ZarinPal.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\HtmlAgilityPack.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Hashids.net.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Persia.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Resource.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Newtonsoft.Json.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Binbin.Linq.PredicateBuilder.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\DataLayer.pdb
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\DataLayer.dll.config
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Common.Logging.pdb
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Common.Logging.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Common.Logging.Core.pdb
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Common.Logging.Core.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\EntityFramework.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\EntityFramework.SqlServer.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Quartz.pdb
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Quartz.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Razor.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Webpages.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Webpages.Deployment.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Webpages.Razor.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Helpers.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\System.Web.Mvc.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\OpenPop.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Telegram.Bot.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\RestSharp.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\HtmlAgilityPack.pdb
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\HtmlAgilityPack.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Resource.pdb
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\Newtonsoft.Json.xml
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\ar\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\fa\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\ru\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\tr\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\bin\zh\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\obj\x86\Debug\SyncServer.csproj.AssemblyReference.cache
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\obj\x86\Debug\SyncServer.csproj.CoreCompileInputs.cache
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\obj\x86\Debug\SyncServer.csproj.CopyComplete
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\obj\x86\Debug\SyncServer.dll
+F:\Project\TFS\KhoshKala\khoshkala\SyncServer\obj\x86\Debug\SyncServer.pdb
