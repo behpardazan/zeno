@@ -1,0 +1,2 @@
+D:\abak\Behpardazan Github\KhoshkalaFinal\Panel\obj\x86\Debug\Panel.csproj.AssemblyReference.cache
+D:\abak\Behpardazan Github\KhoshkalaFinal\Panel\obj\x86\Debug\Panel.csproj.CoreCompileInputs.cache

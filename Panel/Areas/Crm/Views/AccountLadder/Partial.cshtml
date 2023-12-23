@@ -1,0 +1,62 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+@using DataLayer.Enumarables;
+@model DataLayer.Entities.LadderPayment
+
+@{
+    //Shop shop = new Shop();
+    //if (Model.AccountOrderProduct.Count > 0)
+    //{
+    //    shop = Model.AccountOrderProduct.ToList()[0].Product.Shop;
+    //}
+    string time = "";
+    if (Model.Datetime!=null)
+    {
+         time = @Model.Datetime.Value.ToString("HH:mm");
+    }
+
+    string payment_status = Enum_Code.PAYMENT_STATUS_SUCCESSFUL.ToString();
+    string payment_status_service_failed = Enum_Code.PAYMENT_STATUS_SERVICE_FAILED.ToString();
+
+}
+
+@section Header {
+    <style>
+        .text-left {
+            text-align: left !important;
+        }
+    </style>
+}
+
+<div class="col-sm-10">
+    <div class="form-horizontal line-height-invoice">
+        <span><b>@Resource.Lang.FactureNumber: </b> @Model.ID</span><br />
+        <span><b>@Resource.Lang.FactureDate: </b> @Model.Datetime.ToPersianComplete() @Resource.Lang.Watch: @time</span><br />
+        <div class="no-print-page">
+            <span><b>@Resource.Lang.FactureStatuse: </b> @Model.Code.Name</span><br />
+
+        </div>
+        <hr />
+        <span><b>نام آگهی: </b>@Model.Product.Name</span> <span>&nbsp;&nbsp;</span>
+
+        <span><b>@Resource.Lang.Buyer: </b>@Model.Account.FullName</span> <span>&nbsp;&nbsp;</span>
+        <span><b>@Resource.Lang.Phone: </b>@Model.Account.Mobile</span> <span>&nbsp;&nbsp;</span>
+
+        <hr />
+        <div>
+
+
+
+            <span><b>@Resource.Lang.PaymentStatus: </b>@Model.Code.Name</span> <span>&nbsp;&nbsp;</span>
+            <span><b>@Resource.Lang.ReferenceBank: </b>@Model.Merchant.Bank.Name</span> <span>&nbsp;&nbsp;</span>
+            <span><b>@Resource.Lang.PaymentTrackingCode: </b>@Model.RefNumber</span>
+            <hr />
+
+        </div>
+    </div>
+</div>
+
+
+
+
+

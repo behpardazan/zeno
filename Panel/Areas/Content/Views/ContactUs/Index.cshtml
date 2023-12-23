@@ -1,0 +1,107 @@
+﻿@using DataLayer.Base
+@model IEnumerable<DataLayer.Entities.ContactUs>
+@{
+    ViewBag.Title = Resource.Lang.ContactUs;
+    Layout = "~/Views/Shared/Layout.cshtml";
+    string name = BaseRouteView.GetStringValue(Request, "name");
+    var counter = 1;
+}
+@section Footer {
+    @Html.Action("TableScript", "Layout", new { area = "" })
+}
+
+@section Script {
+    <script type="text/javascript">
+        TableManageButtons.init();
+    </script>
+}
+@using (Html.BeginForm())
+{
+    <div>
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                <button type="submit" class="icon circle-icon glyphicon glyphicon-search" data-toggle="tooltip" data-placement="bottom" title=@Resource.Lang.Search></button>
+                <div class="clear"></div>
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <span class="control-label font-bold">@Resource.Lang.Name</span>
+                        <div>
+                            <input type="text" class="form-control" name="name" placeholder=@Resource.Lang.Name value="@name" />
+                        </div>
+                    </div>
+
+                    <div class="devider-15"></div>
+                </div>
+                <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="first">#</th>
+
+                            <th>@Resource.Lang.Title</th>
+                            <th>@Resource.Lang.PersonalDetails</th>
+                            <th>@Resource.Lang.Options</th>
+                            <th>@Resource.Lang.Files</th>
+                            <th>@Resource.Lang.Detail</th>
+                            <th>-</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                <td>
+                                    @Resource.Lang.DateTime : @item.CreateDate.ToPersianWithTime()
+                                    <br />
+                                    @Resource.Lang.FullName : @Html.DisplayFor(modelItem => item.Name)
+                                    <br />
+                                    @Resource.Lang.Phone :  @Html.DisplayFor(modelItem => item.Phone)
+                                    <br />
+                                    @Resource.Lang.Email :  @Html.DisplayFor(modelItem => item.Email)
+                                    @if (!string.IsNullOrEmpty(item.TrackingCode))
+                                    {
+                                        <br />
+                                      <div>  @Resource.Lang.TrackingCode :</div> <div> @Html.DisplayFor(modelItem => item.TrackingCode)</div>
+                                    }
+
+                                </td>
+
+                                <td>
+                                    @foreach (var field in item.ContactUsField)
+                                    {
+                                        <span>@string.Format("{0} : {1}", field.Name, field.Value)</span>
+                                        <br />
+                                    }
+                                </td>
+
+                                <td>
+                                    @if (item.PictureId.HasValue)
+                                    {
+                                        <a href="@item.Picture.GetUrl()" target="_blank">
+                                            <img src="@item.Picture.GetUrl()" width="80px" height="80px" />
+                                        </a>
+
+                                    }
+                                    @if (item.DocumentId.HasValue)
+                                    {
+                                        <br />
+                                        <a href="@item.WebsiteDocument.GetUrl()" target="_blank">
+                                            @Resource.Lang.DownloadFile
+                                        </a>
+                                    }
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.Body)</td>
+                                <td>
+                                    @Html.ActionLink("ثبت پیام" , "Edit", new { id = item.ID })
+                                </td>
+                            </tr>
+                            counter++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- end col -->
+    </div>
+}

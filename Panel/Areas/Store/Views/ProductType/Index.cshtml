@@ -1,0 +1,69 @@
+﻿@using DataLayer.Base;
+@model IEnumerable<DataLayer.ViewModels.ViewProductType>
+@{
+    ViewBag.Title = Resource.Lang.SpeciesProductsList;
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section Footer {
+    @Html.Action("TableScript", "Layout", new { area = "" })
+}
+@section Script {
+    <script type="text/javascript">
+        TableManageButtons.init();
+    </script>
+}
+<div>
+    <div class="col-sm-12">
+        <div class="card-box table-responsive">
+            <a href="@Url.Action("create")" class="icon circle-icon glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title=@Resource.Lang.AddNewCase></a>
+            <table id="datatable-buttons" class="table table-striped table-bordered has-first">
+                <thead>
+                    <tr>
+                        <th class="first">#</th>
+                        <th>@Resource.Lang.Code</th>
+                        <th>@Resource.Lang.DisplayPriority</th>
+                        <th>@Resource.Lang.Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.RowId)</td>
+                            @if (item.SyncId != null)
+                            {
+                                if (item.SyncId.IsGuid() == false)
+                                {
+                                    <td>@item.SyncId</td>
+                                }
+                                else
+                                {
+                                    <td>@item.Id</td>
+                                }
+                            }
+                            else
+                            {
+                                <td>@item.Id</td>
+                            }
+                        <td>
+                           @item.Priority
+                        </td>
+                            <td>@Html.DisplayFor(modelItem => item.Name) @(item.IsService? "("+Resource.Lang.Service+")" : "")</td>
+                            <td>
+                                @Html.ActionLink(Resource.Lang.Edit, "edit", new { id = item.Id }) |
+                                @Html.ActionLink(Resource.Lang.Category, "index", new { @controller = "productcategory", @typeId = item.Id }) |
+                                @Html.ActionLink(Resource.Lang.PrivateFields, "index", new { @controller = "customproducttype", @typeId = item.Id }) |
+                                @Html.ActionLink(Resource.Lang.Color, "index", new { @controller = "color", @id = item.Id }) |
+                                @Html.ActionLink(Resource.Lang.Size, "index", new { @controller = "size", @id = item.Id }) |
+                                @Html.ActionLink(Resource.Lang.Question, "index", new { @controller = "questionProductType", @id = item.Id }) |
+                                @Html.ActionLink(Resource.Lang.Detail, "details", new { id = item.Id }) |
+                                @Html.ActionLink(Resource.Lang.Delete, "delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

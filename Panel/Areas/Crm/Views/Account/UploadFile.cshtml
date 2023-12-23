@@ -1,0 +1,61 @@
+﻿@model DataLayer.Entities.Account
+@{
+    ViewBag.Title = Model.FullName;
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section Header {
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/fileuploads/css/dropify.min.css" />
+}
+@section Script {
+    <script type="text/javascript" src="http://localhost:200/assets/plugins/knockout/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="http://localhost:200/assets/default/js/codeprocess.js"></script>
+    <script type="text/javascript" src="http://localhost:200/assets/default/js/codeprocess.ajax.js?ver=1"></script>
+    <script src="~/assets/plugins/fileuploads/js/dropify.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+             initializeCodeprocessUploadScript();
+             FillAccountFile(@Model.ID);
+
+
+});
+    </script>
+}
+<script src="~/assets/plugins/fileuploads/js/dropify.min.js"></script>
+<h5>
+    @Model.FullName
+</h5>
+<div class="cardBox">
+    <div class="row m-0 w-100">
+        <div class="form-horizontal">
+            <input id="uplFile" type="file" class="dropify" multiple="multiple" />
+            <div class="port m-b-20">
+                <div class="portfolioContainer">
+                    <div class="row">
+                        <!-- ko foreach: viewModel.File.FileIds -->
+                        <div class="col-sm-3">
+                            <div class="media-item">
+                                <span class="btn broder shadow-0 btn-warning" data-bind="click: function(){removeMedia(FileId);}">حذف</span>
+                                <!--ko if: Type=='image/jpeg' || Type=='image/png'|| Type=='image/jpg' || Type=='image/gif' -->
+                                <a data-bind="attr: {href: '/cdn/file/dl/' + FileId }">
+                                    <img src="" data-bind="attr: {src: '/cdn/file/thumb/' + FileId + 's200q70.jpg'}" />
+                                </a>
+                                <!--/ko-->
+                                <!--ko if: Type=='application/pdf' || Type=='audio/ogg' || Type=='video/mp4' || Type=='audio/mpeg' || Type=='audio/x-ms-wma' -->
+
+                                <a data-bind="attr: {href: '/cdn/file/dl/' + FileId }"> <img src="~/Assets/images/file.png" /></a>
+                                <!--/ko-->
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div><!-- end portfoliocontainer-->
+            </div> <!-- End row -->
+        </div>
+       
+        <div class="clear"></div>
+        <div class="col-sm-12">
+            <button class="btn btn-primary" id="btnSubmit" onclick="updateFile(@Model.ID)">ثبت</button>
+        </div>
+    </div>
+</div>

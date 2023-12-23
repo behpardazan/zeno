@@ -1,0 +1,86 @@
+﻿@using DataLayer.Base;
+@using DataLayer.Entities;
+@model IEnumerable<DataLayer.Entities.AccountOrder>
+
+@{
+    ViewBag.Title = Resource.Lang.LettrerList;
+    Layout = "~/Views/Shared/PrintLayout.cshtml";
+    List<AccountOrder> listOrder = Model.ToList();
+    int sumCount = 0;
+}
+
+<div class="col-sm-12">
+    <div class="text-left font-bold">
+        @Resource.Lang.Date_TimePrint: @DateTime.Now.ToPersianWithTime().ToPersian()
+    </div>
+    <div class="devider-15"></div>
+    <table class="table-middle table-print table table-striped table-bordered has-first dataTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                @*<th>@Resource.Lang.letterNumer</th>*@
+                @*<th>@Resource.Lang.Transmitter</th>*@
+                <th>@Resource.Lang.Receiver</th>
+                <th>@Resource.Lang.State</th>
+                <th>@Resource.Lang.City</th>
+                <th>@Resource.Lang.Address</th>
+                <th>@Resource.Lang.Phone</th>
+
+                @*<th>@Resource.Lang.HowToSend</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < listOrder.Count; i++)
+            {
+                AccountOrder order = listOrder[i];
+                sumCount = sumCount + 1;
+                <tr>
+                    <td>@((i + 1).ToString().ToPersian())</td>
+                    @*<td>@order.PostalCode</td>*@
+                    @*<td>@order.Shop.Name</td>*@
+                    <td>
+                        @order.Account.FullName
+                        @if (order.AddressId != null)
+                        {
+                            <span> - @order.AccountAddress.NameFamily</span>
+                        }
+                    </td>
+                    @if (order.AddressId != null && order.AccountAddress.StateId != null)
+                    {
+                        <td>@order.AccountAddress.State.Name</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    @if (order.AddressId != null && order.AccountAddress.CityId != null)
+                    {
+                        <td>@order.AccountAddress.City.Name</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    @if (order.AddressId != null)
+                    {
+                        <td>@order.AccountAddress.AddressValue - @order.AccountAddress.PostalCode</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                <td>
+                    @order.AccountAddress.Phone - @order.AccountAddress.Mobile
+                </td>
+                    @*<td>@order.SendType.Name</td>*@
+                </tr>
+            }
+            <tr>
+                <td colspan="6">@sumCount @Resource.Lang.Sum: </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+

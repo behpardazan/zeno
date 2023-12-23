@@ -1,0 +1,89 @@
+﻿@using DataLayer.ViewModels;
+@using DataLayer.Entities;
+
+@model Email
+@{
+    ViewBag.Title = Resource.Lang.SendEmail;
+    Layout = "~/Views/Shared/Layout.cshtml";
+    SelectList listUsers = ViewBag.Users;
+}
+@section Header {
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/pretty-checkbox/pretty-checkbox.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+
+}
+<div codeprocess-back-form="/Crm/Newsletter" codeprocess-ajax-form="/Crm/Newsletter/Email">
+    @Html.AntiForgeryToken()
+    <div class="col-sm-12">
+        <div class="card-box">
+            <a href="@Url.Action("index")" class="icon circle-icon glyphicon glyphicon-arrow-left" data-toggle="tooltip" data-placement="bottom" title=@Resource.Lang.Back></a>
+            <div class="col-sm-12">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <h4>@Resource.Lang.SendEmail</h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="date" class="control-label col-md-3">@Resource.Lang.Users</label>
+                            <div class="col-md-7">
+                                <select id="UserEmails" class="form-control selectpicker" multiple data-live-search="true" autocomplete="off" name="users">
+                                    @*<option value="">
+                                            @Resource.Lang.Select
+                                        </option>*@
+                                    @foreach (var item in listUsers)
+                                    {
+                                        <option value="@item.Value">
+                                            @item.Text
+                                        </option>
+                                    }
+                                </select>
+
+                            </div>
+                            <button class="btn btn-inverse col-md-2" onclick="SelectAll()">انتخاب همه</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 no-padding">
+                        <div class="form-group">
+                            <label class="control-label col-md-1">@Resource.Lang.Context</label>
+                            <div class="col-md-11">
+                                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @codeprocess = "editor", @class = "form-control", @autocomplete = "off" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-md-10 col-md-offset-2">
+                            <div class="row">
+                                @Html.Partial("~/Views/Public/Message.cshtml", (ViewMessage)ViewBag.Message)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value=@Resource.Lang.Save id="btnSubmit" class="btn btn-success" />
+                            <span class="btn btn-inverse">@Html.ActionLink(Resource.Lang.Back, "Index")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+@section Script {
+    <script src="~/assets/plugins/tinymce/tinymce.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initializeNewEmailScript();
+
+        });
+        function SelectAll() {
+            $('#UserEmails option').attr("selected", "selected");
+        }
+    </script>
+
+}

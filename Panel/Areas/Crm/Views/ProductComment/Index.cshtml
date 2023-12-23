@@ -1,0 +1,162 @@
+﻿@using DataLayer.Base;
+@model IEnumerable<DataLayer.ViewModels.ViewProductComment>
+@{
+    ViewBag.Title = Resource.Lang.ListOfRegisteredOpinion;
+    Layout = "~/Views/Shared/Layout.cshtml";
+    string index = ViewBag.PageIndex;
+    string pageSize = ViewBag.PageSize;
+    bool? approved = ViewBag.approved;
+    int TotalCount = ViewBag.TotalCount;
+    int CurrentIndex = index.IsInteger() ? index.GetInteger() : 1;
+    int PageSize = pageSize.IsInteger() ? pageSize.GetInteger() : 10;
+    int StartIndex = CurrentIndex > 4 ? CurrentIndex - 4 : 1;
+    int EndIndex = (TotalCount / PageSize);
+    int Mod = (TotalCount % PageSize);
+    EndIndex = Mod > 0 ? EndIndex + 1 : EndIndex;
+}
+@section Footer {
+    @Html.Action("TableScript", "Layout", new { area = "" })
+}
+@section Script {
+
+}
+<div>
+    <form method="get" id="account-form" action="~/crm/productcomment">
+        <div class="list_search row card-box m-0">
+            <div class="form-group mb-0 col-md-3">
+                <label for="orderid" class="control-labe">@Resource.Lang.FullName</label>
+                <select id="approved" name="approved" class="form-control" value="@approved">
+
+                    @if (approved == true)
+                    {
+                        <option value="True" selected="selected">
+                            تایید شده
+                        </option>
+
+                    }
+                    else
+                    {
+                        <option value="True">
+                            تایید شده
+                        </option>
+                    }
+                    @if (approved == false)
+                    {
+                        <option value="False" selected="selected">
+                            رد شده/ بررسی نشده
+                        </option>
+
+                    }
+                    else
+                    {
+                        <option value="False">
+                            رد شده/ بررسی نشده
+                        </option>
+                    }
+
+                </select>
+            </div>
+            <div class="form-group mb-0 col-md-2">
+                <input type="submit" class="btn btn-success col-xs-12" value=@Resource.Lang.Search>
+            </div>
+        </div>
+    </form>
+    <div class="col-sm-12">
+        <div class="card-box table-responsive">
+            <div class="">
+                <span>تعداد کل : </span>
+
+                <strong>
+                    @ViewBag.TotalCount
+                </strong>
+            </div>
+            <table id="datatable-buttons" class="table table-striped table-bordered has-first">
+                <thead>
+                    <tr>
+                        <th class="first">#</th>
+                        <th>@Resource.Lang.CustomerInfo</th>
+                        <th>@Resource.Lang.OpinionContext</th>
+                        <th>زمان ثبت نام</th>
+                        <th>@Resource.Lang.Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.RowId)</td>
+                            <td>@item.NameFamily (@item.EmailAddress)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Body)</td>
+                            <td>@item.Datetime.ToPersianWithTime()</td>
+                            <td>
+                                @if (item.Approved == true)
+                                {
+                                    <span>@Resource.Lang.Confirmation</span>
+                                }
+                                else if (item.Approved == null)
+                                {
+                                    <span>@Resource.Lang.NotChecked</span>
+                                }
+                                else
+                                {
+                                    <span>@Resource.Lang.Reject</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink(Resource.Lang.Check, "answer", new { id = item.Id }) |
+                                @Html.ActionLink(Resource.Lang.Delete, "delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="datatable-buttons_paginate">
+
+
+                <ul class="pagination">
+                    <li class="paginate_button previous" aria-controls="datatable-buttons">
+                        <a href="@Url.Action("index", new {
+                            @approved = approved,
+
+                            @pageIndex = 1,
+                            @pageSize = pageSize
+
+                        })">@Resource.Lang.FirstPage</a>
+                    </li>
+                    @for (int i = StartIndex; i <= EndIndex && i <= CurrentIndex + 4; i++)
+                    {
+                        var active = CurrentIndex == i ? "active" : "";
+                        <li class="paginate_button @active" aria-controls="datatable-buttons">
+                            <a href="@Url.Action("index", new {
+                                    @approved = approved,
+
+                                    @pageIndex = i,
+                                    @pageSize = pageSize
+                            })">@(i.ToPersian())</a>
+                        </li>
+                    }
+                    @if (CurrentIndex < EndIndex)
+                    {
+                        <li class="paginate_button previous" aria-controls="datatable-buttons">
+                            <a href="@Url.Action("index", new
+                                    {
+                                    @approved = approved,
+
+                                    @pageIndex = EndIndex,
+                                    @pageSize = pageSize
+                            })">@Resource.Lang.LastPage</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="paginate_button previous disabled" aria-controls="datatable-buttons">
+                            <a href="#">@Resource.Lang.LastPage</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end col -->
+</div>

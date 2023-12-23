@@ -1,0 +1,55 @@
+﻿@model DataLayer.Entities.LadderPayment
+@using DataLayer.Entities;
+@using DataLayer.Base;
+@{
+    ViewBag.Title = Resource.Lang.CheckOrderNumber + Model.ID;
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+  
+
+}
+<div class="col-sm-12">
+    <div class="card-box">
+        <a href="@Url.Action("index", new { status = Model.StatusId })" class="icon circle-icon glyphicon glyphicon-arrow-left" data-toggle="tooltip" data-placement="bottom" title=@Resource.Lang.Back></a>
+        <a href="@Url.Action("print", new { @id = Model.ID })" class="icon circle-icon glyphicon glyphicon-print" target="_blank" data-toggle="tooltip" data-placement="bottom" title=@Resource.Lang.Print></a>
+        <br />
+ 
+
+        <div class="col-sm-12">
+            <div class="form-horizontal">
+                @Html.Partial("~/Areas/Crm/Views/AccountLadder/Partial.cshtml", Model)
+            </div>
+            <hr />
+
+            <div class="col-sm-6">
+
+                @using (Html.BeginForm("changestatus", "accountorder", FormMethod.Post))
+                {
+                    <input type="hidden" name="OrderId" value="@Model.ID" />
+                    <div class="row">
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, Resource.Lang.Description, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8 row">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8 no-padding">
+                            <input type="submit" value=@Resource.Lang.Save class="btn btn-success" />
+                            <span class="btn btn-inverse">@Html.ActionLink(Resource.Lang.Back, "index", new { status = Model.StatusId })</span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
