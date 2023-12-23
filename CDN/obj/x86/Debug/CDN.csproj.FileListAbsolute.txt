@@ -1,0 +1,168 @@
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\csc.exe
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\System.Collections.Immutable.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\System.Reflection.Metadata.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\vbc.exe
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\VBCSCompiler.exe
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\roslyn\VBCSCompiler.exe.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\CDN.dll.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\CDN.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\CDN.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\DataLayer.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\EntityFramework.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\EntityFramework.SqlServer.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Lib.Web.Mvc.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Microsoft.Web.Infrastructure.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Newtonsoft.Json.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\policy.2.0.taglib-sharp.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Net.Http.Formatting.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Helpers.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Http.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Http.WebHost.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Mvc.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Razor.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.WebPages.Deployment.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.WebPages.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.WebPages.Razor.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\taglib-sharp.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Quartz.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\OpenPop.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Telegram.Bot.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\RestSharp.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\ZarinPal.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\HtmlAgilityPack.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Hashids.net.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Persia.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Resource.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Binbin.Linq.PredicateBuilder.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Common.Logging.Core.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Common.Logging.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\DataLayer.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\DataLayer.dll.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\EntityFramework.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\EntityFramework.SqlServer.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Lib.Web.Mvc.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Newtonsoft.Json.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Net.Http.Formatting.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Helpers.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Http.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Http.WebHost.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Mvc.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.Razor.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.WebPages.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.WebPages.Deployment.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\System.Web.WebPages.Razor.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Quartz.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Quartz.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\OpenPop.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Telegram.Bot.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\RestSharp.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\HtmlAgilityPack.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\HtmlAgilityPack.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Resource.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Common.Logging.Core.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Common.Logging.Core.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Common.Logging.pdb
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\Common.Logging.xml
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\ar\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\fa\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\ru\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\tr\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\zh\Resource.resources.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\bin\policy.2.0.taglib-sharp.config
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\obj\x86\Debug\CDN.csproj.AssemblyReference.cache
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\obj\x86\Debug\CDN.csproj.CoreCompileInputs.cache
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\obj\x86\Debug\CDN.csproj.CopyComplete
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\obj\x86\Debug\CDN.dll
+D:\abak\Behpardazan Github\KhoshkalaFinal\CDN\obj\x86\Debug\CDN.pdb
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\csc.exe
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\System.Collections.Immutable.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\System.Reflection.Metadata.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\vbc.exe
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\VBCSCompiler.exe
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\roslyn\VBCSCompiler.exe.config
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\CDN.dll.config
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\CDN.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\CDN.pdb
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\DataLayer.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\EntityFramework.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\EntityFramework.SqlServer.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Lib.Web.Mvc.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Microsoft.Web.Infrastructure.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Newtonsoft.Json.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\policy.2.0.taglib-sharp.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Net.Http.Formatting.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Helpers.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Http.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Http.WebHost.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Mvc.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Razor.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.WebPages.Deployment.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.WebPages.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.WebPages.Razor.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\taglib-sharp.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Quartz.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\OpenPop.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Telegram.Bot.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\RestSharp.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\ZarinPal.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\HtmlAgilityPack.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Hashids.net.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Persia.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Resource.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Binbin.Linq.PredicateBuilder.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Common.Logging.Core.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Common.Logging.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\DataLayer.pdb
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\DataLayer.dll.config
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\EntityFramework.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\EntityFramework.SqlServer.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Lib.Web.Mvc.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Newtonsoft.Json.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Net.Http.Formatting.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Helpers.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Http.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Http.WebHost.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Mvc.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.Razor.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.WebPages.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.WebPages.Deployment.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\System.Web.WebPages.Razor.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Quartz.pdb
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Quartz.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\OpenPop.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Telegram.Bot.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\RestSharp.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\HtmlAgilityPack.pdb
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\HtmlAgilityPack.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Resource.pdb
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Common.Logging.Core.pdb
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Common.Logging.Core.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Common.Logging.pdb
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\Common.Logging.xml
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\ar\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\fa\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\ru\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\tr\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\zh\Resource.resources.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\bin\policy.2.0.taglib-sharp.config
+F:\Project\TFS\KhoshKala\khoshkala\CDN\obj\x86\Debug\CDN.csproj.AssemblyReference.cache
+F:\Project\TFS\KhoshKala\khoshkala\CDN\obj\x86\Debug\CDN.csproj.CoreCompileInputs.cache
+F:\Project\TFS\KhoshKala\khoshkala\CDN\obj\x86\Debug\CDN.csproj.CopyComplete
+F:\Project\TFS\KhoshKala\khoshkala\CDN\obj\x86\Debug\CDN.dll
+F:\Project\TFS\KhoshKala\khoshkala\CDN\obj\x86\Debug\CDN.pdb
